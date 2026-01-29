@@ -17,13 +17,13 @@ workflows:
         script: |
           chmod +x scripts/distribute_android.sh
           ./scripts/distribute_android.sh
-      - name: Build and Distribute iOS
-        script: |
-          chmod +x scripts/distribute_ios.sh
-          ./scripts/distribute_ios.sh
+      # - name: Build and Distribute iOS
+      #   script: |
+      #     chmod +x scripts/distribute_ios.sh
+      #     ./scripts/distribute_ios.sh
     artifacts:
       - build/app/outputs/flutter-apk/*.apk
-      - build/ios/ipa/*.ipa
+      # - build/ios/ipa/*.ipa
     publishing:
       email:
         recipients:
