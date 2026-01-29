@@ -1,0 +1,1685 @@
+[  +23 ms] executing: sysctl hw.optional.arm64
+[   +5 ms] Exit code 0 from: sysctl hw.optional.arm64
+[        ] hw.optional.arm64: 1
+[   +6 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[  +58 ms] executing: sysctl hw.optional.arm64
+[   +5 ms] Exit code 0 from: sysctl hw.optional.arm64
+[        ] hw.optional.arm64: 1
+[        ] executing: /usr/bin/arch -arm64e xcrun xcodebuild -version
+[ +127 ms] Exit code 0 from: /usr/bin/arch -arm64e xcrun xcodebuild -version
+[        ] Xcode 16.2
+           Build version 16C5032a
+[   +1 ms] executing: /usr/bin/arch -arm64e xcrun xcdevice list --timeout 5
+[   +3 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[  +27 ms] executing: /Users/bitskraft/Library/Android/sdk/platform-tools/adb devices -l
+[        ] executing: /usr/bin/arch -arm64e xcrun xcdevice list --timeout 2
+[        ] executing: /usr/bin/arch -arm64e xcrun simctl list devices booted
+[ +244 ms] /usr/bin/arch -arm64e xcrun simctl list devices booted iOS --json
+[        ] executing: /usr/bin/arch -arm64e xcrun simctl list devices booted iOS --json
+[ +238 ms] List of devices attached
+           ec6b8ea2               device usb:1-1 product:CPH2573IN model:CPH2573 device:OP595DL1 transport_id:5
+[  +15 ms] {
+             "devices" : {
+               "com.apple.CoreSimulator.SimRuntime.iOS-18-2" : [
+
+               ],
+               "com.apple.CoreSimulator.SimRuntime.iOS-18-1" : [
+
+               ]
+             }
+           }
+[+2754 ms] [
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,6",
+               "identifier" : "6686F665-18DA-4A92-B643-4A9FCD0289E5",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-pro-m4-13-1",
+               "modelName" : "iPad Pro 13-inch (M4)",
+               "name" : "iPad Pro 13-inch (M4)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,3",
+               "identifier" : "4997CDC3-C009-47C0-AE4F-D90011198759",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-1",
+               "modelName" : "iPhone 16",
+               "name" : "iPhone 16",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad13,18",
+               "identifier" : "4200BED9-D5C6-4343-BD38-0676B35A0265",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-10-1",
+               "modelName" : "iPad (10th generation)",
+               "name" : "iPad (10th generation)",
+               "ignored" : false
+             },
+             {
+               "ignored" : false,
+               "modelCode" : "iPhone10,6",
+               "simulator" : false,
+               "modelName" : "iPhone X (Model A1865, A1901, A1902, A1903)",
+               "error" : {
+                 "code" : -13,
+                 "failureReason" : "",
+                 "description" : "Saugat’s iPhone is not connected",
+                 "recoverySuggestion" : "Xcode will continue when Saugat’s iPhone is connected and unlocked.",
+                 "domain" : "com.apple.platform.iphoneos"
+               },
+               "operatingSystemVersion" : "16.7.12 (20H364)",
+               "identifier" : "85aae4946745c63dad6b3d947520dbd6000903bc",
+               "platform" : "com.apple.platform.iphoneos",
+               "architecture" : "arm64",
+               "interface" : "usb",
+               "available" : false,
+               "name" : "Saugat’s iPhone",
+               "modelUTI" : "com.apple.iphone-x-2"
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,4",
+               "identifier" : "3A0B46A1-4790-418B-88B7-A3BE335D7DFE",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-pro-m4-1",
+               "modelName" : "iPad Pro 11-inch (M4)",
+               "name" : "iPad Pro 11-inch (M4)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,1",
+               "identifier" : "01052F55-4314-4482-AA5C-4704B111AE22",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-pro-1",
+               "modelName" : "iPhone 16 Pro",
+               "name" : "iPhone 16 Pro",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad14,11",
+               "identifier" : "A93D2EAE-7EA5-4E13-A253-5E86ACDF61A0",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-air-m2-13-1",
+               "modelName" : "iPad Air 13-inch (M2)",
+               "name" : "iPad Air 13-inch (M2)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,3",
+               "identifier" : "B30F585E-57A1-4096-8A2A-9F284793C98A",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-1",
+               "modelName" : "iPhone 16",
+               "name" : "iPhone 16",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone14,6",
+               "identifier" : "50DB6655-F554-4C34-9B9C-88A657E652F2",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-se3-1",
+               "modelName" : "iPhone SE (3rd generation)",
+               "name" : "iPhone SE (3rd generation)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,4",
+               "identifier" : "E6852E85-E738-4A43-8188-1E4F57DC8EF2",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-plus-1",
+               "modelName" : "iPhone 16 Plus",
+               "name" : "iPhone 16 Plus",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad14,9",
+               "identifier" : "9A02F388-CD50-44E4-A170-0E0090141F4D",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-air-m2-1",
+               "modelName" : "iPad Air 11-inch (M2)",
+               "name" : "iPad Air 11-inch (M2)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,2",
+               "identifier" : "516149DA-6295-45DE-8C9A-9C9FB229F272",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-pro-max-1",
+               "modelName" : "iPhone 16 Pro Max",
+               "name" : "iPhone 16 Pro Max",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad13,18",
+               "identifier" : "9DB1ADCB-7424-4B50-B5AF-8B825E9BB859",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-10-1",
+               "modelName" : "iPad (10th generation)",
+               "name" : "iPad (10th generation)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,2",
+               "identifier" : "12D61DCE-4894-440F-AE1F-ABB8626229FB",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-mini-a17-1",
+               "modelName" : "iPad mini (A17 Pro)",
+               "name" : "iPad mini (A17 Pro)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,4",
+               "identifier" : "F9F02EF2-B1A3-4ECB-999C-5C3182B7B0DA",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-pro-m4-1",
+               "modelName" : "iPad Pro 11-inch (M4)",
+               "name" : "iPad Pro 11-inch (M4)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,4",
+               "identifier" : "9966BF84-4934-4769-9C38-FE72F581B23E",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-plus-1",
+               "modelName" : "iPhone 16 Plus",
+               "name" : "iPhone 16 Plus",
+               "ignored" : false
+             },
+             {
+               "ignored" : false,
+               "modelCode" : "MacBookPro17,1",
+               "simulator" : false,
+               "modelName" : "MacBook Pro",
+               "operatingSystemVersion" : "15.0.1 (24A348)",
+               "identifier" : "00008103-001945C10C62001E",
+               "platform" : "com.apple.platform.macosx",
+               "architecture" : "arm64e",
+               "interface" : "usb",
+               "available" : true,
+               "name" : "My Mac",
+               "modelUTI" : "com.apple.macbookpro-13-retina-touchid-late-2020"
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad14,9",
+               "identifier" : "3660D97B-6112-4756-97C7-D3AB2704A3B1",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-air-m2-1",
+               "modelName" : "iPad Air 11-inch (M2)",
+               "name" : "iPad Air 11-inch (M2)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad14,11",
+               "identifier" : "71ADD3EA-C125-48A0-9A84-083046B4781D",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-air-m2-13-1",
+               "modelName" : "iPad Air 13-inch (M2)",
+               "name" : "iPad Air 13-inch (M2)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone14,6",
+               "identifier" : "FDF0DBB9-C74A-40F5-896F-C4E6B3E78B99",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-se3-1",
+               "modelName" : "iPhone SE (3rd generation)",
+               "name" : "iPhone SE (3rd generation)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,6",
+               "identifier" : "FE0D8E91-C366-407A-BDF7-B1FC0BB6AF70",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-pro-m4-13-1",
+               "modelName" : "iPad Pro 13-inch (M4)",
+               "name" : "iPad Pro 13-inch (M4)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,2",
+               "identifier" : "F7CEBC20-4296-4D12-9EC4-44E6A3011E5F",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-pro-max-1",
+               "modelName" : "iPhone 16 Pro Max",
+               "name" : "iPhone 16 Pro Max",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,2",
+               "identifier" : "B473F1D6-A189-4633-8B68-0D04088BB5E5",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-mini-a17-1",
+               "modelName" : "iPad mini (A17 Pro)",
+               "name" : "iPad mini (A17 Pro)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,1",
+               "identifier" : "D1BB63FB-C062-491A-9BAB-A145CB84808A",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-pro-1",
+               "modelName" : "iPhone 16 Pro",
+               "name" : "iPhone 16 Pro",
+               "ignored" : false
+             }
+           ]
+[   +6 ms] executing: /usr/bin/arch -arm64e xcrun devicectl --version
+[ +211 ms] executing: /usr/bin/arch -arm64e xcrun devicectl list devices --timeout 5 --json-output /var/folders/mh/3kwrnsfn4wjcpccs147sy06w0000gn/T/flutter_tools.9EHCCN/core_devices.S3rEJk/core_device_list.json
+[ +101 ms] No devices found.
+[        ] {
+             "info" : {
+               "arguments" : [
+                 "devicectl",
+                 "list",
+                 "devices",
+                 "--timeout",
+                 "5",
+                 "--json-output",
+                 "/var/folders/mh/3kwrnsfn4wjcpccs147sy06w0000gn/T/flutter_tools.9EHCCN/core_devices.S3rEJk/core_device_list.json"
+               ],
+               "commandType" : "devicectl.list.devices",
+               "environment" : {
+                 "TERM" : "xterm-256color"
+               },
+               "jsonVersion" : 2,
+               "outcome" : "success",
+               "version" : "397.28"
+             },
+             "result" : {
+               "devices" : [
+
+               ]
+             }
+           }
+
+[   +3 ms] Error: Saugat’s iPhone is not connected. Xcode will continue when Saugat’s iPhone is connected and unlocked. (code -13)
+[   +5 ms] /Users/bitskraft/Library/Android/sdk/platform-tools/adb -s ec6b8ea2 shell getprop
+[ +118 ms] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[ +103 ms] executing: [/Volumes/Trascend/Personal/finance_app/] /Users/bitskraft/flutter/bin/cache/dart-sdk/bin/dart pub --suppress-analytics --directory . get --example
+Resolving dependencies...
+Downloading packages...
+  _fe_analyzer_shared 67.0.0 (93.0.0 available)
+  analyzer 6.4.1 (10.0.1 available)
+  analyzer_plugin 0.11.3 (0.14.1 available)
+  build 2.4.1 (4.0.4 available)
+  build_config 1.1.2 (1.2.0 available)
+  build_resolvers 2.4.2 (3.0.4 available)
+  build_runner 2.4.13 (2.10.5 available)
+  build_runner_core 7.3.2 (9.3.2 available)
+  characters 1.4.0 (1.4.1 available)
+  custom_lint 0.6.4 (0.8.1 available)
+  custom_lint_builder 0.6.4 (0.8.1 available)
+  custom_lint_core 0.6.3 (0.8.2 available)
+  dart_style 2.3.6 (3.1.4 available)
+  fl_chart 0.68.0 (1.1.1 available)
+  flutter_launcher_icons 0.13.1 (0.14.4 available)
+  flutter_lints 3.0.2 (6.0.0 available)
+  flutter_local_notifications 17.2.4 (19.5.0 available)
+  flutter_local_notifications_linux 4.0.1 (6.0.0 available)
+  flutter_local_notifications_platform_interface 7.2.0 (9.1.0 available)
+  flutter_riverpod 2.6.1 (3.2.0 available)
+  flutter_slidable 3.1.2 (4.0.3 available)
+  flutter_timezone 3.0.1 (5.0.1 available)
+  freezed 2.5.2 (3.2.4 available)
+  freezed_annotation 2.4.4 (3.1.0 available)
+  go_router 14.8.1 (17.0.1 available)
+  google_fonts 6.3.3 (7.1.0 available)
+  intl 0.19.0 (0.20.2 available)
+  lints 3.0.0 (6.0.0 available)
+  matcher 0.12.17 (0.12.18 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.16.0 (1.18.0 available)
+  path_provider_foundation 2.5.1 (2.6.0 available)
+  riverpod 2.6.1 (3.2.0 available)
+  riverpod_analyzer_utils 0.5.1 (0.5.10 available)
+  riverpod_annotation 2.6.1 (4.0.1 available)
+  riverpod_generator 2.4.0 (4.0.2 available)
+  riverpod_lint 2.3.10 (3.1.2 available)
+  rxdart 0.27.7 (0.28.0 available)
+  shelf_web_socket 2.0.1 (3.0.0 available)
+  source_gen 1.5.0 (4.2.0 available)
+  source_helper 1.3.5 (1.3.10 available)
+  test_api 0.7.6 (0.7.9 available)
+  timezone 0.9.4 (0.11.0 available)
+Got dependencies!
+43 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+[+1705 ms] Found plugin image_picker at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker-1.2.1/
+[   +3 ms] Found plugin image_picker_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.2/
+[   +3 ms] Found plugin file_selector_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+5/
+[   +1 ms] Found plugin image_picker_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.2+1/
+[        ] Found plugin file_selector_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.5/
+[        ] Found plugin image_picker_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.2/
+[   +1 ms] Found plugin file_selector_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.4/
+[        ] Found plugin image_picker_ios at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.13+3/
+[   +1 ms] Found plugin image_picker_for_web at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_for_web-3.1.1/
+[   +1 ms] Found plugin image_picker_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+12/
+[   +1 ms] Found plugin flutter_plugin_android_lifecycle at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.33/
+[   +1 ms] Found plugin path_provider at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+[        ] Found plugin path_provider_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+[   +1 ms] Found plugin path_provider_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+[   +1 ms] Found plugin path_provider_foundation at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_foundation-2.5.1/
+[        ] Found plugin path_provider_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_android-2.2.22/
+[   +1 ms] Found plugin flutter_timezone at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_timezone-3.0.1/
+[   +1 ms] Found plugin flutter_local_notifications at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.4/
+[   +1 ms] Found plugin flutter_local_notifications_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-4.0.1/
+[  +84 ms] Found plugin image_picker at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker-1.2.1/
+[        ] Found plugin image_picker_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.2/
+[   +1 ms] Found plugin file_selector_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+5/
+[        ] Found plugin image_picker_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.2+1/
+[        ] Found plugin file_selector_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.5/
+[        ] Found plugin image_picker_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.2/
+[        ] Found plugin file_selector_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.4/
+[        ] Found plugin image_picker_ios at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.13+3/
+[        ] Found plugin image_picker_for_web at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_for_web-3.1.1/
+[        ] Found plugin image_picker_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+12/
+[        ] Found plugin flutter_plugin_android_lifecycle at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.33/
+[        ] Found plugin path_provider at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+[        ] Found plugin path_provider_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+[   +1 ms] Found plugin path_provider_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+[        ] Found plugin path_provider_foundation at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_foundation-2.5.1/
+[        ] Found plugin path_provider_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_android-2.2.22/
+[   +1 ms] Found plugin flutter_timezone at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_timezone-3.0.1/
+[   +1 ms] Found plugin flutter_local_notifications at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.4/
+[        ] Found plugin flutter_local_notifications_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-4.0.1/
+[  +44 ms] Found plugin image_picker at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker-1.2.1/
+[   +1 ms] Found plugin image_picker_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.2/
+[   +2 ms] Found plugin file_selector_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+5/
+[        ] Found plugin image_picker_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.2+1/
+[        ] Found plugin file_selector_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.5/
+[        ] Found plugin image_picker_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.2/
+[        ] Found plugin file_selector_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.4/
+[        ] Found plugin image_picker_ios at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.13+3/
+[        ] Found plugin image_picker_for_web at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_for_web-3.1.1/
+[        ] Found plugin image_picker_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+12/
+[        ] Found plugin flutter_plugin_android_lifecycle at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.33/
+[        ] Found plugin path_provider at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+[        ] Found plugin path_provider_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+[   +1 ms] Found plugin path_provider_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+[        ] Found plugin path_provider_foundation at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_foundation-2.5.1/
+[        ] Found plugin path_provider_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_android-2.2.22/
+[   +1 ms] Found plugin flutter_timezone at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_timezone-3.0.1/
+[   +1 ms] Found plugin flutter_local_notifications at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.4/
+[        ] Found plugin flutter_local_notifications_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-4.0.1/
+[   +6 ms] Generating /Volumes/Trascend/Personal/finance_app/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+[   +1 ms] Skipping generating GeneratedPluginRegistrant.java because it is up-to-date.
+[   +1 ms] Skipping generating GeneratedPluginRegistrant.h because it is up-to-date.
+[   +1 ms] Skipping generating GeneratedPluginRegistrant.m because it is up-to-date.
+[   +5 ms] ro.hardware = qcom
+[  +39 ms] Initializing file store
+[   +7 ms] Skipping target: gen_localizations
+[   +1 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: /Volumes/Trascend/Personal/finance_app/.dart_tool/package_config.json}
+[  +37 ms] Found plugin image_picker at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker-1.2.1/
+[        ] Found plugin image_picker_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.2/
+[   +1 ms] Found plugin file_selector_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+5/
+[        ] Found plugin image_picker_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.2+1/
+[        ] Found plugin file_selector_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.5/
+[        ] Found plugin image_picker_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.2/
+[        ] Found plugin file_selector_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.4/
+[        ] Found plugin image_picker_ios at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.13+3/
+[        ] Found plugin image_picker_for_web at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_for_web-3.1.1/
+[        ] Found plugin image_picker_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+12/
+[        ] Found plugin flutter_plugin_android_lifecycle at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.33/
+[        ] Found plugin path_provider at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+[        ] Found plugin path_provider_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+[   +1 ms] Found plugin path_provider_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+[        ] Found plugin path_provider_foundation at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_foundation-2.5.1/
+[        ] Found plugin path_provider_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_android-2.2.22/
+[   +1 ms] Found plugin flutter_timezone at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_timezone-3.0.1/
+[   +1 ms] Found plugin flutter_local_notifications at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.4/
+[        ] Found plugin flutter_local_notifications_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-4.0.1/
+[   +8 ms] gen_dart_plugin_registrant: Complete
+[   +1 ms] _composite: Starting due to {}
+[        ] _composite: Complete
+[   +1 ms] complete
+[   +3 ms] Launching lib/main.dart on CPH2573 in debug mode...
+[   +2 ms] /Users/bitskraft/flutter/bin/cache/dart-sdk/bin/dartaotruntime /Users/bitskraft/flutter/bin/cache/dart-sdk/bin/snapshots/frontend_server_aot.dart.snapshot --sdk-root /Users/bitskraft/flutter/bin/cache/artifacts/engine/common/flutter_patched_sdk/ --incremental --target=flutter --experimental-emit-debug-metadata -DFLUTTER_VERSION=3.35.6 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=9f455d2486 -DFLUTTER_ENGINE_REVISION=d2913632a4 -DFLUTTER_DART_VERSION=3.9.2 --output-dill /var/folders/mh/3kwrnsfn4wjcpccs147sy06w0000gn/T/flutter_tools.9EHCCN/flutter_tool.53AIuF/app.dill --packages /Volumes/Trascend/Personal/finance_app/.dart_tool/package_config.json -Ddart.vm.profile=false -Ddart.vm.product=false --enable-asserts --track-widget-creation --filesystem-scheme org-dartlang-root --initialize-from-dill build/f61019181a390ebae04f980d79c3991a.cache.dill.track.dill --source file:///Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error --enable-experiment=alternative-invalidation-strategy
+[   +8 ms] executing: /Users/bitskraft/Library/Android/sdk/platform-tools/adb -s ec6b8ea2 shell -x logcat -v time -t 1
+[   +5 ms] <- compile package:finance_app/main.dart
+[ +102 ms] lib/features/profile/presentation/pages/profile_setup_page.dart:336:37: Error: Can't find ')' to match '('.
+[        ]               return GestureDetector(
+[        ]                                     ^
+[  +23 ms] --------- beginning of main
+           01-23 01:07:43.284 I/SystemUi--Statusbar( 7081): OplusNetworkSpeedControllExImpl-->getTotalByte: totalRxBytes:75625674278,totalTxBytes:8518513350,loopbackTxBytes:2636459816,loopbackRxBytes:2636453156 ,totalBytes:78871274656
+[   +7 ms] executing: /Users/bitskraft/Library/Android/sdk/platform-tools/adb version
+[ +131 ms] Android Debug Bridge version 1.0.41
+           Version 36.0.0-13206524
+           Installed as /Users/bitskraft/Library/Android/sdk/platform-tools/adb
+           Running on Darwin 24.0.0 (arm64)
+[  +36 ms] executing: /Users/bitskraft/Library/Android/sdk/platform-tools/adb start-server
+[  +43 ms] Building APK
+[ +100 ms] executing: /usr/bin/plutil -convert xml1 -o - /Applications/Android Studio.app/Contents/Info.plist
+[  +16 ms] Exit code 0 from: /usr/bin/plutil -convert xml1 -o - /Applications/Android Studio.app/Contents/Info.plist
+[        ] <?xml version="1.0" encoding="UTF-8"?>
+           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+           <plist version="1.0">
+           <dict>
+           	<key>CFBundleDevelopmentRegion</key>
+           	<string>English</string>
+           	<key>CFBundleDocumentTypes</key>
+           	<array>
+           		<dict>
+           			<key>CFBundleTypeExtensions</key>
+           			<array>
+           				<string>ipr</string>
+           			</array>
+           			<key>CFBundleTypeIconFile</key>
+           			<string>studio.icns</string>
+           			<key>CFBundleTypeName</key>
+           			<string>Android Studio Project File</string>
+           			<key>CFBundleTypeRole</key>
+           			<string>Editor</string>
+           		</dict>
+           		<dict>
+           			<key>CFBundleTypeExtensions</key>
+           			<array>
+           				<string>*</string>
+           			</array>
+           			<key>CFBundleTypeName</key>
+           			<string>All documents</string>
+           			<key>CFBundleTypeOSTypes</key>
+           			<array>
+           				<string>****</string>
+           			</array>
+           			<key>CFBundleTypeRole</key>
+           			<string>Editor</string>
+           			<key>LSTypeIsPackage</key>
+           			<false/>
+           		</dict>
+           	</array>
+           	<key>CFBundleExecutable</key>
+           	<string>studio</string>
+           	<key>CFBundleGetInfoString</key>
+           	<string>Android Studio 2025.1, build AI-251.27812.49.2514.14217341. Copyright JetBrains s.r.o., (c) 2000-2025</string>
+           	<key>CFBundleIconFile</key>
+           	<string>studio.icns</string>
+           	<key>CFBundleIdentifier</key>
+           	<string>com.google.android.studio</string>
+           	<key>CFBundleInfoDictionaryVersion</key>
+           	<string>6.0</string>
+           	<key>CFBundleName</key>
+           	<string>Android Studio</string>
+           	<key>CFBundlePackageType</key>
+           	<string>APPL</string>
+           	<key>CFBundleShortVersionString</key>
+           	<string>2025.1</string>
+           	<key>CFBundleURLTypes</key>
+           	<array>
+           		<dict>
+           			<key>CFBundleTypeRole</key>
+           			<string>Editor</string>
+           			<key>CFBundleURLName</key>
+           			<string>Stacktrace</string>
+           			<key>CFBundleURLSchemes</key>
+           			<array>
+           				<string>idea</string>
+           			</array>
+           		</dict>
+           	</array>
+           	<key>CFBundleVersion</key>
+           	<string>AI-251.27812.49.2514.14217341</string>
+           	<key>LSApplicationCategoryType</key>
+           	<string>public.app-category.developer-tools</string>
+           	<key>LSArchitecturePriority</key>
+           	<array>
+           		<string>arm64</string>
+           	</array>
+           	<key>LSMinimumSystemVersion</key>
+           	<string>10.13</string>
+           	<key>LSRequiresNativeExecution</key>
+           	<string>YES</string>
+           	<key>NSAppleEventsUsageDescription</key>
+           	<string>An application in Android Studio requests the ability to send Apple events.</string>
+           	<key>NSBluetoothAlwaysUsageDescription</key>
+           	<string>An application in Android Studio requests access to Bluetooth.</string>
+           	<key>NSCameraUsageDescription</key>
+           	<string>An application in Android Studio requests access to the device's camera.</string>
+           	<key>NSDesktopFolderUsageDescription</key>
+           	<string>An application in Android Studio requests access to the user's Desktop folder.</string>
+           	<key>NSDocumentsFolderUsageDescription</key>
+           	<string>An application in Android Studio requests access to the user's Documents folder.</string>
+           	<key>NSDownloadsFolderUsageDescription</key>
+           	<string>An application in Android Studio requests access to the user's Downloads folder.</string>
+           	<key>NSHighResolutionCapable</key>
+           	<true/>
+           	<key>NSLocalNetworkUsageDescription</key>
+           	<string>Android Studio's features, such as SSH and database connectivity, require permissions for accessing the local network and sending broadcast requests.</string>
+           	<key>NSLocationUsageDescription</key>
+           	<string>An application in Android Studio requests access to the user's location information.</string>
+           	<key>NSMicrophoneUsageDescription</key>
+           	<string>An application in Android Studio requests access to the device's microphone.</string>
+           	<key>NSNetworkVolumesUsageDescription</key>
+           	<string>An application in Android Studio requests access to files on a network volume.</string>
+           	<key>NSRemovableVolumesUsageDescription</key>
+           	<string>An application in Android Studio requests access to files on a removable volume.</string>
+           	<key>NSSupportsAutomaticGraphicsSwitching</key>
+           	<true/>
+           </dict>
+           </plist>
+[   +7 ms] executing: /Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java -version
+[ +138 ms] Exit code 0 from: /Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java -version
+[        ] openjdk version "21.0.8" 2025-07-15
+           OpenJDK Runtime Environment (build 21.0.8+-14018985-b1038.68)
+           OpenJDK 64-Bit Server VM (build 21.0.8+-14018985-b1038.68, mixed mode)
+[   +8 ms] Top-level Gradle build file not found, skipping migration of task "clean".
+[   +1 ms] executing: /Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java --version
+[ +105 ms] Exit code 0 from: /Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java --version
+[        ] openjdk 21.0.8 2025-07-15
+           OpenJDK Runtime Environment (build 21.0.8+-14018985-b1038.68)
+           OpenJDK 64-Bit Server VM (build 21.0.8+-14018985-b1038.68, mixed mode)
+[   +1 ms] Version of Java is different than impacted version, no migration attempted.
+[  +10 ms] CMake project not found, skipping support Android 15 16k page size migration.
+[   +2 ms] Using gradle from /Volumes/Trascend/Personal/finance_app/android/gradlew.
+[  +42 ms] LocalFile: '/Volumes/Trascend/Personal/finance_app/android/build.gradle.kts' doesn't provide an AGP version. Checking settings.
+[  +12 ms] LocalFile: '/Volumes/Trascend/Personal/finance_app/android/settings.gradle.kts' provides AGP version: 8.9.1
+[        ] Running Gradle task 'assembleDebug'...
+[        ] executing: [/Volumes/Trascend/Personal/finance_app/android/] /Volumes/Trascend/Personal/finance_app/android/gradlew --full-stacktrace --info -Pverbose=true -Ptarget-platform=android-arm64 -Ptarget=/Volumes/Trascend/Personal/finance_app/lib/main.dart -Pbase-application-name=android.app.Application -Pdart-defines=RkxVVFRFUl9WRVJTSU9OPTMuMzUuNg==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049OWY0NTVkMjQ4Ng==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049ZDI5MTM2MzJhNA==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My45LjI= -Pdart-obfuscation=false -Ptrack-widget-creation=true -Ptree-shake-icons=false -Pfilesystem-scheme=org-dartlang-root assembleDebug
+[   +2 ms] [
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,6",
+               "identifier" : "6686F665-18DA-4A92-B643-4A9FCD0289E5",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-pro-m4-13-1",
+               "modelName" : "iPad Pro 13-inch (M4)",
+               "name" : "iPad Pro 13-inch (M4)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,3",
+               "identifier" : "4997CDC3-C009-47C0-AE4F-D90011198759",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-1",
+               "modelName" : "iPhone 16",
+               "name" : "iPhone 16",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad13,18",
+               "identifier" : "4200BED9-D5C6-4343-BD38-0676B35A0265",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-10-1",
+               "modelName" : "iPad (10th generation)",
+               "name" : "iPad (10th generation)",
+               "ignored" : false
+             },
+             {
+               "ignored" : false,
+               "modelCode" : "iPhone10,6",
+               "simulator" : false,
+               "modelName" : "iPhone X (Model A1865, A1901, A1902, A1903)",
+               "error" : {
+                 "code" : -13,
+                 "failureReason" : "",
+                 "description" : "Saugat’s iPhone is not connected",
+                 "recoverySuggestion" : "Xcode will continue when Saugat’s iPhone is connected and unlocked.",
+                 "domain" : "com.apple.platform.iphoneos"
+               },
+               "operatingSystemVersion" : "16.7.12 (20H364)",
+               "identifier" : "85aae4946745c63dad6b3d947520dbd6000903bc",
+               "platform" : "com.apple.platform.iphoneos",
+               "architecture" : "arm64",
+               "interface" : "usb",
+               "available" : false,
+               "name" : "Saugat’s iPhone",
+               "modelUTI" : "com.apple.iphone-x-2"
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,4",
+               "identifier" : "3A0B46A1-4790-418B-88B7-A3BE335D7DFE",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-pro-m4-1",
+               "modelName" : "iPad Pro 11-inch (M4)",
+               "name" : "iPad Pro 11-inch (M4)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,1",
+               "identifier" : "01052F55-4314-4482-AA5C-4704B111AE22",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-pro-1",
+               "modelName" : "iPhone 16 Pro",
+               "name" : "iPhone 16 Pro",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad14,11",
+               "identifier" : "A93D2EAE-7EA5-4E13-A253-5E86ACDF61A0",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-air-m2-13-1",
+               "modelName" : "iPad Air 13-inch (M2)",
+               "name" : "iPad Air 13-inch (M2)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,3",
+               "identifier" : "B30F585E-57A1-4096-8A2A-9F284793C98A",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-1",
+               "modelName" : "iPhone 16",
+               "name" : "iPhone 16",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone14,6",
+               "identifier" : "50DB6655-F554-4C34-9B9C-88A657E652F2",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-se3-1",
+               "modelName" : "iPhone SE (3rd generation)",
+               "name" : "iPhone SE (3rd generation)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,4",
+               "identifier" : "E6852E85-E738-4A43-8188-1E4F57DC8EF2",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-plus-1",
+               "modelName" : "iPhone 16 Plus",
+               "name" : "iPhone 16 Plus",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad14,9",
+               "identifier" : "9A02F388-CD50-44E4-A170-0E0090141F4D",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-air-m2-1",
+               "modelName" : "iPad Air 11-inch (M2)",
+               "name" : "iPad Air 11-inch (M2)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,2",
+               "identifier" : "516149DA-6295-45DE-8C9A-9C9FB229F272",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-pro-max-1",
+               "modelName" : "iPhone 16 Pro Max",
+               "name" : "iPhone 16 Pro Max",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad13,18",
+               "identifier" : "9DB1ADCB-7424-4B50-B5AF-8B825E9BB859",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-10-1",
+               "modelName" : "iPad (10th generation)",
+               "name" : "iPad (10th generation)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,2",
+               "identifier" : "12D61DCE-4894-440F-AE1F-ABB8626229FB",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-mini-a17-1",
+               "modelName" : "iPad mini (A17 Pro)",
+               "name" : "iPad mini (A17 Pro)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,4",
+               "identifier" : "F9F02EF2-B1A3-4ECB-999C-5C3182B7B0DA",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-pro-m4-1",
+               "modelName" : "iPad Pro 11-inch (M4)",
+               "name" : "iPad Pro 11-inch (M4)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,4",
+               "identifier" : "9966BF84-4934-4769-9C38-FE72F581B23E",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-plus-1",
+               "modelName" : "iPhone 16 Plus",
+               "name" : "iPhone 16 Plus",
+               "ignored" : false
+             },
+             {
+               "ignored" : false,
+               "modelCode" : "MacBookPro17,1",
+               "simulator" : false,
+               "modelName" : "MacBook Pro",
+               "operatingSystemVersion" : "15.0.1 (24A348)",
+               "identifier" : "00008103-001945C10C62001E",
+               "platform" : "com.apple.platform.macosx",
+               "architecture" : "arm64e",
+               "interface" : "usb",
+               "available" : true,
+               "name" : "My Mac",
+               "modelUTI" : "com.apple.macbookpro-13-retina-touchid-late-2020"
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad14,9",
+               "identifier" : "3660D97B-6112-4756-97C7-D3AB2704A3B1",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-air-m2-1",
+               "modelName" : "iPad Air 11-inch (M2)",
+               "name" : "iPad Air 11-inch (M2)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad14,11",
+               "identifier" : "71ADD3EA-C125-48A0-9A84-083046B4781D",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-air-m2-13-1",
+               "modelName" : "iPad Air 13-inch (M2)",
+               "name" : "iPad Air 13-inch (M2)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone14,6",
+               "identifier" : "FDF0DBB9-C74A-40F5-896F-C4E6B3E78B99",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-se3-1",
+               "modelName" : "iPhone SE (3rd generation)",
+               "name" : "iPhone SE (3rd generation)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,6",
+               "identifier" : "FE0D8E91-C366-407A-BDF7-B1FC0BB6AF70",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-pro-m4-13-1",
+               "modelName" : "iPad Pro 13-inch (M4)",
+               "name" : "iPad Pro 13-inch (M4)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.2 (22C150)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,2",
+               "identifier" : "F7CEBC20-4296-4D12-9EC4-44E6A3011E5F",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-pro-max-1",
+               "modelName" : "iPhone 16 Pro Max",
+               "name" : "iPhone 16 Pro Max",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPad16,2",
+               "identifier" : "B473F1D6-A189-4633-8B68-0D04088BB5E5",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.ipad-mini-a17-1",
+               "modelName" : "iPad mini (A17 Pro)",
+               "name" : "iPad mini (A17 Pro)",
+               "ignored" : false
+             },
+             {
+               "simulator" : true,
+               "operatingSystemVersion" : "18.1 (22B81)",
+               "available" : true,
+               "platform" : "com.apple.platform.iphonesimulator",
+               "modelCode" : "iPhone17,1",
+               "identifier" : "D1BB63FB-C062-491A-9BAB-A145CB84808A",
+               "architecture" : "arm64",
+               "modelUTI" : "com.apple.iphone-16-pro-1",
+               "modelName" : "iPhone 16 Pro",
+               "name" : "iPhone 16 Pro",
+               "ignored" : false
+             }
+           ]
+[   +3 ms] executing: /usr/bin/arch -arm64e xcrun devicectl list devices --timeout 5 --json-output /var/folders/mh/3kwrnsfn4wjcpccs147sy06w0000gn/T/flutter_tools.9EHCCN/core_devices.9krmUo/core_device_list.json
+[ +135 ms] No devices found.
+[        ] {
+             "info" : {
+               "arguments" : [
+                 "devicectl",
+                 "list",
+                 "devices",
+                 "--timeout",
+                 "5",
+                 "--json-output",
+                 "/var/folders/mh/3kwrnsfn4wjcpccs147sy06w0000gn/T/flutter_tools.9EHCCN/core_devices.9krmUo/core_device_list.json"
+               ],
+               "commandType" : "devicectl.list.devices",
+               "environment" : {
+                 "TERM" : "xterm-256color"
+               },
+               "jsonVersion" : 2,
+               "outcome" : "success",
+               "version" : "397.28"
+             },
+             "result" : {
+               "devices" : [
+
+               ]
+             }
+           }
+
+[        ] Error: Saugat’s iPhone is not connected. Xcode will continue when Saugat’s iPhone is connected and unlocked. (code -13)
+[ +719 ms] Initialized native services in: /Users/bitskraft/.gradle/native
+[        ] Initialized jansi services in: /Users/bitskraft/.gradle/native
+[ +420 ms] The client will now receive all logging from the daemon (pid: 81591). The daemon log file: /Users/bitskraft/.gradle/daemon/8.12/daemon-81591.out.log
+[        ] Starting 10th build in daemon [uptime: 22 mins 13.494 secs, performance: 98%, GC rate: 0.00/s, heap usage: 0% of 8 GiB, non-heap usage: 6% of 4 GiB]
+[        ] Using 8 worker leases.
+[  +96 ms] Now considering [/Volumes/Trascend/Personal/finance_app/android, /Users/bitskraft/flutter/packages/flutter_tools/gradle] as hierarchies to watch
+[        ] Watching the file system is configured to be enabled if available
+[        ] File system watching is active
+[        ] Starting Build
+[        ] Now considering [/Users/bitskraft/flutter/packages/flutter_tools/gradle, /Volumes/Trascend/Personal/finance_app/android] as hierarchies to watch
+[ +206 ms] > Configure project :gradle
+[        ] Evaluating project ':gradle' using build file '/Users/bitskraft/flutter/packages/flutter_tools/gradle/build.gradle.kts'.
+[        ] Resolved plugin [id: 'org.gradle.java-gradle-plugin']
+[        ] Resolved plugin [id: 'org.gradle.groovy']
+[        ] Resolved plugin [id: 'org.gradle.kotlin.kotlin-dsl', version: '5.1.2']
+[        ] Resolved plugin [id: 'org.jetbrains.kotlin.jvm', version: '1.9.20']
+[        ] Using Kotlin Gradle Plugin gradle85 variant
+[        ] kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+[        ] kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+[        ] file or directory '/Users/bitskraft/flutter/packages/flutter_tools/gradle/src/main/java', not found
+[        ] Resolved plugin [id: 'dev.flutter.flutter-plugin-loader', version: '1.0.0']
+[        ] Resolved plugin [id: 'com.android.application', version: '8.9.1', apply: false]
+[        ] Resolved plugin [id: 'org.jetbrains.kotlin.android', version: '2.1.0', apply: false]
+[        ] Resolve mutations for :gradle:checkKotlinGradlePluginConfigurationErrors (Thread[#1230,Execution worker,5,main]) started.
+[        ] :gradle:checkKotlinGradlePluginConfigurationErrors (Thread[#1230,Execution worker,5,main]) started.
+[  +92 ms] > Task :gradle:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[        ] Skipping task ':gradle:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+[        ] Resolve mutations for :gradle:compileKotlin (Thread[#1230,Execution worker,5,main]) started.
+[        ] :gradle:compileKotlin (Thread[#1230,Execution worker,5,main]) started.
+[        ] > Task :gradle:compileKotlin UP-TO-DATE
+[        ] Caching disabled for task ':gradle:compileKotlin' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':gradle:compileKotlin' as it is up-to-date.
+[        ] Resolve mutations for :gradle:compileJava (Thread[#1230,Execution worker,5,main]) started.
+[        ] :gradle:compileJava (Thread[#1230,Execution worker,5,main]) started.
+[        ] > Task :gradle:compileJava NO-SOURCE
+[        ] Skipping task ':gradle:compileJava' as it has no source files and no previous output files.
+[        ] Resolve mutations for :gradle:compileGroovy (Thread[#1230,Execution worker,5,main]) started.
+[  +97 ms] :gradle:compileGroovy (Thread[#1230,Execution worker,5,main]) started.
+[        ] > Task :gradle:compileGroovy NO-SOURCE
+[        ] Skipping task ':gradle:compileGroovy' as it has no source files and no previous output files.
+[        ] Resolve mutations for :gradle:pluginDescriptors (Thread[#1230,Execution worker,5,main]) started.
+[        ] :gradle:pluginDescriptors (Thread[#1230,Execution worker,5,main]) started.
+[        ] > Task :gradle:pluginDescriptors UP-TO-DATE
+[        ] Caching disabled for task ':gradle:pluginDescriptors' because:
+[        ]   Build cache is disabled
+[        ]   Not worth caching
+[        ] Skipping task ':gradle:pluginDescriptors' as it is up-to-date.
+[        ] Resolve mutations for :gradle:processResources (Thread[#1230,Execution worker,5,main]) started.
+[        ] :gradle:processResources (Thread[#1230,Execution worker,5,main]) started.
+[        ] > Task :gradle:processResources UP-TO-DATE
+[        ] Caching disabled for task ':gradle:processResources' because:
+[        ]   Build cache is disabled
+[        ]   Not worth caching
+[        ] Skipping task ':gradle:processResources' as it is up-to-date.
+[        ] Resolve mutations for :gradle:classes (Thread[#1230,Execution worker,5,main]) started.
+[        ] :gradle:classes (Thread[#1230,Execution worker,5,main]) started.
+[        ] > Task :gradle:classes UP-TO-DATE
+[        ] Skipping task ':gradle:classes' as it has no actions.
+[        ] Resolve mutations for :gradle:jar (Thread[#1235,Execution worker Thread 6,5,main]) started.
+[        ] :gradle:jar (Thread[#1235,Execution worker Thread 6,5,main]) started.
+[        ] > Task :gradle:jar UP-TO-DATE
+[        ] Caching disabled for task ':gradle:jar' because:
+[        ]   Build cache is disabled
+[        ]   Not worth caching
+[        ] Skipping task ':gradle:jar' as it is up-to-date.
+[+1396 ms] Settings evaluated using settings file '/Volumes/Trascend/Personal/finance_app/android/settings.gradle.kts'.
+[   +2 ms] Projects loaded. Root project using build file '/Volumes/Trascend/Personal/finance_app/android/build.gradle.kts'.
+[        ] Included projects: [root project 'android', project ':app', project ':flutter_local_notifications', project ':flutter_plugin_android_lifecycle', project ':flutter_timezone', project ':image_picker_android', project ':path_provider_android']
+[ +594 ms] > Configure project :app
+[        ] Evaluating project ':app' using build file '/Volumes/Trascend/Personal/finance_app/android/app/build.gradle.kts'.
+[        ] Resolved plugin [id: 'com.android.application']
+[        ] Resolved plugin [id: 'kotlin-android']
+[        ] Resolved plugin [id: 'dev.flutter.flutter-gradle-plugin']
+[        ] Using default execution profile
+[        ] Using Kotlin Gradle Plugin gradle85 variant
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[   +1 ms] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is /Users/bitskraft/Library/Android/sdk
+[        ] > Configure project :
+[        ] Evaluating root project 'android' using build file '/Volumes/Trascend/Personal/finance_app/android/build.gradle.kts'.
+[ +183 ms] > Configure project :flutter_local_notifications
+[        ] Evaluating project ':flutter_local_notifications' using build file '/Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.4/android/build.gradle'.
+[        ] Using default execution profile
+[  +96 ms] > Configure project :flutter_plugin_android_lifecycle
+[        ] Evaluating project ':flutter_plugin_android_lifecycle' using build file '/Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.33/android/build.gradle'.
+[        ] Using default execution profile
+[ +102 ms] > Configure project :flutter_timezone
+[        ] Evaluating project ':flutter_timezone' using build file '/Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_timezone-3.0.1/android/build.gradle'.
+[        ] Using default execution profile
+[        ] Using Kotlin Gradle Plugin gradle85 variant
+[  +95 ms] > Configure project :image_picker_android
+[        ] Evaluating project ':image_picker_android' using build file '/Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+12/android/build.gradle'.
+[        ] Using default execution profile
+[ +126 ms] > Configure project :path_provider_android
+[        ] Evaluating project ':path_provider_android' using build file '/Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_android-2.2.22/android/build.gradle'.
+[        ] Using default execution profile
+[        ] All projects evaluated.
+[        ] Task name matched 'assembleDebug'
+[        ] Selected primary task 'assembleDebug' from project :
+[  +73 ms] Adding -Xuse-inline-scopes-numbers Kotlin compiler flag for task :app:compileDebugKotlin
+[ +301 ms] Tasks to be executed: [task ':app:DebugMinSdkCheck', task ':app:preBuild', task ':app:preDebugBuild', task ':app:mergeDebugNativeDebugMetadata', task ':app:checkKotlinGradlePluginConfigurationErrors', task ':app:compileFlutterBuildDebug', task ':app:packJniLibsflutterBuildDebug', task ':flutter_local_notifications:preBuild', task ':flutter_local_notifications:preDebugBuild', task ':flutter_local_notifications:writeDebugAarMetadata', task ':flutter_plugin_android_lifecycle:preBuild', task ':flutter_plugin_android_lifecycle:preDebugBuild', task ':flutter_plugin_android_lifecycle:writeDebugAarMetadata', task ':flutter_timezone:preBuild', task ':flutter_timezone:preDebugBuild', task ':flutter_timezone:writeDebugAarMetadata', task ':image_picker_android:preBuild', task ':image_picker_android:preDebugBuild', task ':image_picker_android:writeDebugAarMetadata', task ':path_provider_android:preBuild', task ':path_provider_android:preDebugBuild', task ':path_provider_android:writeDebugAarMetadata', task ':app:checkDebugAarMetadata', task ':app:cleanMergeDebugAssets', task ':app:mergeDebugShaders', task ':app:compileDebugShaders', task ':app:generateDebugAssets', task ':flutter_local_notifications:mergeDebugShaders', task ':flutter_local_notifications:compileDebugShaders', task ':flutter_local_notifications:generateDebugAssets', task ':flutter_local_notifications:mergeDebugAssets', task ':flutter_plugin_android_lifecycle:mergeDebugShaders', task ':flutter_plugin_android_lifecycle:compileDebugShaders', task ':flutter_plugin_android_lifecycle:generateDebugAssets', task ':flutter_plugin_android_lifecycle:mergeDebugAssets', task ':flutter_timezone:mergeDebugShaders', task ':flutter_timezone:compileDebugShaders', task ':flutter_timezone:generateDebugAssets', task ':flutter_timezone:mergeDebugAssets', task ':image_picker_android:mergeDebugShaders', task ':image_picker_android:compileDebugShaders', task ':image_picker_android:generateDebugAssets', task ':image_picker_android:mergeDebugAssets', task ':path_provider_android:mergeDebugShaders', task ':path_provider_android:compileDebugShaders', task ':path_provider_android:generateDebugAssets', task ':path_provider_android:mergeDebugAssets', task ':app:mergeDebugAssets', task ':app:copyFlutterAssetsDebug', task ':app:generateDebugResValues', task ':flutter_local_notifications:generateDebugResValues', task ':flutter_local_notifications:generateDebugResources', task ':flutter_local_notifications:packageDebugResources', task ':flutter_plugin_android_lifecycle:generateDebugResValues', task ':flutter_plugin_android_lifecycle:generateDebugResources', task ':flutter_plugin_android_lifecycle:packageDebugResources', task ':flutter_timezone:generateDebugResValues', task ':flutter_timezone:generateDebugResources', task ':flutter_timezone:packageDebugResources', task ':image_picker_android:generateDebugResValues', task ':image_picker_android:generateDebugResources', task ':image_picker_android:packageDebugResources', task ':path_provider_android:generateDebugResValues', task ':path_provider_android:generateDebugResources', task ':path_provider_android:packageDebugResources', task ':app:mapDebugSourceSetPaths', task ':app:generateDebugResources', task ':app:mergeDebugResources', task ':app:packageDebugResources', task ':app:parseDebugLocalResources', task ':app:createDebugCompatibleScreenManifests', task ':app:extractDeepLinksDebug', task ':flutter_local_notifications:extractDeepLinksDebug', task ':flutter_local_notifications:processDebugManifest', task ':flutter_plugin_android_lifecycle:extractDeepLinksDebug', task ':flutter_plugin_android_lifecycle:processDebugManifest', task ':flutter_timezone:extractDeepLinksDebug', task ':flutter_timezone:processDebugManifest', task ':image_picker_android:extractDeepLinksDebug', task ':image_picker_android:processDebugManifest', task ':path_provider_android:extractDeepLinksDebug', task ':path_provider_android:processDebugManifest', task ':app:processDebugMainManifest', task ':app:processDebugManifest', task ':app:processDebugManifestForPackage', task ':flutter_local_notifications:compileDebugLibraryResources', task ':flutter_local_notifications:parseDebugLocalResources', task ':flutter_local_notifications:generateDebugRFile', task ':flutter_plugin_android_lifecycle:compileDebugLibraryResources', task ':flutter_plugin_android_lifecycle:parseDebugLocalResources', task ':flutter_plugin_android_lifecycle:generateDebugRFile', task ':flutter_timezone:compileDebugLibraryResources', task ':flutter_timezone:parseDebugLocalResources', task ':flutter_timezone:generateDebugRFile', task ':image_picker_android:compileDebugLibraryResources', task ':image_picker_android:parseDebugLocalResources', task ':image_picker_android:generateDebugRFile', task ':path_provider_android:compileDebugLibraryResources', task ':path_provider_android:parseDebugLocalResources', task ':path_provider_android:generateDebugRFile', task ':app:processDebugResources', task ':flutter_local_notifications:javaPreCompileDebug', task ':flutter_local_notifications:compileDebugJavaWithJavac', task ':flutter_local_notifications:bundleLibCompileToJarDebug', task ':flutter_plugin_android_lifecycle:javaPreCompileDebug', task ':flutter_plugin_android_lifecycle:compileDebugJavaWithJavac', task ':flutter_plugin_android_lifecycle:bundleLibCompileToJarDebug', task ':flutter_timezone:checkKotlinGradlePluginConfigurationErrors', task ':flutter_timezone:compileDebugKotlin', task ':flutter_timezone:javaPreCompileDebug', task ':flutter_timezone:compileDebugJavaWithJavac', task ':flutter_timezone:bundleLibCompileToJarDebug', task ':image_picker_android:javaPreCompileDebug', task ':image_picker_android:compileDebugJavaWithJavac', task ':image_picker_android:bundleLibCompileToJarDebug', task ':path_provider_android:javaPreCompileDebug', task ':path_provider_android:compileDebugJavaWithJavac', task ':path_provider_android:bundleLibCompileToJarDebug', task ':app:compileDebugKotlin', task ':app:javaPreCompileDebug', task ':app:compileDebugJavaWithJavac', task ':app:compressDebugAssets', task ':app:l8DexDesugarLibDebug', task ':app:processDebugJavaRes', task ':flutter_local_notifications:processDebugJavaRes', task ':flutter_plugin_android_lifecycle:processDebugJavaRes', task ':flutter_timezone:processDebugJavaRes', task ':image_picker_android:processDebugJavaRes', task ':path_provider_android:processDebugJavaRes', task ':app:mergeDebugJavaResource', task ':app:checkDebugDuplicateClasses', task ':app:desugarDebugFileDependencies', task ':app:mergeExtDexDebug', task ':flutter_local_notifications:bundleLibRuntimeToDirDebug', task ':image_picker_android:bundleLibRuntimeToDirDebug', task ':flutter_plugin_android_lifecycle:bundleLibRuntimeToDirDebug', task ':flutter_timezone:bundleLibRuntimeToDirDebug', task ':path_provider_android:bundleLibRuntimeToDirDebug', task ':app:mergeLibDexDebug', task ':app:dexBuilderDebug', task ':app:mergeProjectDexDebug', task ':app:configureCMakeDebug[arm64-v8a]', task ':app:buildCMakeDebug[arm64-v8a]', task ':app:configureCMakeDebug[armeabi-v7a]', task ':app:buildCMakeDebug[armeabi-v7a]', task ':app:configureCMakeDebug[x86_64]', task ':app:buildCMakeDebug[x86_64]', task ':app:mergeDebugJniLibFolders', task ':flutter_local_notifications:mergeDebugJniLibFolders', task ':flutter_local_notifications:mergeDebugNativeLibs', task ':flutter_local_notifications:copyDebugJniLibsProjectOnly', task ':flutter_plugin_android_lifecycle:mergeDebugJniLibFolders', task ':flutter_plugin_android_lifecycle:mergeDebugNativeLibs', task ':flutter_plugin_android_lifecycle:copyDebugJniLibsProjectOnly', task ':flutter_timezone:mergeDebugJniLibFolders', task ':flutter_timezone:mergeDebugNativeLibs', task ':flutter_timezone:copyDebugJniLibsProjectOnly', task ':image_picker_android:mergeDebugJniLibFolders', task ':image_picker_android:mergeDebugNativeLibs', task ':image_picker_android:copyDebugJniLibsProjectOnly', task ':path_provider_android:mergeDebugJniLibFolders', task ':path_provider_android:mergeDebugNativeLibs', task ':path_provider_android:copyDebugJniLibsProjectOnly', task ':app:mergeDebugNativeLibs', task ':app:stripDebugDebugSymbols', task ':app:validateSigningDebug', task ':app:writeDebugAppMetadata', task ':app:writeDebugSigningConfigVersions', task ':app:packageDebug', task ':app:createDebugApkListingFileRedirect', task ':app:assembleDebug', task ':flutter_local_notifications:stripDebugDebugSymbols', task ':flutter_local_notifications:copyDebugJniLibsProjectAndLocalJars', task ':flutter_local_notifications:extractDebugAnnotations', task ':flutter_local_notifications:extractDeepLinksForAarDebug', task ':flutter_local_notifications:mergeDebugGeneratedProguardFiles', task ':flutter_local_notifications:mergeDebugConsumerProguardFiles', task ':flutter_local_notifications:prepareDebugArtProfile', task ':flutter_local_notifications:prepareLintJarForPublish', task ':flutter_local_notifications:mergeDebugJavaResource', task ':flutter_local_notifications:syncDebugLibJars', task ':flutter_local_notifications:bundleDebugAar', task ':flutter_local_notifications:assembleDebug', task ':flutter_plugin_android_lifecycle:stripDebugDebugSymbols', task ':flutter_plugin_android_lifecycle:copyDebugJniLibsProjectAndLocalJars', task ':flutter_plugin_android_lifecycle:extractDebugAnnotations', task ':flutter_plugin_android_lifecycle:extractDeepLinksForAarDebug', task ':flutter_plugin_android_lifecycle:mergeDebugGeneratedProguardFiles', task ':flutter_plugin_android_lifecycle:mergeDebugConsumerProguardFiles', task ':flutter_plugin_android_lifecycle:prepareDebugArtProfile', task ':flutter_plugin_android_lifecycle:prepareLintJarForPublish', task ':flutter_plugin_android_lifecycle:mergeDebugJavaResource', task ':flutter_plugin_android_lifecycle:syncDebugLibJars', task ':flutter_plugin_android_lifecycle:bundleDebugAar', task ':flutter_plugin_android_lifecycle:assembleDebug', task ':flutter_timezone:stripDebugDebugSymbols', task ':flutter_timezone:copyDebugJniLibsProjectAndLocalJars', task ':flutter_timezone:extractDebugAnnotations', task ':flutter_timezone:extractDeepLinksForAarDebug', task ':flutter_timezone:mergeDebugGeneratedProguardFiles', task ':flutter_timezone:mergeDebugConsumerProguardFiles', task ':flutter_timezone:prepareDebugArtProfile', task ':flutter_timezone:prepareLintJarForPublish', task ':flutter_timezone:mergeDebugJavaResource', task ':flutter_timezone:syncDebugLibJars', task ':flutter_timezone:bundleDebugAar', task ':flutter_timezone:assembleDebug', task ':image_picker_android:stripDebugDebugSymbols', task ':image_picker_android:copyDebugJniLibsProjectAndLocalJars', task ':image_picker_android:extractDebugAnnotations', task ':image_picker_android:extractDeepLinksForAarDebug', task ':image_picker_android:mergeDebugGeneratedProguardFiles', task ':image_picker_android:mergeDebugConsumerProguardFiles', task ':image_picker_android:prepareDebugArtProfile', task ':image_picker_android:prepareLintJarForPublish', task ':image_picker_android:mergeDebugJavaResource', task ':image_picker_android:syncDebugLibJars', task ':image_picker_android:bundleDebugAar', task ':image_picker_android:assembleDebug', task ':path_provider_android:stripDebugDebugSymbols', task ':path_provider_android:copyDebugJniLibsProjectAndLocalJars', task ':path_provider_android:extractDebugAnnotations', task ':path_provider_android:extractDeepLinksForAarDebug', task ':path_provider_android:mergeDebugGeneratedProguardFiles', task ':path_provider_android:mergeDebugConsumerProguardFiles', task ':path_provider_android:prepareDebugArtProfile', task ':path_provider_android:prepareLintJarForPublish', task ':path_provider_android:mergeDebugJavaResource', task ':path_provider_android:syncDebugLibJars', task ':path_provider_android:bundleDebugAar', task ':path_provider_android:assembleDebug']
+[        ] Tasks that were excluded: []
+[        ] work action Parameters of ClassesDirToClassesTransform (Thread[#1231,Execution worker Thread 2,5,main]) started.
+[        ] work action Parameters of DexingNoClasspathTransform (Thread[#1231,Execution worker Thread 2,5,main]) started.
+[        ] Resolve mutations for :app:DebugMinSdkCheck (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] :app:DebugMinSdkCheck (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] > Task :app:DebugMinSdkCheck
+[        ] Caching disabled for task ':app:DebugMinSdkCheck' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:DebugMinSdkCheck' is not up-to-date because:
+[        ]   Task has not declared any outputs despite executing actions.
+[        ] Resolve mutations for :app:preBuild (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] :app:preBuild (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] > Task :app:preBuild UP-TO-DATE
+[        ] Skipping task ':app:preBuild' as it has no actions.
+[        ] Resolve mutations for :app:preDebugBuild (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] :app:preDebugBuild (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] > Task :app:preDebugBuild UP-TO-DATE
+[        ] Skipping task ':app:preDebugBuild' as it has no actions.
+[        ] Resolve mutations for :app:mergeDebugNativeDebugMetadata (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] :app:mergeDebugNativeDebugMetadata (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+[        ] Skipping task ':app:mergeDebugNativeDebugMetadata' as it has no source files and no previous output files.
+[        ] Resolve mutations for :app:checkKotlinGradlePluginConfigurationErrors (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] :app:checkKotlinGradlePluginConfigurationErrors (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[        ] Skipping task ':app:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+[        ] Resolve mutations for :app:compileFlutterBuildDebug (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[        ] :app:compileFlutterBuildDebug (Thread[#1234,Execution worker Thread 5,5,main]) started.
+[+1994 ms] > Task :app:compileFlutterBuildDebug
+[   +1 ms] Caching disabled for task ':app:compileFlutterBuildDebug' because:
+[        ]   Build cache is disabled
+[        ]   Caching has not been enabled for the task
+[        ] Task ':app:compileFlutterBuildDebug' is not up-to-date because:
+[        ]   Task has failed previously.
+[        ] Starting process 'command '/Users/bitskraft/flutter/bin/flutter''. Working directory: /Volumes/Trascend/Personal/finance_app Command: /Users/bitskraft/flutter/bin/flutter --verbose assemble --no-version-check --depfile /Volumes/Trascend/Personal/finance_app/build/app/intermediates/flutter/debug/flutter_build.d --output /Volumes/Trascend/Personal/finance_app/build/app/intermediates/flutter/debug -dTargetFile=/Volumes/Trascend/Personal/finance_app/lib/main.dart -dTargetPlatform=android -dBuildMode=debug -dTrackWidgetCreation=true --DartDefines=RkxVVFRFUl9WRVJTSU9OPTMuMzUuNg==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049OWY0NTVkMjQ4Ng==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049ZDI5MTM2MzJhNA==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My45LjI= -dFlavor= -dAndroidArchs=android-arm64 -dMinSdkVersion=24 debug_android_application
+[        ] Successfully started process 'command '/Users/bitskraft/flutter/bin/flutter''
+[        ] [  +54 ms] executing: sysctl hw.optional.arm64
+[        ] [  +11 ms] Exit code 0 from: sysctl hw.optional.arm64
+[        ] [        ] hw.optional.arm64: 1
+[        ] [  +13 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [   +1 ms] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[        ] [  +23 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] [   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [  +62 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] [   +1 ms] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[        ] [  +21 ms] Initializing file store
+[        ] [  +27 ms] Skipping target: gen_localizations
+[        ] [   +3 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.outputSetAddition: The following outputs were added to the output set: /Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/dart_plugin_registrant.dart, InvalidatedReasonKind.inputChanged: The following inputs have updated contents: /Volumes/Trascend/Personal/finance_app/.dart_tool/package_config.json}
+[        ] [   +4 ms] dart_build: Starting due to {}
+[        ] [ +162 ms] No packages with native assets. Skipping native assets compilation.
+[        ] [   +3 ms] dart_build: Complete
+[        ] [   +3 ms] install_code_assets: Starting due to {}
+[        ] [   +3 ms] Writing native assets json to file:///Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/074032e7915611c60441255c8aaa75de/native_assets.json.
+[        ] [   +3 ms] Writing /Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/074032e7915611c60441255c8aaa75de/native_assets.json done.
+[        ] [        ] install_code_assets: Complete
+[        ] [  +56 ms] Found plugin image_picker at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker-1.2.1/
+[        ] [   +3 ms] Found plugin image_picker_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.2/
+[        ] [   +5 ms] Found plugin file_selector_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+5/
+[        ] [   +1 ms] Found plugin image_picker_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.2+1/
+[        ] [   +1 ms] Found plugin file_selector_macos at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.5/
+[        ] [        ] Found plugin image_picker_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.2/
+[        ] [   +1 ms] Found plugin file_selector_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.4/
+[        ] [   +1 ms] Found plugin image_picker_ios at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.13+3/
+[        ] [   +1 ms] Found plugin image_picker_for_web at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_for_web-3.1.1/
+[        ] [   +1 ms] Found plugin image_picker_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+12/
+[        ] [   +1 ms] Found plugin flutter_plugin_android_lifecycle at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.33/
+[        ] [   +1 ms] Found plugin path_provider at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+[        ] [   +1 ms] Found plugin path_provider_windows at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+[        ] [   +2 ms] Found plugin path_provider_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+[        ] [   +2 ms] Found plugin path_provider_foundation at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_foundation-2.5.1/
+[        ] [        ] Found plugin path_provider_android at /Users/bitskraft/.pub-cache/hosted/pub.dev/path_provider_android-2.2.22/
+[        ] [   +2 ms] Found plugin flutter_timezone at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_timezone-3.0.1/
+[        ] [   +3 ms] Found plugin flutter_local_notifications at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.4/
+[        ] [   +1 ms] Found plugin flutter_local_notifications_linux at /Users/bitskraft/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-4.0.1/
+[        ] [  +28 ms] Skipping generating dart_plugin_registrant.dart because it is up-to-date.
+[        ] [        ] gen_dart_plugin_registrant: Complete
+[        ] [   +2 ms] kernel_snapshot_program: Starting due to {}
+[        ] [  +12 ms] /Users/bitskraft/flutter/bin/cache/dart-sdk/bin/dartaotruntime /Users/bitskraft/flutter/bin/cache/dart-sdk/bin/snapshots/frontend_server_aot.dart.snapshot --sdk-root /Users/bitskraft/flutter/bin/cache/artifacts/engine/common/flutter_patched_sdk/ --target=flutter --no-print-incremental-dependencies -DFLUTTER_VERSION=3.35.6 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=9f455d2486 -DFLUTTER_ENGINE_REVISION=d2913632a4 -DFLUTTER_DART_VERSION=3.9.2 -DFLUTTER_APP_FLAVOR= -Ddart.vm.profile=false -Ddart.vm.product=false --enable-asserts --track-widget-creation --no-link-platform --packages /Volumes/Trascend/Personal/finance_app/.dart_tool/package_config.json --output-dill /Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/074032e7915611c60441255c8aaa75de/app.dill --depfile /Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/074032e7915611c60441255c8aaa75de/kernel_snapshot_program.d --incremental --initialize-from-dill /Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/074032e7915611c60441255c8aaa75de/app.dill --source file:///Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///Volumes/Trascend/Personal/finance_app/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error package:finance_app/main.dart
+[   +1 ms] [ +115 ms] lib/features/profile/presentation/pages/profile_setup_page.dart:336:37: Error: Can't find ')' to match '('.
+[   +2 ms] [   +1 ms]               return GestureDetector(
+[        ] [        ]                                     ^
+[+10079 ms] [+10945 ms] Persisting file store
+[   +1 ms] [   +2 ms] Done persisting file store
+[        ] [   +5 ms] "flutter assemble" took 11,532ms.
+[        ] [   +6 ms] executing: sw_vers -productName
+[        ] [  +50 ms] Exit code 0 from: sw_vers -productName
+[        ] [        ] macOS
+[        ] [        ] executing: sw_vers -productVersion
+[        ] [  +12 ms] Exit code 0 from: sw_vers -productVersion
+[        ] [        ] 15.0.1
+[        ] [        ] executing: sw_vers -buildVersion
+[        ] [   +2 ms] Target kernel_snapshot_program failed: Exception
+[        ]            #0      KernelSnapshot.build (package:flutter_tools/src/build_system/targets/common.dart:282:7)
+[        ]            <asynchronous suspension>
+[        ]            #1      _BuildInstance._invokeInternal (package:flutter_tools/src/build_system/build_system.dart:873:9)
+[        ]            <asynchronous suspension>
+[        ]            #2      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+[        ]            <asynchronous suspension>
+[        ]            #3      _BuildInstance.invokeTarget (package:flutter_tools/src/build_system/build_system.dart:811:32)
+[        ]            <asynchronous suspension>
+[        ]            #4      FlutterBuildSystem.build (package:flutter_tools/src/build_system/build_system.dart:631:16)
+[        ]            <asynchronous suspension>
+[        ]            #5      AssembleCommand.runCommand (package:flutter_tools/src/commands/assemble.dart:346:32)
+[        ]            <asynchronous suspension>
+[        ]            #6      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1581:27)
+[        ]            <asynchronous suspension>
+[        ]            #7      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+[        ]            <asynchronous suspension>
+[        ]            #8      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+[        ]            <asynchronous suspension>
+[        ]            #9      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:503:9)
+[        ]            <asynchronous suspension>
+[        ]            #10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+[        ]            <asynchronous suspension>
+[        ]            #11     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:438:5)
+[        ]            <asynchronous suspension>
+[        ]            #12     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+[        ]            <asynchronous suspension>
+[        ]            #13     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+[        ]            <asynchronous suspension>
+[        ]            #14     main (package:flutter_tools/executable.dart:101:3)
+[        ]            <asynchronous suspension>
+[  +99 ms] [  +12 ms] Exit code 0 from: sw_vers -buildVersion
+[        ] [        ] 24A348
+[        ] [        ] executing: uname -m
+[        ] [   +8 ms] Exit code 0 from: uname -m
+[        ] [        ] arm64
+[        ] [        ] Running 1 shutdown hook
+[        ] [        ] Shutdown hooks complete
+[        ] [        ] exiting with code 1
+[        ] > Task :app:compileFlutterBuildDebug FAILED
+[        ] [   +9 ms] 
+[        ]            #0      throwToolExit (package:flutter_tools/src/base/common.dart:34:3)
+[        ]            #1      AssembleCommand.runCommand (package:flutter_tools/src/commands/assemble.dart:364:7)
+[        ]            <asynchronous suspension>
+[        ]            #2      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1581:27)
+[        ]            <asynchronous suspension>
+[        ]            #3      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+[        ]            <asynchronous suspension>
+[        ]            #4      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+[        ]            <asynchronous suspension>
+[        ]            #5      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:503:9)
+[        ]            <asynchronous suspension>
+[        ]            #6      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+[        ]            <asynchronous suspension>
+[        ]            #7      FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:438:5)
+[        ]            <asynchronous suspension>
+[        ]            #8      run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+[        ]            <asynchronous suspension>
+[        ]            #9      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+[        ]            <asynchronous suspension>
+[        ]            #10     main (package:flutter_tools/executable.dart:101:3)
+[        ]            <asynchronous suspension>
+[  +97 ms] [Incubating] Problems report is available at: file:///Volumes/Trascend/Personal/finance_app/build/reports/problems/problems-report.html
+[        ] FAILURE: Build failed with an exception.
+[        ] * What went wrong:
+[        ] Execution failed for task ':app:compileFlutterBuildDebug'.
+[        ] > Process 'command '/Users/bitskraft/flutter/bin/flutter'' finished with non-zero exit value 1
+[        ] * Try:
+[        ] > Run with --debug option to get more log output.
+[        ] > Run with --scan to get full insights.
+[        ] > Get more help at https://help.gradle.org.
+[        ] * Exception is:
+[        ] org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileFlutterBuildDebug'.
+[        ] 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:130)
+[        ] 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:293)
+[        ] 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:128)
+[        ] 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:116)
+[        ] 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:40)
+[        ] 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+[        ] 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+[        ] 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+[        ] 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+[        ] 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+[        ] 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+[        ] 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+[        ] 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+[        ] 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+[        ] 	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:331)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:318)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:314)
+[        ] 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:85)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:314)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
+[        ] 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+[        ] 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+[        ] 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+[        ] 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+[        ] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+[        ] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+[        ] 	at java.base/java.lang.Thread.run(Unknown Source)
+[        ] Caused by: org.gradle.process.internal.ExecException: Process 'command '/Users/bitskraft/flutter/bin/flutter'' finished with non-zero exit value 1
+[        ] 	at org.gradle.process.internal.DefaultExecHandle$ExecResultImpl.assertNormalExitValue(DefaultExecHandle.java:442)
+[        ] 	at org.gradle.process.internal.DefaultExecAction.execute(DefaultExecAction.java:49)
+[        ] 	at org.gradle.process.internal.DefaultExecActionFactory.exec(DefaultExecActionFactory.java:218)
+[        ] 	at org.gradle.process.internal.DefaultExecOperations.exec(DefaultExecOperations.java:37)
+[        ] 	at com.flutter.gradle.tasks.BaseFlutterTaskHelper.buildBundle(BaseFlutterTaskHelper.kt:174)
+[        ] 	at com.flutter.gradle.tasks.BaseFlutterTask.buildBundle(BaseFlutterTask.kt:147)
+[        ] 	at com.flutter.gradle.tasks.FlutterTaskHelper.build$gradle(FlutterTaskHelper.kt:90)
+[        ] 	at com.flutter.gradle.tasks.FlutterTask.build(FlutterTask.kt:49)
+[        ] 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+[        ] 	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+[        ] 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+[        ] 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
+[        ] 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+[        ] 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+[        ] 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:244)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+[        ] 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:229)
+[        ] 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:212)
+[        ] 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:195)
+[        ] 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:162)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:105)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:44)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:59)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:56)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:56)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:44)
+[        ] 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+[        ] 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+[        ] 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+[        ] 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:50)
+[        ] 	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:28)
+[        ] 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousOutputsStep.java:67)
+[        ] 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousOutputsStep.java:37)
+[        ] 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:61)
+[        ] 	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:26)
+[        ] 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+[        ] 	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+[        ] 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:40)
+[        ] 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:29)
+[        ] 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)
+[        ] 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:75)
+[        ] 	at org.gradle.internal.Either$Right.fold(Either.java:175)
+[        ] 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+[        ] 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:73)
+[        ] 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:48)
+[        ] 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+[        ] 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+[        ] 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+[        ] 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+[        ] 	at java.base/java.util.Optional.orElseGet(Unknown Source)
+[        ] 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+[        ] 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+[        ] 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+[        ] 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+[        ] 	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+[        ] 	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+[        ] 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+[        ] 	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+[        ] 	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:65)
+[        ] 	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:36)
+[        ] 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:107)
+[        ] 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:56)
+[        ] 	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:64)
+[        ] 	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:43)
+[        ] 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:125)
+[        ] 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:56)
+[        ] 	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
+[        ] 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+[        ] 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+[        ] 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+[        ] 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
+[        ] 	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:41)
+[        ] 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+[        ] 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:289)
+[        ] 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+[        ] 	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+[        ] 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+[        ] 	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+[        ] 	at java.base/java.util.Optional.orElseGet(Unknown Source)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+[        ] 	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+[        ] 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+[        ] 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+[        ] 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:48)
+[        ] 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:35)
+[        ] 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:61)
+[        ] 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:127)
+[        ] 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:116)
+[        ] 	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:40)
+[        ] 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+[        ] 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+[        ] 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+[        ] 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+[        ] 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+[        ] 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+[        ] 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+[        ] 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+[        ] 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+[        ] 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+[        ] 	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:331)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:318)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:314)
+[        ] 	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:85)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:314)
+[        ] 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
+[        ] 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+[        ] 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+[        ] 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+[        ] 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+[        ] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+[        ] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+[        ] 	at java.base/java.lang.Thread.run(Unknown Source)
+[        ] BUILD FAILED in 16s
+[        ] Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+[        ] You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+[        ] For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+[        ] 6 actionable tasks: 2 executed, 4 up-to-date
+[  +88 ms] Watched directory hierarchies: [/Users/bitskraft/flutter/packages/flutter_tools/gradle, /Volumes/Trascend/Personal/finance_app/android]
+[ +100 ms] Running Gradle task 'assembleDebug'... (completed in 17.3s)
+[   +4 ms] Error: Gradle task assembleDebug failed with exit code 1
+[   +3 ms] "flutter run" took 24,125ms.
+[  +15 ms] executing: sw_vers -productName
+[  +21 ms] Exit code 0 from: sw_vers -productName
+[        ] macOS
+[        ] executing: sw_vers -productVersion
+[  +11 ms] Exit code 0 from: sw_vers -productVersion
+[        ] 15.0.1
+[        ] executing: sw_vers -buildVersion
+[  +11 ms] Exit code 0 from: sw_vers -buildVersion
+[        ] 24A348
+[        ] executing: uname -m
+[   +8 ms] Exit code 0 from: uname -m
+[        ] arm64
+[  +10 ms] 
+           #0      throwToolExit (package:flutter_tools/src/base/common.dart:34:3)
+           #1      RunCommand.runCommand (package:flutter_tools/src/commands/run.dart:872:9)
+           <asynchronous suspension>
+           #2      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1581:27)
+           <asynchronous suspension>
+           #3      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #4      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+           <asynchronous suspension>
+           #5      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:503:9)
+           <asynchronous suspension>
+           #6      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #7      FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:438:5)
+           <asynchronous suspension>
+           #8      run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+           <asynchronous suspension>
+           #9      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #10     main (package:flutter_tools/executable.dart:101:3)
+           <asynchronous suspension>
+
+
+[        ] Running 3 shutdown hooks
+[   +3 ms] Shutdown hooks complete
+[        ] exiting with code 1

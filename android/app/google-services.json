@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "443723927584",
+    "project_id": "hisab-28aac",
+    "storage_bucket": "hisab-28aac.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443723927584:android:a08b00b33cff325e192c45",
+        "android_client_info": {
+          "package_name": "com.hisab.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTGsSzaa2a-Db2aPL0unsBHEJ5m7gWqC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

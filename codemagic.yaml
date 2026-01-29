@@ -1,0 +1,34 @@
+workflows:
+  firebase-distribution:
+    name: Firebase App Distribution
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      flutter: stable
+      groups:
+        - firebase_credentials # Assuming secrets are grouped here in Codemagic UI
+      vars:
+        FIREBASE_TOKEN: ${FIREBASE_TOKEN} # Should be set in Codemagic Environment Groups
+        ANDROID_FIREBASE_APP_ID: 1:443723927584:android:a08b00b33cff325e192c45
+        IOS_FIREBASE_APP_ID: 1:443723927584:ios:4f0965d6790eb0f4192c45
+    scripts:
+      - name: Get Flutter dependencies
+        script: flutter pub get
+      - name: Build and Distribute Android
+        script: |
+          chmod +x scripts/distribute_android.sh
+          ./scripts/distribute_android.sh
+      - name: Build and Distribute iOS
+        script: |
+          chmod +x scripts/distribute_ios.sh
+          ./scripts/distribute_ios.sh
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
+      - build/ios/ipa/*.ipa
+    publishing:
+      email:
+        recipients:
+          - saugat.john090@gmail.com # Replace with actual email
+        notify:
+          success: true
+          failure: true
