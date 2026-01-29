@@ -4,6 +4,7 @@ import 'package:finance_app/features/transactions/data/models/transaction_model.
 import 'package:finance_app/features/transactions/data/providers/transaction_provider.dart';
 import 'package:finance_app/features/transactions/data/providers/category_provider.dart';
 import 'package:finance_app/features/settings/presentation/providers/settings_provider.dart';
+import 'package:finance_app/core/services/analytics_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -283,6 +284,12 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
         );
         ref.read(transactionsListProvider.notifier).updateTransaction(updated);
       }
+      
+      AnalyticsService().logTransactionAdded(
+        category: _selectedCategoryId!,
+        amount: amount,
+        type: _selectedType,
+      );
       
       Navigator.pop(context);
     }

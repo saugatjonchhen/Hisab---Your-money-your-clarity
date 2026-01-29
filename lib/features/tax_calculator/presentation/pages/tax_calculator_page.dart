@@ -6,6 +6,7 @@ import '../providers/tax_calculator_provider.dart';
 import '../widgets/tax_input_form.dart';
 import '../widgets/tax_result_view.dart';
 import 'tax_config_list_page.dart';
+import 'package:finance_app/core/services/analytics_service.dart';
 
 class TaxCalculatorPage extends StatelessWidget {
   const TaxCalculatorPage({super.key});
@@ -101,6 +102,8 @@ class _ConfigSelector extends ConsumerWidget {
                   onChanged: (id) {
                     if (id != null) {
                       ref.read(selectedTaxConfigIdProvider.notifier).state = id;
+                      final configName = configs.firstWhere((c) => c.id == id).name;
+                      AnalyticsService().logTaxCalculated(configuration: configName);
                     }
                   },
                   items: configs.map((config) {

@@ -2,6 +2,7 @@ import 'package:finance_app/core/theme/app_colors.dart';
 import 'package:finance_app/core/theme/app_values.dart';
 import 'package:finance_app/features/budget/presentation/providers/budget_providers.dart';
 import 'package:finance_app/features/budget/presentation/pages/plan_selection_page.dart';
+import 'package:finance_app/core/services/analytics_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -94,6 +95,7 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
         curve: Curves.easeInOut,
       );
     } else {
+      AnalyticsService().logBudgetAction('generate_plans');
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const PlanSelectionPage()),

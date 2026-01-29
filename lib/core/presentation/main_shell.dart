@@ -5,6 +5,7 @@ import 'package:finance_app/features/settings/presentation/pages/settings_page.d
 import 'package:finance_app/features/tax_calculator/presentation/pages/tax_calculator_page.dart';
 import 'package:finance_app/features/transactions/presentation/pages/all_transactions_page.dart';
 import 'package:finance_app/core/providers/navigation_provider.dart';
+import 'package:finance_app/core/services/analytics_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,13 @@ class _MainShellState extends ConsumerState<MainShell> {
     SettingsPage(),
   ];
 
+  void _logTabSelection(int index) {
+    final names = ['Dashboard', 'Transactions', 'Budget', 'Tax', 'Settings'];
+    if (index >= 0 && index < names.length) {
+      AnalyticsService().logScreenView(names[index]);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(navigationProvider);
@@ -38,6 +46,7 @@ class _MainShellState extends ConsumerState<MainShell> {
         selectedIndex: currentIndex,
         onDestinationSelected: (index) {
           ref.read(navigationProvider.notifier).setIndex(index);
+          _logTabSelection(index);
         },
         backgroundColor: Theme.of(context).cardTheme.color,
         indicatorColor: AppColors.primary.withValues(alpha: 0.2),

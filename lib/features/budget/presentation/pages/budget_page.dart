@@ -10,6 +10,7 @@ import 'package:finance_app/features/budget/presentation/pages/budget_history_pa
 import 'package:finance_app/features/budget/presentation/pages/budget_insights_page.dart';
 import 'package:finance_app/features/transactions/data/providers/category_provider.dart';
 import 'package:finance_app/features/transactions/data/models/category_model.dart';
+import 'package:finance_app/core/services/analytics_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -43,6 +44,7 @@ class BudgetPage extends ConsumerWidget {
             tooltip: 'Re-plan with AI',
             icon: const Icon(Icons.auto_awesome_rounded),
             onPressed: () {
+              AnalyticsService().logBudgetAction('re_plan_with_ai');
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const QuestionnairePage()),
@@ -230,6 +232,7 @@ class BudgetPage extends ConsumerWidget {
           TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
           TextButton(
             onPressed: () async {
+              AnalyticsService().logBudgetAction('reset_plan');
               ref.read(activeBudgetPlanProvider.notifier).clearPlan();
               final categories = await ref.read(categoriesListProvider.future);
               final notifier = ref.read(categoriesListProvider.notifier);
