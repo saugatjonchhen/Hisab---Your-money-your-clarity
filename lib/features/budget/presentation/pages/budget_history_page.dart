@@ -14,7 +14,7 @@ class BudgetHistoryPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final historyAsync = ref.watch(budgetHistoryProvider());
     final settingsAsync = ref.watch(settingsProvider);
-    
+
     final currency = settingsAsync.when(
       data: (s) => s.currencySymbol,
       loading: () => 'Rs.',
@@ -29,7 +29,9 @@ class BudgetHistoryPage extends ConsumerWidget {
             icon: const Icon(Icons.refresh_rounded),
             onPressed: () async {
               // Manually create snapshot for current period
-              await ref.read(budgetSnapshotGeneratorProvider.notifier).createCurrentSnapshot();
+              await ref
+                  .read(budgetSnapshotGeneratorProvider.notifier)
+                  .createCurrentSnapshot();
               ref.invalidate(budgetHistoryProvider);
             },
             tooltip: 'Refresh',
@@ -59,7 +61,8 @@ class BudgetHistoryPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: AppValues.gapMedium),
                 ...snapshots.map((snapshot) => Padding(
-                      padding: const EdgeInsets.only(bottom: AppValues.gapMedium),
+                      padding:
+                          const EdgeInsets.only(bottom: AppValues.gapMedium),
                       child: _buildMonthCard(context, snapshot, currency),
                     )),
                 const SizedBox(height: AppValues.gapExtraLarge),
@@ -74,7 +77,7 @@ class BudgetHistoryPage extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 64, color: Colors.grey),
               const SizedBox(height: AppValues.gapMedium),
-              Text('Error loading history'),
+              const Text('Error loading history'),
               TextButton(
                 onPressed: () => ref.invalidate(budgetHistoryProvider),
                 child: const Text('Retry'),
@@ -97,13 +100,19 @@ class BudgetHistoryPage extends ConsumerWidget {
             const SizedBox(height: 24),
             Text(
               'No History Yet',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             Text(
               'Budget history will appear here as months complete.',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Colors.grey),
             ),
           ],
         ),
@@ -111,11 +120,12 @@ class BudgetHistoryPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildOverviewCards(BuildContext context, List snapshots, String currency) {
+  Widget _buildOverviewCards(
+      BuildContext context, List snapshots, String currency) {
     double totalSavings = 0;
     double totalInvestments = 0;
     double totalExpenses = 0;
-    
+
     for (var snapshot in snapshots) {
       totalSavings += snapshot.totalSavings;
       totalInvestments += snapshot.totalInvestments;
@@ -229,8 +239,10 @@ class BudgetHistoryPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildTrendCharts(BuildContext context, List snapshots, String currency) {
-    final reversedSnapshots = snapshots.reversed.toList(); // Oldest first for chart
+  Widget _buildTrendCharts(
+      BuildContext context, List snapshots, String currency) {
+    final reversedSnapshots =
+        snapshots.reversed.toList(); // Oldest first for chart
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,18 +259,20 @@ class BudgetHistoryPage extends ConsumerWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.1)),
+            border: Border.all(
+                color: Theme.of(context).dividerColor.withValues(alpha: 0.1)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Savings & Investments', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('Savings & Investments',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 20),
               SizedBox(
                 height: 200,
                 child: LineChart(
                   LineChartData(
-                    gridData: FlGridData(show: false),
+                    gridData: const FlGridData(show: false),
                     titlesData: FlTitlesData(
                       leftTitles: AxisTitles(
                         sideTitles: SideTitles(
@@ -272,14 +286,17 @@ class BudgetHistoryPage extends ConsumerWidget {
                           },
                         ),
                       ),
-                      rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      rightTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false)),
+                      topTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false)),
                       bottomTitles: AxisTitles(
                         sideTitles: SideTitles(
                           showTitles: true,
                           getTitlesWidget: (value, meta) {
                             final index = value.toInt();
-                            if (index >= 0 && index < reversedSnapshots.length) {
+                            if (index >= 0 &&
+                                index < reversedSnapshots.length) {
                               final snapshot = reversedSnapshots[index];
                               return Padding(
                                 padding: const EdgeInsets.only(top: 8),
@@ -310,7 +327,8 @@ class BudgetHistoryPage extends ConsumerWidget {
                       // Investments line
                       LineChartBarData(
                         spots: reversedSnapshots.asMap().entries.map((e) {
-                          return FlSpot(e.key.toDouble(), e.value.totalInvestments);
+                          return FlSpot(
+                              e.key.toDouble(), e.value.totalInvestments);
                         }).toList(),
                         isCurved: true,
                         color: AppColors.investment,
@@ -355,17 +373,20 @@ class BudgetHistoryPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildMonthCard(BuildContext context, dynamic snapshot, String currency) {
+  Widget _buildMonthCard(
+      BuildContext context, dynamic snapshot, String currency) {
     final dateFormat = DateFormat('MMMM yyyy');
     final score = snapshot.performanceScore;
-    final scoreColor = score >= 7 ? Colors.green : (score >= 5 ? Colors.orange : Colors.red);
+    final scoreColor =
+        score >= 7 ? Colors.green : (score >= 5 ? Colors.orange : Colors.red);
 
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.1)),
+        border: Border.all(
+            color: Theme.of(context).dividerColor.withValues(alpha: 0.1)),
         boxShadow: [
           BoxShadow(
             color: Theme.of(context).shadowColor.withValues(alpha: 0.05),
@@ -385,17 +406,20 @@ class BudgetHistoryPage extends ConsumerWidget {
                 children: [
                   Text(
                     dateFormat.format(snapshot.month),
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   if (snapshot.activePlanName != null)
                     Text(
                       snapshot.activePlanName!,
-                      style: TextStyle(fontSize: 12, color: AppColors.secondary),
+                      style: const TextStyle(
+                          fontSize: 12, color: AppColors.secondary),
                     ),
                 ],
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: scoreColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
@@ -420,15 +444,23 @@ class BudgetHistoryPage extends ConsumerWidget {
           const SizedBox(height: 20),
           Row(
             children: [
-              Expanded(child: _buildMetric('Income', snapshot.totalIncome, currency, Colors.green)),
-              Expanded(child: _buildMetric('Expenses', snapshot.totalExpenses, currency, Colors.red)),
+              Expanded(
+                  child: _buildMetric(
+                      'Income', snapshot.totalIncome, currency, Colors.green)),
+              Expanded(
+                  child: _buildMetric('Expenses', snapshot.totalExpenses,
+                      currency, Colors.red)),
             ],
           ),
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(child: _buildMetric('Savings', snapshot.totalSavings, currency, AppColors.savings)),
-              Expanded(child: _buildMetric('Investments', snapshot.totalInvestments, currency, AppColors.investment)),
+              Expanded(
+                  child: _buildMetric('Savings', snapshot.totalSavings,
+                      currency, AppColors.savings)),
+              Expanded(
+                  child: _buildMetric('Investments', snapshot.totalInvestments,
+                      currency, AppColors.investment)),
             ],
           ),
           if (snapshot.plannedAllocations.isNotEmpty) ...[
@@ -460,7 +492,8 @@ class BudgetHistoryPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildMetric(String label, double value, String currency, Color color) {
+  Widget _buildMetric(
+      String label, double value, String currency, Color color) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -502,13 +535,16 @@ class BudgetHistoryPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+              Text(label,
+                  style: const TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.w500)),
               const SizedBox(height: 4),
               Row(
                 children: [
                   Text(
                     '$currency${actual.toStringAsFixed(0)}',
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     ' / $currency${planned.toStringAsFixed(0)}',
