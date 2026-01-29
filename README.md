@@ -36,6 +36,15 @@ A private, intelligent, and beautifully designed companion for effortless financ
 - **Local Database**: [Hive](https://docs.hivedb.dev) (NoSQL, high performance)
 - **Charts**: [fl_chart](https://pub.dev/packages/fl_chart)
 - **Notifications**: [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+- **CI/CD**: [Codemagic](https://codemagic.io)
+
+## 🏗 CI/CD & Deployment
+
+This project uses **Codemagic** for automated builds and distribution.
+
+- **Automatic Releases**: Every push to the `main` branch triggers an automated build.
+- **Distribution**: Android builds (APK) are automatically distributed to **Firebase App Distribution** for testers.
+- **Workflow Configuration**: Managed via `codemagic.yaml`.
 
 ## 🚀 Getting Started
 
