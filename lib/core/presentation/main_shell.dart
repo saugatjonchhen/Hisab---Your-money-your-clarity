@@ -17,7 +17,6 @@ class MainShell extends ConsumerStatefulWidget {
 }
 
 class _MainShellState extends ConsumerState<MainShell> {
-
   final List<Widget> _pages = const [
     DashboardPage(),
     AllTransactionsPage(),
@@ -34,9 +33,18 @@ class _MainShellState extends ConsumerState<MainShell> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    // Log the initial tab (Dashboard)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _logTabSelection(ref.read(navigationProvider));
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(navigationProvider);
-    
+
     return Scaffold(
       body: IndexedStack(
         index: currentIndex,
@@ -53,27 +61,32 @@ class _MainShellState extends ConsumerState<MainShell> {
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.dashboard_outlined),
-            selectedIcon: Icon(Icons.dashboard_rounded, color: AppColors.primary),
+            selectedIcon:
+                Icon(Icons.dashboard_rounded, color: AppColors.primary),
             label: 'Dashboard',
           ),
           NavigationDestination(
             icon: Icon(Icons.receipt_long_outlined),
-            selectedIcon: Icon(Icons.receipt_long_rounded, color: AppColors.primary),
+            selectedIcon:
+                Icon(Icons.receipt_long_rounded, color: AppColors.primary),
             label: 'Transactions',
           ),
           NavigationDestination(
             icon: Icon(Icons.pie_chart_outline_rounded),
-            selectedIcon: Icon(Icons.pie_chart_rounded, color: AppColors.primary),
+            selectedIcon:
+                Icon(Icons.pie_chart_rounded, color: AppColors.primary),
             label: 'Budget',
           ),
           NavigationDestination(
             icon: Icon(Icons.calculate_outlined),
-            selectedIcon: Icon(Icons.calculate_rounded, color: AppColors.primary),
+            selectedIcon:
+                Icon(Icons.calculate_rounded, color: AppColors.primary),
             label: 'Tax',
           ),
           NavigationDestination(
             icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings_rounded, color: AppColors.primary),
+            selectedIcon:
+                Icon(Icons.settings_rounded, color: AppColors.primary),
             label: 'Settings',
           ),
         ],

@@ -11,6 +11,7 @@ import 'package:finance_app/features/budget/data/models/budget_snapshot.dart';
 import 'package:finance_app/features/notifications/data/models/notification_model.dart';
 import 'package:finance_app/core/services/notification_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,14 +20,24 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await Firebase.initializeApp();
-  
+
+  if (kDebugMode) {
+    try {
+      final appOption = Firebase.app().options;
+      print(
+          'Firebase Initialized: AppId=${appOption.appId}, ProjectId=${appOption.projectId}');
+    } catch (e) {
+      print('Firebase options check failed: $e');
+    }
+  }
+
   // Pass all uncaught "fatal" errors from the framework to Crashlytics
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
   };
-  
+
   // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
@@ -35,7 +46,7 @@ void main() async {
 
   await NotificationService().init();
   await Hive.initFlutter();
-  
+
   // Register all adapters
   Hive.registerAdapter(TransactionModelAdapter());
   Hive.registerAdapter(CategoryModelAdapter());
@@ -48,7 +59,7 @@ void main() async {
   Hive.registerAdapter(BudgetMonthSnapshotAdapter());
   Hive.registerAdapter(NotificationTypeAdapter());
   Hive.registerAdapter(NotificationModelAdapter());
-  
+
   // Open all boxes upfront for consistent persistence (especially on web)
   await Future.wait([
     Hive.openBox<TransactionModel>('transactions'),
@@ -62,7 +73,7 @@ void main() async {
     Hive.openBox<BudgetMonthSnapshot>('budget_snapshots'),
     Hive.openBox<NotificationModel>('notifications'),
   ]);
-  
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -84,6 +95,9 @@ class MyApp extends ConsumerWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode,
       debugShowCheckedModeBanner: false,
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+      ],
       home: const SplashPage(),
     );
   }

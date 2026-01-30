@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:finance_app/core/services/notification_service.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:finance_app/core/utils/string_extensions.dart';
 import 'package:finance_app/features/profile/presentation/providers/user_profile_provider.dart';
 import 'package:finance_app/features/profile/presentation/pages/profile_setup_page.dart';
@@ -50,7 +52,8 @@ class SettingsPage extends ConsumerWidget {
               _buildSectionHeader('Help & Info'),
               Card(
                 child: ListTile(
-                  leading: const Icon(Icons.info_outline_rounded, color: AppColors.primary),
+                  leading: const Icon(Icons.info_outline_rounded,
+                      color: AppColors.primary),
                   title: const Text('Welcome Screen'),
                   subtitle: const Text('View intro and features'),
                   trailing: const Icon(Icons.chevron_right_rounded),
@@ -58,7 +61,8 @@ class SettingsPage extends ConsumerWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const OnboardingPage(isFromSettings: true),
+                        builder: (_) =>
+                            const OnboardingPage(isFromSettings: true),
                       ),
                     );
                   },
@@ -66,7 +70,8 @@ class SettingsPage extends ConsumerWidget {
               ),
               Card(
                 child: ListTile(
-                  leading: const Icon(Icons.help_outline_rounded, color: AppColors.primary),
+                  leading: const Icon(Icons.help_outline_rounded,
+                      color: AppColors.primary),
                   title: const Text('Frequently Asked Questions'),
                   subtitle: const Text('Get help with app features'),
                   trailing: const Icon(Icons.chevron_right_rounded),
@@ -82,83 +87,148 @@ class SettingsPage extends ConsumerWidget {
               ),
               const SizedBox(height: AppValues.gapLarge),
               _buildSectionHeader('Data'),
-                Card(
-                  child: ListTile(
-                    leading: const Icon(Icons.category_rounded, color: AppColors.primary),
-                    title: const Text('Manage Categories'),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const CategoryManagerPage()),
-                      );
-                    },
-                  ),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.category_rounded,
+                      color: AppColors.primary),
+                  title: const Text('Manage Categories'),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const CategoryManagerPage()),
+                    );
+                  },
                 ),
-                Card(
-                  child: ListTile(
-                    leading: const Icon(Icons.repeat_rounded, color: AppColors.primary),
-                    title: const Text('Recurring Transactions'),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const RecurringTransactionsPage()),
-                      );
-                    },
-                  ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.repeat_rounded,
+                      color: AppColors.primary),
+                  title: const Text('Recurring Transactions'),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const RecurringTransactionsPage()),
+                    );
+                  },
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppValues.gapExtraSmall, vertical: AppValues.gapSmall),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed: () => _handleBackup(context),
-                          icon: const Icon(Icons.cloud_upload_rounded),
-                          label: const Text('Backup Data'),
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: AppValues.gapSmall),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppValues.borderRadius)),
-                          ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppValues.gapExtraSmall,
+                    vertical: AppValues.gapSmall),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: () => _handleBackup(context),
+                        icon: const Icon(Icons.cloud_upload_rounded),
+                        label: const Text('Backup Data'),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: AppValues.gapSmall),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  AppValues.borderRadius)),
                         ),
                       ),
-                      const SizedBox(width: AppValues.gapMedium),
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed: () => _handleRestore(context, ref),
-                          icon: const Icon(Icons.cloud_download_rounded),
-                          label: const Text('Restore Data'),
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: AppValues.gapSmall),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppValues.borderRadius)),
-                          ),
+                    ),
+                    const SizedBox(width: AppValues.gapMedium),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: () => _handleRestore(context, ref),
+                        icon: const Icon(Icons.cloud_download_rounded),
+                        label: const Text('Restore Data'),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: AppValues.gapSmall),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  AppValues.borderRadius)),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: AppValues.gapLarge),
-                _buildSectionHeader('Danger Zone'),
-                Card(
-                  color: AppColors.error.withValues(alpha: 0.05),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppValues.borderRadius),
-                    side: BorderSide(color: AppColors.error.withValues(alpha: 0.2)),
-                  ),
-                  child: ListTile(
-                    leading: const Icon(Icons.delete_forever_rounded, color: AppColors.error),
-                    title: const Text('Factory Reset', style: TextStyle(color: AppColors.error, fontWeight: FontWeight.bold)),
-                    subtitle: const Text('Clear all data and start over', style: TextStyle(fontSize: 12)),
-                    onTap: () => _handleFactoryReset(context, ref),
-                  ),
+              ),
+              const SizedBox(height: AppValues.gapLarge),
+              _buildSectionHeader('Danger Zone'),
+              Card(
+                color: AppColors.error.withValues(alpha: 0.05),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppValues.borderRadius),
+                  side:
+                      BorderSide(color: AppColors.error.withValues(alpha: 0.2)),
                 ),
+                child: ListTile(
+                  leading: const Icon(Icons.delete_forever_rounded,
+                      color: AppColors.error),
+                  title: const Text('Factory Reset',
+                      style: TextStyle(
+                          color: AppColors.error, fontWeight: FontWeight.bold)),
+                  subtitle: const Text('Clear all data and start over',
+                      style: TextStyle(fontSize: 12)),
+                  onTap: () => _handleFactoryReset(context, ref),
+                ),
+              ),
+              _buildDebugSection(context),
             ],
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),
+    );
+  }
+
+  // Debug section for testing Firebase
+  Widget _buildDebugSection(BuildContext context) {
+    if (!kDebugMode) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: AppValues.gapLarge),
+        _buildSectionHeader('Developer Options'),
+        Card(
+          color: Colors.orange.withValues(alpha: 0.1),
+          child: Column(
+            children: [
+              ListTile(
+                leading:
+                    const Icon(Icons.bug_report_rounded, color: Colors.orange),
+                title: const Text('Test Crash'),
+                subtitle: const Text('Force crash to test Crashlytics'),
+                onTap: () {
+                  FirebaseCrashlytics.instance.crash();
+                },
+              ),
+              const Divider(height: 1),
+              ListTile(
+                leading:
+                    const Icon(Icons.analytics_rounded, color: Colors.blue),
+                title: const Text('Test Analytics Event'),
+                subtitle: const Text('Send "test_event" to Analytics'),
+                onTap: () async {
+                  await FirebaseAnalytics.instance.logEvent(
+                    name: 'test_event',
+                    parameters: {'timestamp': DateTime.now().toIso8601String()},
+                  );
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Test event sent!')),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -169,11 +239,13 @@ class SettingsPage extends ConsumerWidget {
     return profileAsync.when(
       data: (profile) {
         if (profile == null) return const SizedBox.shrink();
-        
+
         return Container(
           padding: const EdgeInsets.all(AppValues.gapMedium),
           decoration: BoxDecoration(
-            color: isDark ? AppColors.surfaceDark : AppColors.primary.withValues(alpha: 0.05),
+            color: isDark
+                ? AppColors.surfaceDark
+                : AppColors.primary.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(AppValues.borderRadius),
             border: Border.all(
               color: AppColors.primary.withValues(alpha: 0.1),
@@ -183,18 +255,32 @@ class SettingsPage extends ConsumerWidget {
             children: [
               CircleAvatar(
                 radius: 30,
-                backgroundImage: (profile.imagePath != null && (profile.imagePath!.startsWith('http') || profile.imagePath!.startsWith('blob:')))
+                backgroundImage: (profile.imagePath != null &&
+                        (profile.imagePath!.startsWith('http') ||
+                            profile.imagePath!.startsWith('blob:')))
                     ? NetworkImage(profile.imagePath!)
-                    : (profile.imagePath != null && !kIsWeb && !profile.imagePath!.startsWith('icon:'))
+                    : (profile.imagePath != null &&
+                            !kIsWeb &&
+                            !profile.imagePath!.startsWith('icon:'))
                         ? FileImage(File(profile.imagePath!)) as ImageProvider
                         : null,
                 backgroundColor: AppColors.primary.withValues(alpha: 0.2),
-                child: (profile.imagePath == null || (!profile.imagePath!.startsWith('http') && !profile.imagePath!.startsWith('blob:') && (kIsWeb || profile.imagePath!.startsWith('icon:'))))
-                    ? profile.imagePath != null && profile.imagePath!.startsWith('icon:')
-                        ? Icon(_getIconFromName(profile.imagePath!.substring(5)), size: 30, color: AppColors.primary)
+                child: (profile.imagePath == null ||
+                        (!profile.imagePath!.startsWith('http') &&
+                            !profile.imagePath!.startsWith('blob:') &&
+                            (kIsWeb || profile.imagePath!.startsWith('icon:'))))
+                    ? profile.imagePath != null &&
+                            profile.imagePath!.startsWith('icon:')
+                        ? Icon(
+                            _getIconFromName(profile.imagePath!.substring(5)),
+                            size: 30,
+                            color: AppColors.primary)
                         : Text(
                             profile.fullName.initials,
-                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.primary),
+                            style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primary),
                           )
                     : null,
               ),
@@ -214,7 +300,9 @@ class SettingsPage extends ConsumerWidget {
                       '${profile.age} years old • ${profile.email ?? "No email"}',
                       style: TextStyle(
                         fontSize: 13,
-                        color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                        color: isDark
+                            ? AppColors.textSecondaryDark
+                            : AppColors.textSecondaryLight,
                       ),
                     ),
                   ],
@@ -233,28 +321,39 @@ class SettingsPage extends ConsumerWidget {
           ),
         );
       },
-      loading: () => const SizedBox(height: 80, child: Center(child: CircularProgressIndicator())),
+      loading: () => const SizedBox(
+          height: 80, child: Center(child: CircularProgressIndicator())),
       error: (_, __) => const SizedBox.shrink(),
     );
   }
 
   IconData _getIconFromName(String name) {
     switch (name) {
-      case 'person_rounded': return Icons.person_rounded;
-      case 'face_rounded': return Icons.face_rounded;
-      case 'support_agent_rounded': return Icons.support_agent_rounded;
-      case 'psychology_rounded': return Icons.psychology_rounded;
-      case 'engineering_rounded': return Icons.engineering_rounded;
-      case 'pets_rounded': return Icons.pets_rounded;
-      case 'sports_esports_rounded': return Icons.sports_esports_rounded;
-      case 'flight_rounded': return Icons.flight_rounded;
-      default: return Icons.person_rounded;
+      case 'person_rounded':
+        return Icons.person_rounded;
+      case 'face_rounded':
+        return Icons.face_rounded;
+      case 'support_agent_rounded':
+        return Icons.support_agent_rounded;
+      case 'psychology_rounded':
+        return Icons.psychology_rounded;
+      case 'engineering_rounded':
+        return Icons.engineering_rounded;
+      case 'pets_rounded':
+        return Icons.pets_rounded;
+      case 'sports_esports_rounded':
+        return Icons.sports_esports_rounded;
+      case 'flight_rounded':
+        return Icons.flight_rounded;
+      default:
+        return Icons.person_rounded;
     }
   }
 
   Widget _buildSectionHeader(String title) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppValues.gapSmall, left: AppValues.gapExtraSmall),
+      padding: const EdgeInsets.only(
+          bottom: AppValues.gapSmall, left: AppValues.gapExtraSmall),
       child: Text(
         title,
         style: const TextStyle(
@@ -342,7 +441,8 @@ class SettingsPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildBudgetCycleSettings(BuildContext context, WidgetRef ref, SettingsState settings) {
+  Widget _buildBudgetCycleSettings(
+      BuildContext context, WidgetRef ref, SettingsState settings) {
     return Card(
       child: Column(
         children: [
@@ -350,7 +450,8 @@ class SettingsPage extends ConsumerWidget {
             padding: EdgeInsets.all(16),
             child: Row(
               children: [
-                Icon(Icons.calendar_month_rounded, color: AppColors.primary, size: 20),
+                Icon(Icons.calendar_month_rounded,
+                    color: AppColors.primary, size: 20),
                 SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -358,7 +459,8 @@ class SettingsPage extends ConsumerWidget {
                     children: [
                       Text(
                         'Budget Cycle',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                       SizedBox(height: 2),
                       Text(
@@ -397,7 +499,8 @@ class SettingsPage extends ConsumerWidget {
             const Divider(height: 1),
             ListTile(
               title: const Text('Cycle Start Day'),
-              subtitle: Text('Budget starts on day ${settings.customCycleStartDay} of each month'),
+              subtitle: Text(
+                  'Budget starts on day ${settings.customCycleStartDay} of each month'),
               trailing: DropdownButtonHideUnderline(
                 child: DropdownButton<int>(
                   value: settings.customCycleStartDay,
@@ -409,7 +512,9 @@ class SettingsPage extends ConsumerWidget {
                   }).toList(),
                   onChanged: (val) {
                     if (val != null) {
-                      ref.read(settingsProvider.notifier).setCustomCycleStartDay(val);
+                      ref
+                          .read(settingsProvider.notifier)
+                          .setCustomCycleStartDay(val);
                     }
                   },
                 ),
@@ -421,7 +526,8 @@ class SettingsPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildNotificationSettings(BuildContext context, WidgetRef ref, SettingsState settings) {
+  Widget _buildNotificationSettings(
+      BuildContext context, WidgetRef ref, SettingsState settings) {
     return Card(
       child: Column(
         children: [
@@ -452,9 +558,11 @@ class SettingsPage extends ConsumerWidget {
               title: const Text('Reminder Time'),
               trailing: Text(
                 DateFormat.jm().format(
-                  DateTime(2022, 1, 1, settings.dailyReminderTime.hour, settings.dailyReminderTime.minute),
+                  DateTime(2022, 1, 1, settings.dailyReminderTime.hour,
+                      settings.dailyReminderTime.minute),
                 ),
-                style: const TextStyle(fontWeight: FontWeight.bold, color: AppColors.primary),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: AppColors.primary),
               ),
               onTap: () async {
                 final time = await showTimePicker(
@@ -462,7 +570,9 @@ class SettingsPage extends ConsumerWidget {
                   initialTime: settings.dailyReminderTime,
                 );
                 if (time != null) {
-                  await ref.read(settingsProvider.notifier).setDailyReminderTime(time);
+                  await ref
+                      .read(settingsProvider.notifier)
+                      .setDailyReminderTime(time);
                   // Reschedule with new time
                   await NotificationService().scheduleDailyNotification(
                     id: 100,
@@ -481,7 +591,8 @@ class SettingsPage extends ConsumerWidget {
             title: const Text('Budget Alerts'),
             subtitle: const Text('Get notified when you exceed budget limits'),
             value: settings.budgetAlertsEnabled,
-            onChanged: (val) => ref.read(settingsProvider.notifier).setBudgetAlerts(val),
+            onChanged: (val) =>
+                ref.read(settingsProvider.notifier).setBudgetAlerts(val),
             activeColor: AppColors.primary,
           ),
           const Divider(height: 1),
@@ -489,82 +600,95 @@ class SettingsPage extends ConsumerWidget {
             title: const Text('Upcoming Bill Reminders'),
             subtitle: const Text('Alerts 24 hours before recurring payments'),
             value: settings.recurringAlertsEnabled,
-            onChanged: (val) => ref.read(settingsProvider.notifier).setRecurringAlerts(val),
+            onChanged: (val) =>
+                ref.read(settingsProvider.notifier).setRecurringAlerts(val),
             activeColor: AppColors.primary,
           ),
           const Divider(height: 1),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: () async {
-                  try {
-                    await NotificationService().testNotification();
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Test notification sent! One immediate, one in 10s.')),
-                      );
+          if (kDebugMode)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () async {
+                    try {
+                      await NotificationService().testNotification();
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text(
+                                  'Test notification sent! One immediate, one in 10s.')),
+                        );
+                      }
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text('Error: $e'),
+                              backgroundColor: Colors.red),
+                        );
+                      }
                     }
-                  } catch (e) {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
-                      );
-                    }
-                  }
-                },
-                icon: const Icon(Icons.notification_important_rounded),
-                label: const Text('Send Test Notification'),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: AppColors.primary,
-                  side: const BorderSide(color: AppColors.primary),
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  },
+                  icon: const Icon(Icons.notification_important_rounded),
+                  label: const Text('Send Test Notification'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppColors.primary,
+                    side: const BorderSide(color: AppColors.primary),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: () async {
-                  final now = DateTime.now();
-                  final scheduledTime = now.add(const Duration(minutes: 1));
-                  try {
-                    await NotificationService().scheduleNotification(
-                      id: 101,
-                      title: '1-Minute Test',
-                      body: 'This notification was scheduled 1 minute ago.',
-                      scheduledDate: scheduledTime,
-                      payload: 'daily_reminder',
-                    );
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Scheduled for ${DateFormat.jm().format(scheduledTime)}')),
+          if (kDebugMode)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () async {
+                    final now = DateTime.now();
+                    final scheduledTime = now.add(const Duration(minutes: 1));
+                    try {
+                      await NotificationService().scheduleNotification(
+                        id: 101,
+                        title: '1-Minute Test',
+                        body: 'This notification was scheduled 1 minute ago.',
+                        scheduledDate: scheduledTime,
+                        payload: 'daily_reminder',
                       );
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text(
+                                  'Scheduled for ${DateFormat.jm().format(scheduledTime)}')),
+                        );
+                      }
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text('Error: $e'),
+                              backgroundColor: Colors.red),
+                        );
+                      }
                     }
-                  } catch (e) {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
-                      );
-                    }
-                  }
-                },
-                icon: const Icon(Icons.timer_outlined),
-                label: const Text('Schedule in 1 Minute'),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: AppColors.secondary,
-                  side: BorderSide(color: AppColors.secondary),
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  },
+                  icon: const Icon(Icons.timer_outlined),
+                  label: const Text('Schedule in 1 Minute'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppColors.secondary,
+                    side: BorderSide(color: AppColors.secondary),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );
@@ -581,7 +705,8 @@ class SettingsPage extends ConsumerWidget {
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Backup failed: $e'), backgroundColor: Colors.red),
+          SnackBar(
+              content: Text('Backup failed: $e'), backgroundColor: Colors.red),
         );
       }
     }
@@ -592,12 +717,16 @@ class SettingsPage extends ConsumerWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Restore Data?'),
-        content: const Text('This will overwrite all current app data. This action cannot be undone.'),
+        content: const Text(
+            'This will overwrite all current app data. This action cannot be undone.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
+          TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel')),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, foregroundColor: Colors.white),
             child: const Text('Restore'),
           ),
         ],
@@ -617,7 +746,7 @@ class SettingsPage extends ConsumerWidget {
         ref.invalidate(activeBudgetPlanProvider);
         ref.invalidate(budgetProgressProvider);
         ref.invalidate(budgetProgressByTypeProvider);
-        
+
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Data restored successfully!')),
@@ -627,7 +756,8 @@ class SettingsPage extends ConsumerWidget {
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Restore failed: $e'), backgroundColor: Colors.red),
+          SnackBar(
+              content: Text('Restore failed: $e'), backgroundColor: Colors.red),
         );
       }
     }
@@ -649,7 +779,8 @@ class SettingsPage extends ConsumerWidget {
                   color: AppColors.error.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.warning_amber_rounded, color: AppColors.error, size: 32),
+                child: const Icon(Icons.warning_amber_rounded,
+                    color: AppColors.error, size: 32),
               ),
               const SizedBox(height: 16),
               const Text(
@@ -673,7 +804,8 @@ class SettingsPage extends ConsumerWidget {
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     side: const BorderSide(color: AppColors.primary),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
                 ),
               ),
@@ -689,7 +821,8 @@ class SettingsPage extends ConsumerWidget {
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     elevation: 0,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
                 ),
               ),
@@ -721,16 +854,16 @@ class SettingsPage extends ConsumerWidget {
 
     try {
       if (context.mounted) {
-         // Show loading indicator
-         showDialog(
-           context: context,
-           barrierDismissible: false,
-           builder: (_) => const Center(child: CircularProgressIndicator()),
-         );
+        // Show loading indicator
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (_) => const Center(child: CircularProgressIndicator()),
+        );
       }
 
       await BackupService.clearAllData();
-      
+
       // Clear Providers
       ref.invalidate(settingsProvider);
       ref.invalidate(transactionsListProvider);
@@ -742,8 +875,8 @@ class SettingsPage extends ConsumerWidget {
 
       if (context.mounted) {
         // Pop loading dialog
-        Navigator.pop(context); 
-        
+        Navigator.pop(context);
+
         // Navigate to Splash to restart flow
         Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
       }
@@ -752,9 +885,10 @@ class SettingsPage extends ConsumerWidget {
         // Pop loading dialog if visible (it might be tricky if error happens fast, but safe enough)
         // If we want to be robust we keep a reference to the dialog or just rely on the fact that we are in a try block.
         Navigator.pop(context); // close loading
-        
+
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Reset failed: $e'), backgroundColor: Colors.red),
+          SnackBar(
+              content: Text('Reset failed: $e'), backgroundColor: Colors.red),
         );
       }
     }

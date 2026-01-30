@@ -1,4 +1,5 @@
 import 'package:finance_app/core/presentation/main_shell.dart';
+import 'package:finance_app/core/services/analytics_service.dart';
 import 'package:finance_app/core/theme/app_colors.dart';
 import 'package:finance_app/core/widgets/hisab_logo.dart';
 import 'package:finance_app/features/transactions/data/providers/recurring_transaction_provider.dart';
@@ -35,6 +36,9 @@ class _SplashPageState extends ConsumerState<SplashPage>
 
     // Initial processing of recurring transactions
     _processInitialTasks();
+
+    // Log Splash Screen
+    AnalyticsService().logScreenView('Splash');
 
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -101,10 +105,11 @@ class _SplashPageState extends ConsumerState<SplashPage>
   Future<void> _processInitialTasks() async {
     final recurringService = ref.read(recurringTransactionServiceProvider);
     await recurringService.processRecurringTransactions();
-    
+
     final settingsAsync = await ref.read(settingsProvider.future);
-    await recurringService.scheduleUpcomingAlerts(settingsAsync.recurringAlertsEnabled);
-    
+    await recurringService
+        .scheduleUpcomingAlerts(settingsAsync.recurringAlertsEnabled);
+
     // Re-schedule daily reminder if enabled to ensure it's active
     if (settingsAsync.dailyReminderEnabled) {
       debugPrint('SplashPage: Refreshing daily reminder scheduling');
@@ -171,7 +176,8 @@ class _SplashPageState extends ConsumerState<SplashPage>
                               ?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: -1.0,
-                                color: isDark ? Colors.white : AppColors.secondary,
+                                color:
+                                    isDark ? Colors.white : AppColors.secondary,
                               ),
                         ),
                         const SizedBox(height: 8),
