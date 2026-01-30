@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/models/tax_calculator_models.dart';
 import '../providers/tax_calculator_provider.dart';
 import 'package:finance_app/core/theme/app_colors.dart';
 import 'package:finance_app/core/theme/app_values.dart'; // Added import
@@ -22,7 +21,7 @@ class TaxConfigListPage extends ConsumerWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => TaxConfigEditPage()),
+                MaterialPageRoute(builder: (_) => const TaxConfigEditPage()),
               );
             },
             tooltip: 'Add New Config',
@@ -38,17 +37,22 @@ class TaxConfigListPage extends ConsumerWidget {
           return ListView.separated(
             padding: AppValues.screenPadding, // Replaced hardcoded padding
             itemCount: configs.length,
-            separatorBuilder: (_, __) => const SizedBox(height: AppValues.gapMedium), // Replaced hardcoded spacing
+            separatorBuilder: (_, __) => const SizedBox(
+                height: AppValues.gapMedium), // Replaced hardcoded spacing
             itemBuilder: (context, index) {
               final config = configs[index];
               return Card(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: AppColors.primary.withValues(alpha: 0.1)),
+                  side: BorderSide(
+                      color: AppColors.primary.withValues(alpha: 0.1)),
                 ),
                 child: ListTile(
-                  contentPadding: EdgeInsets.symmetric(horizontal: AppValues.paddingMedium, vertical: AppValues.paddingSmall), // Replaced hardcoded padding
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: AppValues.paddingMedium,
+                      vertical:
+                          AppValues.paddingSmall), // Replaced hardcoded padding
                   title: Text(
                     config.name,
                     style: const TextStyle(fontWeight: FontWeight.bold),
@@ -61,7 +65,8 @@ class TaxConfigListPage extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.edit_outlined, color: AppColors.primary),
+                        icon: const Icon(Icons.edit_outlined,
+                            color: AppColors.primary),
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -73,7 +78,8 @@ class TaxConfigListPage extends ConsumerWidget {
                       ),
                       if (!config.isDefault)
                         IconButton(
-                          icon: const Icon(Icons.delete_outline_rounded, color: Colors.redAccent),
+                          icon: const Icon(Icons.delete_outline_rounded,
+                              color: Colors.redAccent),
                           onPressed: () => _confirmDelete(context, ref, config),
                         ),
                     ],
@@ -102,10 +108,13 @@ class TaxConfigListPage extends ConsumerWidget {
           ),
           TextButton(
             onPressed: () {
-              ref.read(taxConfigurationsProvider.notifier).deleteConfig(config.id);
+              ref
+                  .read(taxConfigurationsProvider.notifier)
+                  .deleteConfig(config.id);
               Navigator.pop(context);
             },
-            child: const Text('Delete', style: TextStyle(color: Colors.redAccent)),
+            child:
+                const Text('Delete', style: TextStyle(color: Colors.redAccent)),
           ),
         ],
       ),

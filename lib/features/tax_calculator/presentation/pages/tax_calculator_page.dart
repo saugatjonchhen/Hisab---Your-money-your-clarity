@@ -29,7 +29,7 @@ class TaxCalculatorPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => TaxConfigListPage()),
+                MaterialPageRoute(builder: (_) => const TaxConfigListPage()),
               );
             },
             tooltip: 'Manage Configs',
@@ -46,14 +46,14 @@ class TaxCalculatorPage extends StatelessWidget {
           const SizedBox(width: AppValues.gapSmall),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: AppValues.paddingLarge),
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: AppValues.paddingLarge),
         child: Column(
           children: [
-            const _ConfigSelector(),
-            const TaxInputForm(),
-            const SizedBox(height: AppValues.gapMedium),
-            const TaxResultView(),
+            _ConfigSelector(),
+            TaxInputForm(),
+            SizedBox(height: AppValues.gapMedium),
+            TaxResultView(),
           ],
         ),
       ),
@@ -76,7 +76,8 @@ class _ConfigSelector extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: AppValues.paddingSmall, bottom: AppValues.gapSmall),
+            padding: const EdgeInsets.only(
+                left: AppValues.paddingSmall, bottom: AppValues.gapSmall),
             child: Text(
               'TAX CONFIGURATION',
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
@@ -88,22 +89,31 @@ class _ConfigSelector extends ConsumerWidget {
           ),
           configsAsync.when(
             data: (configs) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: AppValues.paddingMedium),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppValues.paddingMedium),
               decoration: BoxDecoration(
                 color: Theme.of(context).cardTheme.color,
                 borderRadius: BorderRadius.circular(AppValues.borderRadius),
-                border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+                border:
+                    Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
-                  value: configs.any((c) => c.id == selectedId) ? selectedId : configs.firstOrNull?.id,
+                  value: configs.any((c) => c.id == selectedId)
+                      ? selectedId
+                      : configs.firstOrNull?.id,
                   isExpanded: true,
-                  icon: Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.primary),
+                  icon: const Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    color: AppColors.primary,
+                  ),
                   onChanged: (id) {
                     if (id != null) {
                       ref.read(selectedTaxConfigIdProvider.notifier).state = id;
-                      final configName = configs.firstWhere((c) => c.id == id).name;
-                      AnalyticsService().logTaxCalculated(configuration: configName);
+                      final configName =
+                          configs.firstWhere((c) => c.id == id).name;
+                      AnalyticsService()
+                          .logTaxCalculated(configuration: configName);
                     }
                   },
                   items: configs.map((config) {

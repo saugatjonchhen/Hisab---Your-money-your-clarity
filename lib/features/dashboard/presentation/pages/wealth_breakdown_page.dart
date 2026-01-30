@@ -17,10 +17,10 @@ class WealthBreakdownPage extends ConsumerWidget {
     final committedAsync = ref.watch(remainingCommittedExpensesProvider);
     final breakdownAsync = ref.watch(spendingBreakdownProvider);
     final incomeAsync = ref.watch(totalIncomeProvider);
-    
+
     final savingsAsync = ref.watch(totalSavingsProvider);
     final investmentAsync = ref.watch(totalInvestmentProvider);
-    
+
     final settingsAsync = ref.watch(settingsProvider);
     final currencySymbol = settingsAsync.when(
       data: (s) => s.currencySymbol,
@@ -67,7 +67,8 @@ class WealthBreakdownPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildTotalAssetCard(BuildContext context, {required double wealth, required String currencySymbol}) {
+  Widget _buildTotalAssetCard(BuildContext context,
+      {required double wealth, required String currencySymbol}) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
@@ -152,24 +153,34 @@ class WealthBreakdownPage extends ConsumerWidget {
             child: Row(
               children: [
                 if (liquidPercent > 0)
-                  Expanded(flex: (liquidPercent * 100).toInt(), child: Container(color: AppColors.primary)),
+                  Expanded(
+                      flex: (liquidPercent * 100).toInt(),
+                      child: Container(color: AppColors.primary)),
                 if (savingsPercent > 0)
-                  Expanded(flex: (savingsPercent * 100).toInt(), child: Container(color: AppColors.savings)),
+                  Expanded(
+                      flex: (savingsPercent * 100).toInt(),
+                      child: Container(color: AppColors.savings)),
                 if (investmentsPercent > 0)
-                  Expanded(flex: (investmentsPercent * 100).toInt(), child: Container(color: AppColors.investment)),
+                  Expanded(
+                      flex: (investmentsPercent * 100).toInt(),
+                      child: Container(color: AppColors.investment)),
               ],
             ),
           ),
         ),
         const SizedBox(height: 24),
-        _buildAllocationItem(context, 'Liquid Cash', liquid, AppColors.primary, currencySymbol),
-        _buildAllocationItem(context, 'Total Savings', savings, AppColors.savings, currencySymbol),
-        _buildAllocationItem(context, 'Total Investments', investments, AppColors.investment, currencySymbol),
+        _buildAllocationItem(
+            context, 'Liquid Cash', liquid, AppColors.primary, currencySymbol),
+        _buildAllocationItem(context, 'Total Savings', savings,
+            AppColors.savings, currencySymbol),
+        _buildAllocationItem(context, 'Total Investments', investments,
+            AppColors.investment, currencySymbol),
       ],
     );
   }
 
-  Widget _buildAllocationItem(BuildContext context, String title, double amount, Color color, String currencySymbol) {
+  Widget _buildAllocationItem(BuildContext context, String title, double amount,
+      Color color, String currencySymbol) {
     String? filterType;
     if (title == 'Total Savings') filterType = 'Savings';
     if (title == 'Total Investments') filterType = 'Investment';
@@ -177,23 +188,25 @@ class WealthBreakdownPage extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: InkWell(
-        onTap: filterType != null 
-          ? () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AllTransactionsPage(initialFilter: filterType),
-                ),
-              );
-            }
-          : null,
+        onTap: filterType != null
+            ? () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        AllTransactionsPage(initialFilter: filterType),
+                  ),
+                );
+              }
+            : null,
         borderRadius: BorderRadius.circular(16),
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: Theme.of(context).cardTheme.color,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.05)),
+            border: Border.all(
+                color: Theme.of(context).dividerColor.withValues(alpha: 0.05)),
           ),
           child: Row(
             children: [
@@ -203,14 +216,17 @@ class WealthBreakdownPage extends ConsumerWidget {
                 decoration: BoxDecoration(color: color, shape: BoxShape.circle),
               ),
               const SizedBox(width: 16),
-              Expanded(child: Text(title, style: const TextStyle(fontWeight: FontWeight.w500))),
+              Expanded(
+                  child: Text(title,
+                      style: const TextStyle(fontWeight: FontWeight.w500))),
               Text(
                 '$currencySymbol${amount.toStringAsFixed(2)}',
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               if (filterType != null) ...[
                 const SizedBox(width: 8),
-                Icon(Icons.arrow_forward_ios_rounded, size: 12, color: Theme.of(context).disabledColor),
+                Icon(Icons.arrow_forward_ios_rounded,
+                    size: 12, color: Theme.of(context).disabledColor),
               ],
             ],
           ),
@@ -232,44 +248,59 @@ class WealthBreakdownPage extends ConsumerWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.primary.withValues(alpha: 0.2), width: 2),
+        border: Border.all(
+            color: AppColors.primary.withValues(alpha: 0.2), width: 2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             children: [
-              Icon(Icons.info_outline_rounded, color: AppColors.primary, size: 24),
-              const SizedBox(width: 12),
-              const Text(
+              Icon(Icons.info_outline_rounded,
+                  color: AppColors.primary, size: 24),
+              SizedBox(width: 12),
+              Text(
                 'Spending Logic',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: 24),
-          _buildLogicRow(context, 'Total Income', income, currencySymbol, isPositive: true),
+          _buildLogicRow(context, 'Total Income', income, currencySymbol,
+              isPositive: true),
           const SizedBox(height: 12),
-          _buildLogicRow(context, 'Reserved for Bills (Planned)', totalReserved, currencySymbol, isPositive: false),
+          _buildLogicRow(context, 'Reserved for Bills (Planned)', totalReserved,
+              currencySymbol,
+              isPositive: false),
           const SizedBox(height: 12),
-          _buildLogicRow(context, 'Other Expenses (Paid)', otherSpent, currencySymbol, isPositive: false),
+          _buildLogicRow(
+              context, 'Other Expenses (Paid)', otherSpent, currencySymbol,
+              isPositive: false),
           const Divider(height: 32),
-          _buildLogicRow(context, 'True Spendable Balance', spendable, currencySymbol, isPositive: true, isBold: true),
+          _buildLogicRow(
+              context, 'True Spendable Balance', spendable, currencySymbol,
+              isPositive: true, isBold: true),
         ],
       ),
     );
   }
 
-  Widget _buildLogicRow(BuildContext context, String title, double amount, String currencySymbol, {required bool isPositive, bool isBold = false}) {
+  Widget _buildLogicRow(
+      BuildContext context, String title, double amount, String currencySymbol,
+      {required bool isPositive, bool isBold = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: TextStyle(fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
+        Text(title,
+            style: TextStyle(
+                fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
         Text(
           '${isPositive ? "" : "-"}$currencySymbol${amount.toStringAsFixed(2)}',
           style: TextStyle(
             fontWeight: isBold ? FontWeight.bold : FontWeight.w600,
-            color: isBold ? AppColors.primary : (isPositive ? null : Theme.of(context).colorScheme.error),
+            color: isBold
+                ? AppColors.primary
+                : (isPositive ? null : Theme.of(context).colorScheme.error),
           ),
         ),
       ],
@@ -286,7 +317,7 @@ class WealthBreakdownPage extends ConsumerWidget {
       child: const Row(
         children: [
           Icon(Icons.lightbulb_outline_rounded, size: 20, color: Colors.orange),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Expanded(
             child: Text(
               'Your spendable balance aligns with your budget and ensures you don\'t touch the money needed for your plans.',

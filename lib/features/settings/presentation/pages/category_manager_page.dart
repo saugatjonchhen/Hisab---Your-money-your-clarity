@@ -70,7 +70,7 @@ class CategoryManagerPage extends ConsumerWidget {
         ),
       ),
       child: ListTile(
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           horizontal: AppValues.horizontalPadding,
           vertical: AppValues.gapSmall,
         ),

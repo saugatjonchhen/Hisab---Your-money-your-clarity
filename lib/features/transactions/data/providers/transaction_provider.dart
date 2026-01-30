@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:finance_app/features/transactions/data/models/transaction_model.dart';
 import 'package:finance_app/features/transactions/data/repositories/transaction_repository.dart';
 import 'package:finance_app/features/transactions/data/providers/category_provider.dart';
@@ -38,7 +40,7 @@ class TransactionsList extends _$TransactionsList {
       categoryId: categoryId,
     );
     await repository.addTransaction(transaction);
-    
+
     // Check for budget breach
     if (type == 'expense') {
       try {
@@ -46,26 +48,30 @@ class TransactionsList extends _$TransactionsList {
         if (settings != null && settings.budgetAlertsEnabled) {
           final categories = await ref.read(categoriesListProvider.future);
           final category = categories.firstWhere((c) => c.id == categoryId);
-          
+
           if (category.budgetLimit > 0) {
             final transactions = await repository.getTransactions();
             final now = DateTime.now();
             final spent = transactions
-                .where((t) => t.type == 'expense' && 
-                              t.categoryId == categoryId && 
-                              t.date.year == now.year && 
-                              t.date.month == now.month)
+                .where((t) =>
+                    t.type == 'expense' &&
+                    t.categoryId == categoryId &&
+                    t.date.year == now.year &&
+                    t.date.month == now.month)
                 .fold<double>(0.0, (sum, t) => sum + t.amount);
-            
+
             final previousSpent = spent - amount;
             final limit = category.budgetLimit;
-            
+
             // 80% Warning
-            if (previousSpent <= (limit * 0.8) && spent > (limit * 0.8) && spent <= limit) {
-               await NotificationService().showNotification(
-                id: categoryId.hashCode + 1000, 
+            if (previousSpent <= (limit * 0.8) &&
+                spent > (limit * 0.8) &&
+                spent <= limit) {
+              await NotificationService().showNotification(
+                id: categoryId.hashCode + 1000,
                 title: 'Approaching Limit: ${category.name}',
-                body: 'You have used over 80% of your budget for ${category.name}. Remaining: ${settings.currencySymbol}${(limit - spent).toStringAsFixed(2)}',
+                body:
+                    'You have used over 80% of your budget for ${category.name}. Remaining: ${settings.currencySymbol}${(limit - spent).toStringAsFixed(2)}',
                 payload: 'budget_warning_$categoryId',
               );
             }
@@ -75,7 +81,8 @@ class TransactionsList extends _$TransactionsList {
               await NotificationService().showNotification(
                 id: categoryId.hashCode,
                 title: 'Budget Breach: ${category.name}',
-                body: 'You have exceeded your monthly budget for ${category.name}. Total spent: ${settings.currencySymbol}${spent.toStringAsFixed(2)}',
+                body:
+                    'You have exceeded your monthly budget for ${category.name}. Total spent: ${settings.currencySymbol}${spent.toStringAsFixed(2)}',
                 payload: 'budget_breach_$categoryId',
               );
             }
@@ -83,7 +90,7 @@ class TransactionsList extends _$TransactionsList {
         }
       } catch (e) {
         // Silently fail notification check to avoid blocking transaction add
-        print('Error checking budget breach: $e');
+        log('Error checking budget breach: $e');
       }
     }
 
@@ -169,9 +176,10 @@ Future<double> currentMonthIncome(CurrentMonthIncomeRef ref) async {
   final transactions = await ref.watch(transactionsListProvider.future);
   final now = DateTime.now();
   return transactions
-      .where((t) => t.type == 'income' && 
-                    t.date.year == now.year && 
-                    t.date.month == now.month)
+      .where((t) =>
+          t.type == 'income' &&
+          t.date.year == now.year &&
+          t.date.month == now.month)
       .fold<double>(0.0, (sum, t) => sum + t.amount);
 }
 

@@ -491,15 +491,17 @@ class _MultiSectionAnalysisState extends ConsumerState<MultiSectionAnalysis> {
     final Map<String, double> categorySpending = {};
 
     for (var t in widget.transactions) {
-      if (t.type == 'income')
+      if (t.type == 'income') {
         income += t.amount;
-      else if (t.type == 'expense') {
+      } else if (t.type == 'expense') {
         expense += t.amount;
         categorySpending[t.categoryId] =
             (categorySpending[t.categoryId] ?? 0) + t.amount;
-      } else if (t.type == 'savings')
+      } else if (t.type == 'savings') {
         savings += t.amount;
-      else if (t.type == 'investment') investment += t.amount;
+      } else if (t.type == 'investment') {
+        investment += t.amount;
+      }
     }
 
     final sortedCategories = categorySpending.entries.toList()

@@ -1,8 +1,5 @@
 import 'package:finance_app/core/theme/app_colors.dart';
 import 'package:finance_app/core/theme/app_values.dart';
-import 'package:finance_app/features/dashboard/presentation/widgets/balance_card.dart';
-import 'package:finance_app/features/dashboard/presentation/widgets/daily_breakdown_chart.dart';
-import 'package:finance_app/features/dashboard/presentation/widgets/date_selector.dart';
 import 'package:finance_app/features/dashboard/presentation/providers/dashboard_providers.dart';
 import 'package:finance_app/features/dashboard/presentation/pages/detailed_stats_page.dart';
 import 'package:finance_app/features/settings/presentation/providers/settings_provider.dart';
@@ -40,11 +37,14 @@ class DashboardPage extends StatelessWidget {
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             surfaceTintColor: Colors.transparent,
             flexibleSpace: FlexibleSpaceBar(
-              titlePadding: const EdgeInsets.only(left: AppValues.horizontalPadding, bottom: 16),
+              titlePadding: const EdgeInsets.only(
+                  left: AppValues.horizontalPadding, bottom: 16),
               title: Consumer(
                 builder: (context, ref, child) {
                   final profileAsync = ref.watch(userProfileNotifierProvider);
-                  final name = profileAsync.valueOrNull?.fullName.split(' ').first ?? 'User';
+                  final name =
+                      profileAsync.valueOrNull?.fullName.split(' ').first ??
+                          'User';
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,9 +74,13 @@ class DashboardPage extends StatelessWidget {
             actions: [
               Consumer(
                 builder: (context, ref, child) {
-                  final notificationsAsync = ref.watch(notificationsStreamProvider);
-                  final unreadCount = notificationsAsync.valueOrNull?.where((n) => !n.isRead).length ?? 0;
-                  
+                  final notificationsAsync =
+                      ref.watch(notificationsStreamProvider);
+                  final unreadCount = notificationsAsync.valueOrNull
+                          ?.where((n) => !n.isRead)
+                          .length ??
+                      0;
+
                   return IconButton(
                     icon: Stack(
                       clipBehavior: Clip.none,
@@ -87,7 +91,8 @@ class DashboardPage extends StatelessWidget {
                             color: Theme.of(context).cardTheme.color,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.notifications_outlined, size: 20),
+                          child: const Icon(Icons.notifications_outlined,
+                              size: 20),
                         ),
                         if (unreadCount > 0)
                           Positioned(
@@ -119,7 +124,8 @@ class DashboardPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const NotificationsPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const NotificationsPage()),
                       );
                     },
                   );
@@ -133,31 +139,60 @@ class DashboardPage extends StatelessWidget {
                     data: (profile) => IconButton(
                       icon: CircleAvatar(
                         radius: 16,
-                        backgroundImage: (profile?.imagePath != null && (profile!.imagePath!.startsWith('http') || profile.imagePath!.startsWith('blob:')))
+                        backgroundImage: (profile?.imagePath != null &&
+                                (profile!.imagePath!.startsWith('http') ||
+                                    profile.imagePath!.startsWith('blob:')))
                             ? NetworkImage(profile.imagePath!)
-                            : (profile?.imagePath != null && !kIsWeb && !profile!.imagePath!.startsWith('icon:'))
-                                ? FileImage(File(profile.imagePath!)) as ImageProvider
+                            : (profile?.imagePath != null &&
+                                    !kIsWeb &&
+                                    !profile!.imagePath!.startsWith('icon:'))
+                                ? FileImage(File(profile.imagePath!))
+                                    as ImageProvider
                                 : null,
-                        backgroundColor: AppColors.primary.withValues(alpha: 0.2),
-                        child: (profile == null || (profile.imagePath == null || (!profile.imagePath!.startsWith('http') && !profile.imagePath!.startsWith('blob:') && (kIsWeb || profile.imagePath!.startsWith('icon:')))))
-                            ? (profile?.imagePath != null && profile!.imagePath!.startsWith('icon:'))
-                                ? Icon(_getIconFromName(profile.imagePath!.substring(5)), size: 20, color: AppColors.primary)
+                        backgroundColor:
+                            AppColors.primary.withValues(alpha: 0.2),
+                        child: (profile == null ||
+                                (profile.imagePath == null ||
+                                    (!profile.imagePath!.startsWith('http') &&
+                                        !profile.imagePath!
+                                            .startsWith('blob:') &&
+                                        (kIsWeb ||
+                                            profile.imagePath!
+                                                .startsWith('icon:')))))
+                            ? (profile?.imagePath != null &&
+                                    profile!.imagePath!.startsWith('icon:'))
+                                ? Icon(
+                                    _getIconFromName(
+                                        profile.imagePath!.substring(5)),
+                                    size: 20,
+                                    color: AppColors.primary)
                                 : Text(
                                     profile?.fullName.initials ?? 'U',
-                                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primary),
+                                    style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.primary),
                                   )
                             : null,
                       ),
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const ProfileSetupPage()),
+                          MaterialPageRoute(
+                              builder: (_) => const ProfileSetupPage()),
                         );
                       },
                     ),
-                    loading: () => const CircleAvatar(radius: 16, child: SizedBox(width: 12, height: 12, child: CircularProgressIndicator(strokeWidth: 2))),
+                    loading: () => const CircleAvatar(
+                        radius: 16,
+                        child: SizedBox(
+                            width: 12,
+                            height: 12,
+                            child: CircularProgressIndicator(strokeWidth: 2))),
                     error: (_, __) => IconButton(
-                      icon: const CircleAvatar(radius: 16, child: Icon(Icons.error_outline_rounded, size: 16)),
+                      icon: const CircleAvatar(
+                          radius: 16,
+                          child: Icon(Icons.error_outline_rounded, size: 16)),
                       onPressed: () {},
                     ),
                   );
@@ -173,12 +208,13 @@ class DashboardPage extends StatelessWidget {
             ),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                 Consumer(
+                Consumer(
                   builder: (context, ref, child) {
                     final balanceAsync = ref.watch(filteredBalanceProvider);
                     final wealthAsync = ref.watch(wealthBalanceProvider);
-                    final monthlyExpenseAsync = ref.watch(monthlyTotalExpenseProvider);
-                    
+                    final monthlyExpenseAsync =
+                        ref.watch(monthlyTotalExpenseProvider);
+
                     final settingsAsync = ref.watch(settingsProvider);
                     final currencySymbol = settingsAsync.when(
                       data: (s) => s.currencySymbol,
@@ -190,7 +226,7 @@ class DashboardPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _buildEmeraldHeroCard(
-                          context, 
+                          context,
                           ref,
                           balanceAsync.valueOrNull ?? 0.0,
                           wealthAsync.valueOrNull ?? 0.0,
@@ -202,22 +238,28 @@ class DashboardPage extends StatelessWidget {
                         const SizedBox(height: AppValues.gapLarge),
                         Consumer(
                           builder: (context, ref, child) {
-                            final budgetAsync = ref.watch(budgetProgressProvider);
+                            final budgetAsync =
+                                ref.watch(budgetProgressProvider);
                             return budgetAsync.when(
                               data: (budgets) {
-                                if (budgets.isEmpty) return const SizedBox.shrink();
+                                if (budgets.isEmpty) {
+                                  return const SizedBox.shrink();
+                                }
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Monthly Budget',
-                                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                     ),
                                     const SizedBox(height: AppValues.gapSmall),
                                     BudgetProgressWidget(
-                                      budgets: budgets, 
+                                      budgets: budgets,
                                       currencySymbol: currencySymbol,
                                     ),
                                   ],
@@ -250,7 +292,9 @@ class DashboardPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddTransactionPage(initialDate: selectedDate)),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        AddTransactionPage(initialDate: selectedDate)),
               );
             },
             backgroundColor: AppColors.primary,
@@ -277,7 +321,8 @@ class DashboardPage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AllTransactionsPage()),
+              MaterialPageRoute(
+                  builder: (context) => const AllTransactionsPage()),
             );
           },
           child: const Text('View All'),
@@ -292,13 +337,13 @@ class DashboardPage extends StatelessWidget {
         final transactionsAsync = ref.watch(filteredTransactionsProvider);
         final settingsAsync = ref.watch(settingsProvider);
         final categoriesAsync = ref.watch(categoriesListProvider);
-        
+
         final currencySymbol = settingsAsync.when(
           data: (settings) => settings.currencySymbol,
           loading: () => '\$',
           error: (_, __) => '\$',
         );
-        
+
         final categories = categoriesAsync.valueOrNull ?? [];
 
         return transactionsAsync.when(
@@ -309,7 +354,8 @@ class DashboardPage extends StatelessWidget {
                   padding: const EdgeInsets.all(40),
                   child: Column(
                     children: [
-                      Icon(Icons.receipt_long_outlined, size: 48, color: Theme.of(context).disabledColor),
+                      Icon(Icons.receipt_long_outlined,
+                          size: 48, color: Theme.of(context).disabledColor),
                       const SizedBox(height: AppValues.gapMedium),
                       Text(
                         'No transactions for this day',
@@ -331,14 +377,16 @@ class DashboardPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final transaction = transactions[index];
                 final isIncome = transaction.type == 'income';
-                
+
                 final category = categories.cast<CategoryModel?>().firstWhere(
-                  (c) => c?.id == transaction.categoryId, 
-                  orElse: () => null
-                );
-                
-                final color = category != null ? Color(category.colorValue) : (isIncome ? AppColors.secondary : AppColors.tertiary);
-                final iconName = category?.iconParams ?? (isIncome ? 'arrow_downward' : 'shopping_bag_outlined');
+                    (c) => c?.id == transaction.categoryId,
+                    orElse: () => null);
+
+                final color = category != null
+                    ? Color(category.colorValue)
+                    : (isIncome ? AppColors.secondary : AppColors.tertiary);
+                final iconName = category?.iconParams ??
+                    (isIncome ? 'arrow_downward' : 'shopping_bag_outlined');
 
                 return Container(
                   decoration: BoxDecoration(
@@ -358,18 +406,21 @@ class DashboardPage extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      transaction.note.isEmpty ? (category?.name ?? 'Transaction') : transaction.note,
+                      transaction.note.isEmpty
+                          ? (category?.name ?? 'Transaction')
+                          : transaction.note,
                       style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                     subtitle: Text(
-                        DateFormat('h:mm a').format(transaction.date),
-                        ),
+                      DateFormat('h:mm a').format(transaction.date),
+                    ),
                     trailing: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: isIncome 
-                          ? AppColors.secondary.withValues(alpha: 0.1)
-                          : Colors.red.withValues(alpha: 0.1),
+                        color: isIncome
+                            ? AppColors.secondary.withValues(alpha: 0.1)
+                            : Colors.red.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -396,13 +447,12 @@ class DashboardPage extends StatelessWidget {
   }
 
   Widget _buildEmeraldHeroCard(
-    BuildContext context, 
-    WidgetRef ref,
-    double balance, 
-    double wealth, 
-    double monthlyExpense,
-    String currencySymbol
-  ) {
+      BuildContext context,
+      WidgetRef ref,
+      double balance,
+      double wealth,
+      double monthlyExpense,
+      String currencySymbol) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
@@ -421,7 +471,8 @@ class DashboardPage extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const WealthBreakdownPage()),
+            MaterialPageRoute(
+                builder: (context) => const WealthBreakdownPage()),
           );
         },
         borderRadius: BorderRadius.circular(28),
@@ -439,7 +490,8 @@ class DashboardPage extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const Icon(Icons.info_outline_rounded, color: Colors.white70, size: 18),
+                const Icon(Icons.info_outline_rounded,
+                    color: Colors.white70, size: 18),
               ],
             ),
             const SizedBox(height: 8),
@@ -460,7 +512,8 @@ class DashboardPage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const WealthBreakdownPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const WealthBreakdownPage()),
                       );
                     },
                     child: Column(
@@ -533,11 +586,13 @@ class DashboardPage extends StatelessWidget {
           Icons.add_rounded,
           AppColors.primary,
           () {
-             final selectedDate = ref.read(dashboardDateProvider);
-             Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddTransactionPage(initialDate: selectedDate)),
-              );
+            final selectedDate = ref.read(dashboardDateProvider);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      AddTransactionPage(initialDate: selectedDate)),
+            );
           },
         ),
         _buildActionItem(
@@ -548,7 +603,8 @@ class DashboardPage extends StatelessWidget {
           () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const DailyBreakdownPage()),
+              MaterialPageRoute(
+                  builder: (context) => const DailyBreakdownPage()),
             );
           },
         ),
@@ -560,7 +616,8 @@ class DashboardPage extends StatelessWidget {
           () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const DetailedStatsPage()),
+              MaterialPageRoute(
+                  builder: (context) => const DetailedStatsPage()),
             );
           },
         ),
@@ -578,9 +635,9 @@ class DashboardPage extends StatelessWidget {
   }
 
   Widget _buildActionItem(
-    BuildContext context, 
-    String label, 
-    IconData icon, 
+    BuildContext context,
+    String label,
+    IconData icon,
     Color color,
     VoidCallback onTap,
   ) {
@@ -620,29 +677,47 @@ class DashboardPage extends StatelessWidget {
 
   IconData _getIconFromName(String name) {
     switch (name) {
-      case 'person_rounded': return Icons.person_rounded;
-      case 'face_rounded': return Icons.face_rounded;
-      case 'support_agent_rounded': return Icons.support_agent_rounded;
-      case 'psychology_rounded': return Icons.psychology_rounded;
-      case 'engineering_rounded': return Icons.engineering_rounded;
-      case 'pets_rounded': return Icons.pets_rounded;
-      case 'sports_esports_rounded': return Icons.sports_esports_rounded;
-      case 'flight_rounded': return Icons.flight_rounded;
-      default: return Icons.person_rounded;
+      case 'person_rounded':
+        return Icons.person_rounded;
+      case 'face_rounded':
+        return Icons.face_rounded;
+      case 'support_agent_rounded':
+        return Icons.support_agent_rounded;
+      case 'psychology_rounded':
+        return Icons.psychology_rounded;
+      case 'engineering_rounded':
+        return Icons.engineering_rounded;
+      case 'pets_rounded':
+        return Icons.pets_rounded;
+      case 'sports_esports_rounded':
+        return Icons.sports_esports_rounded;
+      case 'flight_rounded':
+        return Icons.flight_rounded;
+      default:
+        return Icons.person_rounded;
     }
   }
 
   IconData _getIcon(String iconName, bool isIncome) {
-     switch(iconName) {
-      case 'fastfood_rounded': return Icons.fastfood_rounded;
-      case 'directions_bus_rounded': return Icons.directions_bus_rounded;
-      case 'shopping_bag_rounded': return Icons.shopping_bag_rounded;
-      case 'receipt_long_rounded': return Icons.receipt_long_rounded;
-      case 'movie_rounded': return Icons.movie_rounded;
-      case 'work_rounded': return Icons.work_rounded;
-      case 'arrow_downward': return Icons.arrow_downward;
-      case 'shopping_bag_outlined': return Icons.shopping_bag_outlined;
-      default: return isIncome ? Icons.arrow_downward : Icons.category_rounded;
+    switch (iconName) {
+      case 'fastfood_rounded':
+        return Icons.fastfood_rounded;
+      case 'directions_bus_rounded':
+        return Icons.directions_bus_rounded;
+      case 'shopping_bag_rounded':
+        return Icons.shopping_bag_rounded;
+      case 'receipt_long_rounded':
+        return Icons.receipt_long_rounded;
+      case 'movie_rounded':
+        return Icons.movie_rounded;
+      case 'work_rounded':
+        return Icons.work_rounded;
+      case 'arrow_downward':
+        return Icons.arrow_downward;
+      case 'shopping_bag_outlined':
+        return Icons.shopping_bag_outlined;
+      default:
+        return isIncome ? Icons.arrow_downward : Icons.category_rounded;
     }
   }
 }

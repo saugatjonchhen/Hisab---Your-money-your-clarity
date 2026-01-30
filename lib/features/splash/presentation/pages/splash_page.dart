@@ -3,7 +3,6 @@ import 'package:finance_app/core/services/analytics_service.dart';
 import 'package:finance_app/core/theme/app_colors.dart';
 import 'package:finance_app/core/widgets/hisab_logo.dart';
 import 'package:finance_app/features/transactions/data/providers/recurring_transaction_provider.dart';
-import 'package:finance_app/core/theme/app_values.dart';
 import 'package:finance_app/features/settings/presentation/providers/settings_provider.dart';
 import 'package:finance_app/features/profile/presentation/providers/user_profile_provider.dart';
 import 'package:finance_app/features/profile/presentation/pages/profile_setup_page.dart';

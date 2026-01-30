@@ -1,6 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../domain/models/tax_calculator_models.dart';
-import 'package:uuid/uuid.dart';
 
 class TaxConfigRepository {
   static const String _boxName = 'tax_configs';
@@ -15,11 +14,11 @@ class TaxConfigRepository {
 
   Future<List<TaxConfiguration>> getAllConfigs() async {
     final box = await _getBox();
-    
+
     // Always ensure default config is up to date with hardcoded values
     final defaultConfig = _createDefaultConfig();
     await box.put(_defaultConfigId, defaultConfig);
-    
+
     return box.values.toList();
   }
 

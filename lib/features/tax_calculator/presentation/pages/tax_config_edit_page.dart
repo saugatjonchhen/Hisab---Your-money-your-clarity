@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/models/tax_calculator_models.dart';
 import '../providers/tax_calculator_provider.dart';
 import 'package:finance_app/core/theme/app_colors.dart';
-import 'package:finance_app/core/theme/app_values.dart';
 import 'package:uuid/uuid.dart';
 
 class TaxConfigEditPage extends StatefulWidget {
@@ -23,9 +22,19 @@ class _TaxConfigEditPageState extends State<TaxConfigEditPage> {
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.config?.name ?? '');
-    _singleSlabs = widget.config?.singleSlabs.map((s) => TaxSlab(rate: s.rate, lowerLimit: s.lowerLimit, upperLimit: s.upperLimit)).toList() ?? 
+    _singleSlabs = widget.config?.singleSlabs
+            .map((s) => TaxSlab(
+                rate: s.rate,
+                lowerLimit: s.lowerLimit,
+                upperLimit: s.upperLimit))
+            .toList() ??
         [TaxSlab(rate: 0.01, lowerLimit: 0, upperLimit: 500000)];
-    _marriedSlabs = widget.config?.marriedSlabs.map((s) => TaxSlab(rate: s.rate, lowerLimit: s.lowerLimit, upperLimit: s.upperLimit)).toList() ?? 
+    _marriedSlabs = widget.config?.marriedSlabs
+            .map((s) => TaxSlab(
+                rate: s.rate,
+                lowerLimit: s.lowerLimit,
+                upperLimit: s.upperLimit))
+            .toList() ??
         [TaxSlab(rate: 0.01, lowerLimit: 0, upperLimit: 600000)];
   }
 
@@ -37,7 +46,8 @@ class _TaxConfigEditPageState extends State<TaxConfigEditPage> {
 
   void _save(WidgetRef ref) {
     if (_nameController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter a name')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Please enter a name')));
       return;
     }
 
@@ -57,7 +67,8 @@ class _TaxConfigEditPageState extends State<TaxConfigEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.config == null ? 'New Configuration' : 'Edit Configuration'),
+        title: Text(
+            widget.config == null ? 'New Configuration' : 'Edit Configuration'),
         actions: [
           Consumer(builder: (context, ref, _) {
             return IconButton(
@@ -97,13 +108,19 @@ class _TaxConfigEditPageState extends State<TaxConfigEditPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(title,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             IconButton(
-              icon: const Icon(Icons.add_circle_outline, color: AppColors.primary),
+              icon: const Icon(Icons.add_circle_outline,
+                  color: AppColors.primary),
               onPressed: () {
                 setState(() {
                   final lastUpper = slabs.last.upperLimit;
-                  slabs.add(TaxSlab(rate: 0.10, lowerLimit: lastUpper, upperLimit: lastUpper + 200000));
+                  slabs.add(TaxSlab(
+                      rate: 0.10,
+                      lowerLimit: lastUpper,
+                      upperLimit: lastUpper + 200000));
                 });
               },
             ),
@@ -121,11 +138,15 @@ class _TaxConfigEditPageState extends State<TaxConfigEditPage> {
                   flex: 2,
                   child: TextFormField(
                     initialValue: (slab.rate * 100).toStringAsFixed(0),
-                    decoration: const InputDecoration(labelText: 'Rate %', isDense: true),
+                    decoration: const InputDecoration(
+                        labelText: 'Rate %', isDense: true),
                     keyboardType: TextInputType.number,
                     onChanged: (val) {
                       final rate = (double.tryParse(val) ?? 0) / 100;
-                      slabs[idx] = TaxSlab(rate: rate, lowerLimit: slab.lowerLimit, upperLimit: slab.upperLimit);
+                      slabs[idx] = TaxSlab(
+                          rate: rate,
+                          lowerLimit: slab.lowerLimit,
+                          upperLimit: slab.upperLimit);
                     },
                   ),
                 ),
@@ -134,11 +155,15 @@ class _TaxConfigEditPageState extends State<TaxConfigEditPage> {
                   flex: 3,
                   child: TextFormField(
                     initialValue: slab.lowerLimit.toStringAsFixed(0),
-                    decoration: const InputDecoration(labelText: 'From', isDense: true),
+                    decoration:
+                        const InputDecoration(labelText: 'From', isDense: true),
                     keyboardType: TextInputType.number,
                     onChanged: (val) {
                       final limit = double.tryParse(val) ?? 0;
-                      slabs[idx] = TaxSlab(rate: slab.rate, lowerLimit: limit, upperLimit: slab.upperLimit);
+                      slabs[idx] = TaxSlab(
+                          rate: slab.rate,
+                          lowerLimit: limit,
+                          upperLimit: slab.upperLimit);
                     },
                   ),
                 ),
@@ -147,21 +172,28 @@ class _TaxConfigEditPageState extends State<TaxConfigEditPage> {
                   flex: 3,
                   child: TextFormField(
                     initialValue: slab.upperLimit.toStringAsFixed(0),
-                    decoration: const InputDecoration(labelText: 'To', isDense: true),
+                    decoration:
+                        const InputDecoration(labelText: 'To', isDense: true),
                     keyboardType: TextInputType.number,
                     onChanged: (val) {
                       final limit = double.tryParse(val) ?? 0;
-                      slabs[idx] = TaxSlab(rate: slab.rate, lowerLimit: slab.lowerLimit, upperLimit: limit);
+                      slabs[idx] = TaxSlab(
+                          rate: slab.rate,
+                          lowerLimit: slab.lowerLimit,
+                          upperLimit: limit);
                     },
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.remove_circle_outline, color: Colors.redAccent, size: 20),
-                  onPressed: slabs.length > 1 ? () {
-                    setState(() {
-                      slabs.removeAt(idx);
-                    });
-                  } : null,
+                  icon: const Icon(Icons.remove_circle_outline,
+                      color: Colors.redAccent, size: 20),
+                  onPressed: slabs.length > 1
+                      ? () {
+                          setState(() {
+                            slabs.removeAt(idx);
+                          });
+                        }
+                      : null,
                 ),
               ],
             ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:finance_app/features/budget/domain/engine/budget_engine.dart';
 import 'package:finance_app/features/budget/data/models/budget_models.dart';
@@ -69,8 +71,9 @@ void main() {
           final name = cat['name']!.toLowerCase();
           if (cat['type'] == 'expense') {
             String? matchedKey;
-            if (name.contains('utility') || name.contains('bill'))
+            if (name.contains('utility') || name.contains('bill')) {
               matchedKey = 'utilities';
+            }
 
             if (matchedKey != null) {
               categoriesByFixedKey
@@ -78,9 +81,11 @@ void main() {
                   .add(cat['id']!);
             } else {
               double weight = 5;
-              if (name.contains('food'))
+              if (name.contains('food')) {
                 weight = 30;
-              else if (name.contains('transport')) weight = 15;
+              } else if (name.contains('transport')) {
+                weight = 15;
+              }
               expenseWeights[cat['id']!] = weight;
               totalVariableWeight += weight;
             }
@@ -91,7 +96,9 @@ void main() {
         final finalAllocations = <String, double>{};
         categoriesByFixedKey.forEach((key, ids) {
           final totalForKey = input.fixedExpenses[key] ?? 0;
-          for (var id in ids) finalAllocations[id] = totalForKey / ids.length;
+          for (var id in ids) {
+            finalAllocations[id] = totalForKey / ids.length;
+          }
         });
 
         final results = <String, double>{};
@@ -106,9 +113,9 @@ void main() {
           results[cat['name']!] = limit;
         }
 
-        print('--- Results for $planId ---');
-        print('Variable Pool: $variablePool, Debt Pool: $debtPool');
-        results.forEach((name, limit) => print('$name: $limit'));
+        log('--- Results for $planId ---');
+        log('Variable Pool: $variablePool, Debt Pool: $debtPool');
+        results.forEach((name, limit) => log('$name: $limit'));
 
         // Check 1: Variable pool is accurately split between variable categories
         final variableSum = results['Food']! + results['Transport']!;
@@ -124,7 +131,7 @@ void main() {
         final unallocatedActual = planTotal - totalAllocatedInCategories;
 
         // Expected Unallocated = (Unmatched Mandatory) + (Savings Pool) + (Debt Pool if no EMI cat)
-        final unmatchedMandatory = 33000.0; // 33k EMI
+        const unmatchedMandatory = 33000.0; // 33k EMI
         final savingsPool = plan.allocations['Savings'] ?? 0.0;
         final unallocatedDebt = plan.allocations['Debt'] ?? 0.0;
 
@@ -136,8 +143,8 @@ void main() {
                 'Unallocated funds for $planId must include unmatched EMI ($unmatchedMandatory), '
                 'Savings Pool ($savingsPool), and Debt Repayment Pool ($unallocatedDebt)');
 
-        print('Expected Unallocated for $planId: $expectedUnallocated');
-        print('Actual Unallocated: $unallocatedActual');
+        log('Expected Unallocated for $planId: $expectedUnallocated');
+        log('Actual Unallocated: $unallocatedActual');
       });
     });
   });

@@ -12,7 +12,8 @@ class NotificationService {
   factory NotificationService() => _instance;
   NotificationService._internal();
 
-  final FlutterLocalNotificationsPlugin _notificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _notificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   Future<void> init() async {
     // Skip notification setup on web - local notifications don't work on web
@@ -24,7 +25,7 @@ class NotificationService {
     // Initialize timezone
     tz.initializeTimeZones();
     String timeZoneName = await FlutterTimezone.getLocalTimezone();
-    
+
     // Handle timezone name aliases (e.g., Asia/Katmandu -> Asia/Kathmandu)
     final timezoneAliases = {
       'Asia/Katmandu': 'Asia/Kathmandu',
@@ -32,16 +33,18 @@ class NotificationService {
       'US/Pacific': 'America/Los_Angeles',
     };
     timeZoneName = timezoneAliases[timeZoneName] ?? timeZoneName;
-    
+
     try {
       final location = tz.getLocation(timeZoneName);
       tz.setLocalLocation(location);
-      debugPrint('NotificationService: Local location set to $timeZoneName (${location.name})');
+      debugPrint(
+          'NotificationService: Local location set to $timeZoneName (${location.name})');
     } catch (e) {
-      debugPrint('NotificationService: Unknown timezone $timeZoneName, using UTC');
+      debugPrint(
+          'NotificationService: Unknown timezone $timeZoneName, using UTC');
       tz.setLocalLocation(tz.UTC);
     }
-    
+
     // Android initialization settings
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -54,7 +57,8 @@ class NotificationService {
       requestSoundPermission: true,
     );
 
-    const InitializationSettings initializationSettings = InitializationSettings(
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
@@ -77,15 +81,17 @@ class NotificationService {
     if (kIsWeb) return;
 
     if (defaultTargetPlatform == TargetPlatform.android) {
-      final androidPlugin = _notificationsPlugin.resolvePlatformSpecificImplementation<
+      final androidPlugin =
+          _notificationsPlugin.resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>();
-      
+
       await androidPlugin?.requestNotificationsPermission();
       // For exact alarms or other specific android permissions
       await androidPlugin?.requestExactAlarmsPermission();
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       await _notificationsPlugin
-          .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+          .resolvePlatformSpecificImplementation<
+              IOSFlutterLocalNotificationsPlugin>()
           ?.requestPermissions(
             alert: true,
             badge: true,
@@ -102,7 +108,8 @@ class NotificationService {
     String? payload,
   }) async {
     debugPrint('NotificationService: Showing immediate notification "$title"');
-    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+    const AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
       'main_channel_v3', // Incremented version to ensure fresh settings
       'General Alerts',
       channelDescription: 'General alerts for finance app',
@@ -122,18 +129,20 @@ class NotificationService {
     );
 
     try {
-      await _notificationsPlugin.show(id, title, body, notificationDetails, payload: payload);
+      await _notificationsPlugin.show(id, title, body, notificationDetails,
+          payload: payload);
       await _saveNotification(title, body, payload);
     } catch (e) {
       debugPrint('NotificationService error: $e');
     }
   }
 
-  Future<void> _saveNotification(String title, String body, String? payload) async {
+  Future<void> _saveNotification(
+      String title, String body, String? payload) async {
     try {
       final box = Hive.box<NotificationModel>('notifications');
       NotificationType type = NotificationType.general;
-      
+
       if (payload != null) {
         if (payload.contains('budget')) {
           type = NotificationType.budgetAlert;
@@ -158,9 +167,9 @@ class NotificationService {
         final existing = box.values.where((n) {
           final now = DateTime.now();
           return n.type == NotificationType.dailyReminder &&
-                 n.timestamp.year == now.year &&
-                 n.timestamp.month == now.month &&
-                 n.timestamp.day == now.day;
+              n.timestamp.year == now.year &&
+              n.timestamp.month == now.month &&
+              n.timestamp.day == now.day;
         });
         if (existing.isNotEmpty) return;
       }
@@ -181,9 +190,10 @@ class NotificationService {
     String? payload,
   }) async {
     final scheduledDate = _nextInstanceOfTime(hour, minute);
-    debugPrint('NotificationService: Scheduling daily reminder for $hour:$minute. Next instance: $scheduledDate');
+    debugPrint(
+        'NotificationService: Scheduling daily reminder for $hour:$minute. Next instance: $scheduledDate');
 
-    final notificationDetails = const NotificationDetails(
+    const notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         'daily_reminder_v4',
         'Daily Reminders',
@@ -201,13 +211,17 @@ class NotificationService {
     );
 
     try {
-      final androidPlugin = _notificationsPlugin.resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>();
-      final hasPermission = await androidPlugin?.canScheduleExactNotifications() ?? false;
-      debugPrint('NotificationService: Has exact alarm permission: $hasPermission');
+      final androidPlugin =
+          _notificationsPlugin.resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>();
+      final hasPermission =
+          await androidPlugin?.canScheduleExactNotifications() ?? false;
+      debugPrint(
+          'NotificationService: Has exact alarm permission: $hasPermission');
 
       if (!kIsWeb) {
-        debugPrint('NotificationService: Scheduling at TZDateTime: $scheduledDate');
+        debugPrint(
+            'NotificationService: Scheduling at TZDateTime: $scheduledDate');
         // Try exact scheduling first
         await _notificationsPlugin.zonedSchedule(
           id,
@@ -221,15 +235,16 @@ class NotificationService {
           matchDateTimeComponents: DateTimeComponents.time,
         );
       }
-      
+
       // If we are on Web or scheduling succeeded, we can log it if we want.
-      // For daily reminders, we don't save to history immediately because it 
-      // hasn't "triggered" for the user yet. 
-      // However, if the user requested it shown in list, we might want to 
+      // For daily reminders, we don't save to history immediately because it
+      // hasn't "triggered" for the user yet.
+      // However, if the user requested it shown in list, we might want to
       // save it when it's actually "due".
     } catch (e) {
       if (!kIsWeb) {
-        debugPrint('NotificationService: Daily reminder scheduling failed. Error: $e');
+        debugPrint(
+            'NotificationService: Daily reminder scheduling failed. Error: $e');
         // Fallback to inexact scheduling
         await _notificationsPlugin.zonedSchedule(
           id,
@@ -261,15 +276,19 @@ class NotificationService {
         body: 'This confirms foreground notification delivery.',
         payload: 'test_notification',
       );
-      
-      final androidPlugin = _notificationsPlugin.resolvePlatformSpecificImplementation<
-                AndroidFlutterLocalNotificationsPlugin>();
-      final hasExact = await androidPlugin?.requestExactAlarmsPermission() ?? false;
-      debugPrint('NotificationService: Exact alarms permitted (via request): $hasExact');
+
+      final androidPlugin =
+          _notificationsPlugin.resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>();
+      final hasExact =
+          await androidPlugin?.requestExactAlarmsPermission() ?? false;
+      debugPrint(
+          'NotificationService: Exact alarms permitted (via request): $hasExact');
 
       // Schedule one for 10 seconds later
       final scheduledDate = DateTime.now().add(const Duration(seconds: 10));
-      debugPrint('NotificationService: Scheduling background test for $scheduledDate');
+      debugPrint(
+          'NotificationService: Scheduling background test for $scheduledDate');
 
       await scheduleNotification(
         id: 998,
@@ -277,7 +296,7 @@ class NotificationService {
         body: 'If you see this, background delivery is working correctly!',
         scheduledDate: scheduledDate,
       );
-      
+
       debugPrint('Test notifications triggered and scheduled');
     } catch (e) {
       debugPrint('Error sending test notification: $e');
@@ -304,7 +323,7 @@ class NotificationService {
     required DateTime scheduledDate,
     String? payload,
   }) async {
-    final notificationDetails = const NotificationDetails(
+    const notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         'scheduled_alerts_v4',
         'Scheduled Alerts',
@@ -321,16 +340,21 @@ class NotificationService {
     );
 
     try {
-      final androidPlugin = _notificationsPlugin.resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>();
-      final hasPermission = await androidPlugin?.canScheduleExactNotifications() ?? false;
-      
+      final androidPlugin =
+          _notificationsPlugin.resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>();
+      final hasPermission =
+          await androidPlugin?.canScheduleExactNotifications() ?? false;
+
       final tzScheduledDate = tz.TZDateTime.from(scheduledDate, tz.local);
-      debugPrint('NotificationService: Scheduling one-time notification for $scheduledDate');
+      debugPrint(
+          'NotificationService: Scheduling one-time notification for $scheduledDate');
       debugPrint('NotificationService: TZDateTime: $tzScheduledDate');
       debugPrint('NotificationService: Current time: ${DateTime.now()}');
-      debugPrint('NotificationService: Current TZ time: ${tz.TZDateTime.now(tz.local)}');
-      debugPrint('NotificationService: Has exact alarm permission: $hasPermission');
+      debugPrint(
+          'NotificationService: Current TZ time: ${tz.TZDateTime.now(tz.local)}');
+      debugPrint(
+          'NotificationService: Has exact alarm permission: $hasPermission');
 
       if (!kIsWeb) {
         await _notificationsPlugin.zonedSchedule(
@@ -344,15 +368,16 @@ class NotificationService {
               UILocalNotificationDateInterpretation.absoluteTime,
         );
       }
-      
-      // If the scheduled date is very soon (e.g. within 1 minute), 
+
+      // If the scheduled date is very soon (e.g. within 1 minute),
       // we save it to the history list immediately for visibility.
       if (scheduledDate.difference(DateTime.now()).inSeconds < 60) {
         await _saveNotification(title, body, payload);
       }
     } catch (e) {
       if (!kIsWeb) {
-        debugPrint('NotificationService: Exact scheduling failed, falling back to inexact. Error: $e');
+        debugPrint(
+            'NotificationService: Exact scheduling failed, falling back to inexact. Error: $e');
         await _notificationsPlugin.zonedSchedule(
           id,
           title,
@@ -366,18 +391,18 @@ class NotificationService {
       }
     }
   }
-  
-  // Note: For scheduled notifications, we don't save them to the repository yet 
-  // because they haven't "happened" for the user. 
+
+  // Note: For scheduled notifications, we don't save them to the repository yet
+  // because they haven't "happened" for the user.
   // We should ideally save them when the notification is delivered/received.
-  // For now, we'll only save immediate ones or let the logic that schedules them 
+  // For now, we'll only save immediate ones or let the logic that schedules them
   // also handle saving if it should appear in the history immediately.
 
   /// Cancel all notifications
   Future<void> cancelAll() async {
     await _notificationsPlugin.cancelAll();
   }
-  
+
   /// Cancel a specific notification by ID
   Future<void> cancel(int id) async {
     await _notificationsPlugin.cancel(id);

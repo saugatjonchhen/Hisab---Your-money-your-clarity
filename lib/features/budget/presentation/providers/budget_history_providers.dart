@@ -1,4 +1,3 @@
-import 'package:finance_app/features/budget/data/models/budget_models.dart';
 import 'package:finance_app/features/budget/data/models/budget_snapshot.dart';
 import 'package:finance_app/features/budget/data/repositories/budget_snapshot_repository.dart';
 import 'package:finance_app/features/budget/presentation/providers/budget_providers.dart';
@@ -16,12 +15,13 @@ Future<List<BudgetMonthSnapshot>> budgetHistory(
 }) async {
   final repository = BudgetSnapshotRepository();
   final allSnapshots = await repository.getAllSnapshots();
-  
+
   final now = DateTime.now();
   final cutoffDate = DateTime(now.year, now.month - months, 1);
-  
+
   return allSnapshots
-      .where((s) => s.month.isAfter(cutoffDate) || s.month.isAtSameMomentAs(cutoffDate))
+      .where((s) =>
+          s.month.isAfter(cutoffDate) || s.month.isAtSameMomentAs(cutoffDate))
       .toList();
 }
 
@@ -33,19 +33,19 @@ Future<Map<String, double>> yearlyBudgetSummary(
 ) async {
   final repository = BudgetSnapshotRepository();
   final snapshots = await repository.getSnapshotsForYear(year);
-  
+
   double totalIncome = 0;
   double totalExpenses = 0;
   double totalSavings = 0;
   double totalInvestments = 0;
-  
+
   for (var snapshot in snapshots) {
     totalIncome += snapshot.totalIncome;
     totalExpenses += snapshot.totalExpenses;
     totalSavings += snapshot.totalSavings;
     totalInvestments += snapshot.totalInvestments;
   }
-  
+
   return {
     'income': totalIncome,
     'expenses': totalExpenses,
@@ -58,12 +58,12 @@ Future<Map<String, double>> yearlyBudgetSummary(
 class BudgetPeriod {
   final DateTime start;
   final DateTime end;
-  
+
   BudgetPeriod(this.start, this.end);
-  
+
   bool contains(DateTime date) {
     return (date.isAfter(start) || date.isAtSameMomentAs(start)) &&
-           (date.isBefore(end) || date.isAtSameMomentAs(end));
+        (date.isBefore(end) || date.isAtSameMomentAs(end));
   }
 }
 
@@ -72,7 +72,7 @@ class BudgetPeriod {
 Future<BudgetPeriod> currentBudgetPeriod(CurrentBudgetPeriodRef ref) async {
   final settings = await ref.watch(settingsProvider.future);
   final now = DateTime.now();
-  
+
   if (settings.budgetCycleType == BudgetCycleType.calendar) {
     // Calendar month: 1st to last day of month
     final start = DateTime(now.year, now.month, 1);
@@ -81,11 +81,11 @@ Future<BudgetPeriod> currentBudgetPeriod(CurrentBudgetPeriodRef ref) async {
   } else {
     // Custom cycle based on start day
     final startDay = settings.customCycleStartDay;
-    
+
     // Determine if we're before or after the cycle day this month
     DateTime start;
     DateTime end;
-    
+
     if (now.day >= startDay) {
       // We're in the current cycle (startDay of this month to startDay-1 of next month)
       start = DateTime(now.year, now.month, startDay);
@@ -95,7 +95,7 @@ Future<BudgetPeriod> currentBudgetPeriod(CurrentBudgetPeriodRef ref) async {
       start = DateTime(now.year, now.month - 1, startDay);
       end = DateTime(now.year, now.month, startDay - 1, 23, 59, 59);
     }
-    
+
     return BudgetPeriod(start, end);
   }
 }
@@ -108,15 +108,15 @@ class BudgetSnapshotGenerator extends _$BudgetSnapshotGenerator {
     // Auto-generate snapshot if needed
     await generateSnapshotIfNeeded();
   }
-  
+
   Future<void> generateSnapshotIfNeeded() async {
     final repository = BudgetSnapshotRepository();
     final latest = await repository.getLatestSnapshot();
     final period = await ref.read(currentBudgetPeriodProvider.future);
-    
+
     // Check if we need to create a snapshot for the previous period
     final now = DateTime.now();
-    
+
     if (latest == null) {
       // No snapshots exist, create one for last month
       await _createSnapshotForPreviousPeriod();
@@ -128,31 +128,35 @@ class BudgetSnapshotGenerator extends _$BudgetSnapshotGenerator {
       }
     }
   }
-  
+
   Future<void> _createSnapshotForPreviousPeriod() async {
     final repository = BudgetSnapshotRepository();
     final settings = await ref.read(settingsProvider.future);
     final transactions = await ref.read(transactionsListProvider.future);
     final activePlan = ref.read(activeBudgetPlanProvider);
-    
+
     // Calculate previous period dates
     final period = await ref.read(currentBudgetPeriodProvider.future);
     final previousPeriodEnd = period.start.subtract(const Duration(days: 1));
-    
+
     DateTime previousPeriodStart;
     if (settings.budgetCycleType == BudgetCycleType.calendar) {
-      previousPeriodStart = DateTime(previousPeriodEnd.year, previousPeriodEnd.month, 1);
+      previousPeriodStart =
+          DateTime(previousPeriodEnd.year, previousPeriodEnd.month, 1);
     } else {
       final startDay = settings.customCycleStartDay;
-      previousPeriodStart = DateTime(previousPeriodEnd.year, previousPeriodEnd.month, startDay);
+      previousPeriodStart =
+          DateTime(previousPeriodEnd.year, previousPeriodEnd.month, startDay);
     }
-    
+
     // Filter transactions for the previous period
     final periodTransactions = transactions.where((t) {
-      return (t.date.isAfter(previousPeriodStart) || t.date.isAtSameMomentAs(previousPeriodStart)) &&
-             (t.date.isBefore(previousPeriodEnd) || t.date.isAtSameMomentAs(previousPeriodEnd));
+      return (t.date.isAfter(previousPeriodStart) ||
+              t.date.isAtSameMomentAs(previousPeriodStart)) &&
+          (t.date.isBefore(previousPeriodEnd) ||
+              t.date.isAtSameMomentAs(previousPeriodEnd));
     }).toList();
-    
+
     // Create snapshot
     final snapshot = BudgetMonthSnapshot.fromCurrentMonth(
       month: previousPeriodStart,
@@ -161,22 +165,22 @@ class BudgetSnapshotGenerator extends _$BudgetSnapshotGenerator {
       activePlan: activePlan,
       transactions: periodTransactions,
     );
-    
+
     await repository.saveSnapshot(snapshot);
   }
-  
+
   /// Manually create snapshot for current period (useful for testing or manual triggers)
   Future<void> createCurrentSnapshot() async {
     final repository = BudgetSnapshotRepository();
     final transactions = await ref.read(transactionsListProvider.future);
     final activePlan = ref.read(activeBudgetPlanProvider);
     final period = await ref.read(currentBudgetPeriodProvider.future);
-    
+
     // Filter transactions for current period
     final periodTransactions = transactions.where((t) {
       return period.contains(t.date);
     }).toList();
-    
+
     // Create snapshot
     final snapshot = BudgetMonthSnapshot.fromCurrentMonth(
       month: period.start,
@@ -185,7 +189,7 @@ class BudgetSnapshotGenerator extends _$BudgetSnapshotGenerator {
       activePlan: activePlan,
       transactions: periodTransactions,
     );
-    
+
     await repository.saveSnapshot(snapshot);
   }
 }

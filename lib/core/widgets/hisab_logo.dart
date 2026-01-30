@@ -43,7 +43,7 @@ class _HisabLogoPainter extends CustomPainter {
 
     // Draw left half (purple gradient - income)
     final leftRect = Rect.fromCircle(center: center, radius: radius);
-    final leftGradient = const LinearGradient(
+    const leftGradient = LinearGradient(
       colors: [Color(0xFF10B981), Color(0xFF059669)],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,

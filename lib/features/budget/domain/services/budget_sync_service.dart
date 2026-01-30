@@ -25,14 +25,15 @@ class BudgetSyncService {
       if (category.type == 'expense') {
         // Check if this is a known Fixed Expense from the Questionnaire
         String? matchedKey;
-        if ((name.contains('emi') || name.contains('loan')))
+        if ((name.contains('emi') || name.contains('loan'))) {
           matchedKey = 'emi';
-        else if ((name.contains('rent') || name.contains('house')))
+        } else if ((name.contains('rent') || name.contains('house'))) {
           matchedKey = 'rent';
-        else if (name.contains('utility') || name.contains('bill'))
+        } else if (name.contains('utility') || name.contains('bill')) {
           matchedKey = 'utilities';
-        else if (name.contains('education') || name.contains('school'))
+        } else if (name.contains('education') || name.contains('school')) {
           matchedKey = 'education';
+        }
 
         if (matchedKey != null &&
             questionnaire.fixedExpenses.containsKey(matchedKey)) {
@@ -46,32 +47,34 @@ class BudgetSyncService {
           weight = 5; // Default for anything else
           if (name.contains('food') ||
               name.contains('grocery') ||
-              name.contains('eat'))
+              name.contains('eat')) {
             weight = 30;
-          else if (name.contains('transport') ||
+          } else if (name.contains('transport') ||
               name.contains('fuel') ||
               name.contains('auto') ||
-              name.contains('cab'))
+              name.contains('cab')) {
             weight = 15;
-          else if (name.contains('health') ||
+          } else if (name.contains('health') ||
               name.contains('medical') ||
               name.contains('doc') ||
-              name.contains('pharm'))
+              name.contains('pharm')) {
             weight = 10;
-          else if (name.contains('shop') ||
+          } else if (name.contains('shop') ||
               name.contains('mall') ||
               name.contains('cloth') ||
-              name.contains('item'))
+              name.contains('item')) {
             weight = 15;
-          else if (name.contains('ent') ||
+          } else if (name.contains('ent') ||
               name.contains('fun') ||
               name.contains('movie') ||
               name.contains('sub') ||
-              name.contains('ott'))
+              name.contains('ott')) {
             weight = 10;
-          else if (name.contains('bill') ||
+          } else if (name.contains('bill') ||
               name.contains('utility') ||
-              name.contains('recharge')) weight = 10;
+              name.contains('recharge')) {
+            weight = 10;
+          }
 
           expenseWeights[category.id] = weight;
           totalVariableWeight += weight;
@@ -84,21 +87,22 @@ class BudgetSyncService {
             cName.contains('depo') ||
             cName.contains('fd') ||
             cName.contains('emergency') ||
-            cName.contains('piggy'))
+            cName.contains('piggy')) {
           weight = 60;
-        else if (cName.contains('stock') ||
+        } else if (cName.contains('stock') ||
             cName.contains('equity') ||
             cName.contains('mutual') ||
             cName.contains('fund') ||
             cName.contains('invest') ||
             cName.contains('crypto') ||
             cName.contains('gold') ||
-            cName.contains('sip'))
+            cName.contains('sip')) {
           weight = 40;
-        else if (category.type == 'savings')
+        } else if (category.type == 'savings') {
           weight = 30; // Generic fallback
-        else
+        } else {
           weight = 20; // Generic investment fallback
+        }
 
         savingsWeights[category.id] = weight;
         totalSavingsWeight += weight;

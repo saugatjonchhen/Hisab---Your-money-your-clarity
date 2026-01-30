@@ -17,7 +17,7 @@ class TaxInputForm extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _SectionHeader(title: 'Personal & Employment'),
+          const _SectionHeader(title: 'Personal & Employment'),
           _FormCard(
             child: Column(
               children: [
@@ -58,7 +58,7 @@ class TaxInputForm extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
-          _SectionHeader(title: 'Monthly / Annual Deductions'),
+          const _SectionHeader(title: 'Monthly / Annual Deductions'),
           _FormCard(
             child: Column(
               children: [
@@ -183,8 +183,10 @@ class _MoneyInputState extends State<_MoneyInput> {
   @override
   void didUpdateWidget(_MoneyInput oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (!_focusNode.hasFocus && widget.value != double.tryParse(_controller.text)) {
-      _controller.text = widget.value == 0 ? '' : widget.value.toStringAsFixed(0);
+    if (!_focusNode.hasFocus &&
+        widget.value != double.tryParse(_controller.text)) {
+      _controller.text =
+          widget.value == 0 ? '' : widget.value.toStringAsFixed(0);
     }
   }
 
@@ -198,7 +200,7 @@ class _MoneyInputState extends State<_MoneyInput> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
@@ -218,7 +220,8 @@ class _MoneyInputState extends State<_MoneyInput> {
                 const SizedBox(width: 4),
                 Tooltip(
                   message: widget.tooltip!,
-                  child: Icon(Icons.info_outline_rounded, size: 14, color: Colors.grey[500]),
+                  child: Icon(Icons.info_outline_rounded,
+                      size: 14, color: Colors.grey[500]),
                 ),
               ],
             ],
@@ -227,9 +230,13 @@ class _MoneyInputState extends State<_MoneyInput> {
           AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             decoration: BoxDecoration(
-              color: _isFocused 
-                  ? (isDark ? AppColors.primary.withValues(alpha: 0.1) : AppColors.primary.withValues(alpha: 0.05))
-                  : (isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey[100]),
+              color: _isFocused
+                  ? (isDark
+                      ? AppColors.primary.withValues(alpha: 0.1)
+                      : AppColors.primary.withValues(alpha: 0.05))
+                  : (isDark
+                      ? Colors.white.withValues(alpha: 0.05)
+                      : Colors.grey[100]),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: _isFocused ? AppColors.primary : Colors.transparent,
@@ -247,7 +254,8 @@ class _MoneyInputState extends State<_MoneyInput> {
               ),
               decoration: InputDecoration(
                 isDense: true,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                 prefixIcon: Container(
                   padding: const EdgeInsets.only(left: 16, right: 8),
                   child: Text(
@@ -259,13 +267,15 @@ class _MoneyInputState extends State<_MoneyInput> {
                     ),
                   ),
                 ),
-                prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                prefixIconConstraints:
+                    const BoxConstraints(minWidth: 0, minHeight: 0),
                 border: InputBorder.none,
                 hintText: '0',
                 hintStyle: TextStyle(color: Colors.grey[500]),
               ),
               onChanged: (val) {
-                final doubleValue = double.tryParse(val.replaceAll(',', '')) ?? 0;
+                final doubleValue =
+                    double.tryParse(val.replaceAll(',', '')) ?? 0;
                 widget.onChanged(doubleValue);
               },
             ),
@@ -294,13 +304,14 @@ class _SwitchInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.grey[50],
+          color:
+              isDark ? Colors.white.withValues(alpha: 0.03) : Colors.grey[50],
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -322,7 +333,9 @@ class _SwitchInput extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    color: value ? AppColors.primary : (isDark ? Colors.white70 : Colors.black87),
+                    color: value
+                        ? AppColors.primary
+                        : (isDark ? Colors.white70 : Colors.black87),
                   ),
                 ),
               ],

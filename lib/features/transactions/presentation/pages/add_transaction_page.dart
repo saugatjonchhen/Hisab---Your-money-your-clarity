@@ -8,13 +8,13 @@ import 'package:finance_app/core/services/analytics_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
 
 class AddTransactionPage extends ConsumerStatefulWidget {
   final TransactionModel? initialTransaction;
   final DateTime? initialDate;
 
-  const AddTransactionPage({super.key, this.initialTransaction, this.initialDate});
+  const AddTransactionPage(
+      {super.key, this.initialTransaction, this.initialDate});
 
   @override
   ConsumerState<AddTransactionPage> createState() => _AddTransactionPageState();
@@ -37,7 +37,8 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
     _noteController = TextEditingController(
       text: widget.initialTransaction?.note ?? '',
     );
-    _selectedDate = widget.initialTransaction?.date ?? widget.initialDate ?? DateTime.now();
+    _selectedDate =
+        widget.initialTransaction?.date ?? widget.initialDate ?? DateTime.now();
     _selectedType = widget.initialTransaction?.type ?? 'expense';
     _selectedCategoryId = widget.initialTransaction?.categoryId;
   }
@@ -67,7 +68,9 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.initialTransaction == null ? 'Add Transaction' : 'Edit Transaction'),
+        title: Text(widget.initialTransaction == null
+            ? 'Add Transaction'
+            : 'Edit Transaction'),
       ),
       body: Form(
         key: _formKey,
@@ -78,30 +81,41 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
             children: [
               _buildTypeSelector(),
               const SizedBox(height: AppValues.gapLarge),
-              
-              const Text('Amount', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              const Text('Amount',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               const SizedBox(height: AppValues.gapSmall),
               TextFormField(
                 controller: _amountController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   prefixIcon: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppValues.gapSmall, vertical: AppValues.gapSmall),
-                    child: Text(currencySymbol, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppValues.gapSmall,
+                        vertical: AppValues.gapSmall),
+                    child: Text(currencySymbol,
+                        style: const TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold)),
                   ),
-                  prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                  prefixIconConstraints:
+                      const BoxConstraints(minWidth: 0, minHeight: 0),
                   hintText: '0.00',
                 ),
                 validator: (value) {
-                  if (value == null || value.isEmpty) return 'Please enter an amount';
-                  if (double.tryParse(value) == null) return 'Please enter a valid number';
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter an amount';
+                  }
+                  if (double.tryParse(value) == null) {
+                    return 'Please enter a valid number';
+                  }
                   return null;
                 },
               ),
-              
               const SizedBox(height: AppValues.gapLarge),
-              const Text('Category', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              const Text('Category',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               const SizedBox(height: AppValues.gapSmall),
               Wrap(
                 spacing: 8,
@@ -113,26 +127,33 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
                       label: Text(cat.name),
                       selected: isSelected,
                       onSelected: (selected) {
-                        setState(() => _selectedCategoryId = selected ? cat.id : null);
+                        setState(() =>
+                            _selectedCategoryId = selected ? cat.id : null);
                       },
                       selectedColor: AppColors.primary.withValues(alpha: 0.2),
                       checkmarkColor: AppColors.primary,
-                      padding: const EdgeInsets.symmetric(horizontal: AppValues.gapSmall, vertical: AppValues.gapExtraSmall),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppValues.gapSmall,
+                          vertical: AppValues.gapExtraSmall),
                     );
                   }),
                   ActionChip(
-                    avatar: const Icon(Icons.add_rounded, size: 16, color: AppColors.primary),
-                    label: const Text('Add New', style: TextStyle(color: AppColors.primary)),
+                    avatar: const Icon(Icons.add_rounded,
+                        size: 16, color: AppColors.primary),
+                    label: const Text('Add New',
+                        style: TextStyle(color: AppColors.primary)),
                     onPressed: () => _showAddCategorySheet(context),
                     backgroundColor: AppColors.primary.withValues(alpha: 0.1),
                     side: BorderSide.none,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppValues.borderRadiusSmall)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(AppValues.borderRadiusSmall)),
                   ),
                 ],
               ),
-
               const SizedBox(height: AppValues.gapLarge),
-              const Text('Date', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              const Text('Date',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               const SizedBox(height: AppValues.gapSmall),
               InkWell(
                 onTap: () => _selectDate(context),
@@ -144,7 +165,8 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.calendar_today_rounded, size: 20, color: AppColors.primary),
+                      const Icon(Icons.calendar_today_rounded,
+                          size: 20, color: AppColors.primary),
                       const SizedBox(width: AppValues.gapMedium),
                       Text(
                         DateFormat('MMMM dd, yyyy').format(_selectedDate),
@@ -154,9 +176,9 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
                   ),
                 ),
               ),
-
               const SizedBox(height: AppValues.gapLarge),
-              const Text('Note', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              const Text('Note',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               const SizedBox(height: AppValues.gapSmall),
               TextFormField(
                 controller: _noteController,
@@ -165,13 +187,14 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
                 ),
                 maxLines: 2,
               ),
-              
               const SizedBox(height: AppValues.gapExtraLarge),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _saveTransaction,
-                  child: Text(widget.initialTransaction == null ? 'Save Transaction' : 'Update Transaction'),
+                  child: Text(widget.initialTransaction == null
+                      ? 'Save Transaction'
+                      : 'Update Transaction'),
                 ),
               ),
             ],
@@ -219,7 +242,9 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
           child: Text(
             label,
             style: TextStyle(
-              color: isSelected ? Colors.white : Theme.of(context).textTheme.bodyMedium?.color,
+              color: isSelected
+                  ? Colors.white
+                  : Theme.of(context).textTheme.bodyMedium?.color,
               fontWeight: FontWeight.bold,
               fontSize: 12,
             ),
@@ -261,19 +286,21 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
       final amount = double.tryParse(_amountController.text);
       if (amount == null || _selectedCategoryId == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please select a category and enter a valid amount')),
+          const SnackBar(
+              content:
+                  Text('Please select a category and enter a valid amount')),
         );
         return;
       }
 
       if (widget.initialTransaction == null) {
         ref.read(transactionsListProvider.notifier).addTransaction(
-          amount: amount,
-          note: _noteController.text,
-          date: _selectedDate,
-          type: _selectedType,
-          categoryId: _selectedCategoryId!,
-        );
+              amount: amount,
+              note: _noteController.text,
+              date: _selectedDate,
+              type: _selectedType,
+              categoryId: _selectedCategoryId!,
+            );
       } else {
         final updated = widget.initialTransaction!.copyWith(
           amount: amount,
@@ -284,13 +311,13 @@ class _AddTransactionPageState extends ConsumerState<AddTransactionPage> {
         );
         ref.read(transactionsListProvider.notifier).updateTransaction(updated);
       }
-      
+
       AnalyticsService().logTransactionAdded(
         category: _selectedCategoryId!,
         amount: amount,
         type: _selectedType,
       );
-      
+
       Navigator.pop(context);
     }
   }
@@ -374,7 +401,8 @@ class _AddCategorySheetState extends ConsumerState<_AddCategorySheet> {
               ],
             ),
             const SizedBox(height: AppValues.gapLarge),
-            const Text('Category Name', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('Category Name',
+                style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: AppValues.gapSmall),
             TextField(
               controller: _nameController,
@@ -398,10 +426,14 @@ class _AddCategorySheetState extends ConsumerState<_AddCategorySheet> {
                       margin: const EdgeInsets.only(right: 12),
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: isSelected ? _selectedColor.withOpacity(0.1) : Colors.transparent,
+                        color: isSelected
+                            ? _selectedColor.withOpacity(0.1)
+                            : Colors.transparent,
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: isSelected ? _selectedColor : Colors.grey.withOpacity(0.2),
+                          color: isSelected
+                              ? _selectedColor
+                              : Colors.grey.withOpacity(0.2),
                         ),
                       ),
                       child: Icon(
@@ -434,8 +466,16 @@ class _AddCategorySheetState extends ConsumerState<_AddCategorySheet> {
                       decoration: BoxDecoration(
                         color: color,
                         shape: BoxShape.circle,
-                        border: isSelected ? Border.all(color: Colors.white, width: 3) : null,
-                        boxShadow: isSelected ? [BoxShadow(color: color.withOpacity(0.4), blurRadius: 10)] : null,
+                        border: isSelected
+                            ? Border.all(color: Colors.white, width: 3)
+                            : null,
+                        boxShadow: isSelected
+                            ? [
+                                BoxShadow(
+                                    color: color.withOpacity(0.4),
+                                    blurRadius: 10)
+                              ]
+                            : null,
                       ),
                     ),
                   );
@@ -448,12 +488,14 @@ class _AddCategorySheetState extends ConsumerState<_AddCategorySheet> {
               child: ElevatedButton(
                 onPressed: () async {
                   if (_nameController.text.isEmpty) return;
-                  final categoryId = await ref.read(categoriesListProvider.notifier).addCategory(
-                    name: _nameController.text,
-                    iconName: _selectedIcon,
-                    colorValue: _selectedColor.value,
-                    type: widget.type,
-                  );
+                  final categoryId = await ref
+                      .read(categoriesListProvider.notifier)
+                      .addCategory(
+                        name: _nameController.text,
+                        iconName: _selectedIcon,
+                        colorValue: _selectedColor.value,
+                        type: widget.type,
+                      );
                   if (context.mounted) Navigator.pop(context, categoryId);
                 },
                 child: const Text('Add Category'),
@@ -467,19 +509,32 @@ class _AddCategorySheetState extends ConsumerState<_AddCategorySheet> {
 
   IconData _getIcon(String iconName) {
     switch (iconName) {
-      case 'fastfood_rounded': return Icons.fastfood_rounded;
-      case 'directions_bus_rounded': return Icons.directions_bus_rounded;
-      case 'shopping_bag_rounded': return Icons.shopping_bag_rounded;
-      case 'receipt_long_rounded': return Icons.receipt_long_rounded;
-      case 'movie_rounded': return Icons.movie_rounded;
-      case 'work_rounded': return Icons.work_rounded;
-      case 'savings_rounded': return Icons.savings_rounded;
-      case 'trending_up_rounded': return Icons.trending_up_rounded;
-      case 'medical_services_rounded': return Icons.medical_services_rounded;
-      case 'fitness_center_rounded': return Icons.fitness_center_rounded;
-      case 'home_rounded': return Icons.home_rounded;
-      case 'school_rounded': return Icons.school_rounded;
-      default: return Icons.category_rounded;
+      case 'fastfood_rounded':
+        return Icons.fastfood_rounded;
+      case 'directions_bus_rounded':
+        return Icons.directions_bus_rounded;
+      case 'shopping_bag_rounded':
+        return Icons.shopping_bag_rounded;
+      case 'receipt_long_rounded':
+        return Icons.receipt_long_rounded;
+      case 'movie_rounded':
+        return Icons.movie_rounded;
+      case 'work_rounded':
+        return Icons.work_rounded;
+      case 'savings_rounded':
+        return Icons.savings_rounded;
+      case 'trending_up_rounded':
+        return Icons.trending_up_rounded;
+      case 'medical_services_rounded':
+        return Icons.medical_services_rounded;
+      case 'fitness_center_rounded':
+        return Icons.fitness_center_rounded;
+      case 'home_rounded':
+        return Icons.home_rounded;
+      case 'school_rounded':
+        return Icons.school_rounded;
+      default:
+        return Icons.category_rounded;
     }
   }
 }

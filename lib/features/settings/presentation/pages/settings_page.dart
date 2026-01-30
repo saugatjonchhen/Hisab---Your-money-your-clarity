@@ -681,7 +681,7 @@ class SettingsPage extends ConsumerWidget {
                   label: const Text('Schedule in 1 Minute'),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: AppColors.secondary,
-                    side: BorderSide(color: AppColors.secondary),
+                    side: const BorderSide(color: AppColors.secondary),
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),

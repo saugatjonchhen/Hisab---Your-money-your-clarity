@@ -24,17 +24,20 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   final List<_OnboardingSlide> _slides = [
     const _OnboardingSlide(
       title: 'Payments for any business',
-      description: 'From e-commerce stores to subscription businesses - we offer a complete stack for all your payments needs across channels',
+      description:
+          'From e-commerce stores to subscription businesses - we offer a complete stack for all your payments needs across channels',
       assetPath: 'assets/images/onboarding_wallet.png',
     ),
     const _OnboardingSlide(
       title: 'Optimize your revenue',
-      description: 'Protect yourself from fraud and increase authorization rates on every payment using our machine learning from millions of businesses',
+      description:
+          'Protect yourself from fraud and increase authorization rates on every payment using our machine learning from millions of businesses',
       assetPath: 'assets/images/onboarding_piggy_bank.png',
     ),
     const _OnboardingSlide(
       title: 'Easy transfers in a few taps',
-      description: 'Transfer and receive money as easily as possible and keep track of your expenses in details and great goals',
+      description:
+          'Transfer and receive money as easily as possible and keep track of your expenses in details and great goals',
       assetPath: 'assets/images/onboarding_chart.png',
     ),
   ];
@@ -71,13 +74,16 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     // Top background should probably match the image background or be a brand color.
-    // Since images have dark background, we keep it dark or use primary if it blends. 
+    // Since images have dark background, we keep it dark or use primary if it blends.
     // Let's use backgroundDark for top to blend with images, and surface for bottom card.
-    final topBackgroundColor = AppColors.backgroundDark;
-    final bottomSheetColor = isDark ? AppColors.surfaceDark : AppColors.surfaceLight;
-    final primaryColor = AppColors.primary;
-    final titleColor = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final descColor = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    const topBackgroundColor = AppColors.backgroundDark;
+    final bottomSheetColor =
+        isDark ? AppColors.surfaceDark : AppColors.surfaceLight;
+    const primaryColor = AppColors.primary;
+    final titleColor =
+        isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final descColor =
+        isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
 
     return Scaffold(
       backgroundColor: topBackgroundColor,
@@ -85,7 +91,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         children: [
           // Top section with 3D Image
           Expanded(
-            flex: 5, 
+            flex: 5,
             child: PageView.builder(
               controller: _pageController,
               itemCount: _slides.length,
@@ -128,7 +134,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                         decoration: BoxDecoration(
                           color: _currentPage == index
                               ? primaryColor
-                              : isDark ? Colors.grey.shade700 : Colors.grey.shade300,
+                              : isDark
+                                  ? Colors.grey.shade700
+                                  : Colors.grey.shade300,
                           borderRadius: BorderRadius.circular(2),
                         ),
                       ),
@@ -143,20 +151,24 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                       children: [
                         Text(
                           _slides[_currentPage].title,
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: titleColor,
-                            height: 1.2,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: titleColor,
+                                height: 1.2,
+                              ),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
                         Text(
                           _slides[_currentPage].description,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: descColor,
-                            height: 1.5,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: descColor,
+                                    height: 1.5,
+                                  ),
                           textAlign: TextAlign.center,
                         ),
                       ],
