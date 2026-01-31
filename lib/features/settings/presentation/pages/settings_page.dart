@@ -117,6 +117,67 @@ class SettingsPage extends ConsumerWidget {
                   },
                 ),
               ),
+              if (!kIsWeb) ...[
+                Card(
+                  child: Column(
+                    children: [
+                      SwitchListTile(
+                        secondary: const Icon(Icons.auto_mode_rounded,
+                            color: AppColors.primary),
+                        title: const Text('Auto Backup'),
+                        subtitle:
+                            const Text('Local backup saved to your device'),
+                        value: settings.autoBackupEnabled,
+                        onChanged: (val) => ref
+                            .read(settingsProvider.notifier)
+                            .setAutoBackupEnabled(val),
+                        activeColor: AppColors.primary,
+                      ),
+                      if (settings.autoBackupEnabled &&
+                          settings.lastBackupTime != null)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 72, bottom: 12),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.history_rounded,
+                                  size: 14, color: Colors.grey),
+                              const SizedBox(width: 4),
+                              Text(
+                                'Next sync: ${DateFormat('MMM dd, HH:mm').format(settings.lastBackupTime!.add(const Duration(hours: 24)))}',
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.share_rounded,
+                        color: AppColors.primary),
+                    title: const Text('Share/Export Auto-Backup'),
+                    subtitle: const Text(
+                        'Send the latest auto-sync file to other apps'),
+                    trailing: const Icon(Icons.chevron_right_rounded),
+                    onTap: () async {
+                      try {
+                        await BackupService.sharePersistentBackup();
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text('Error: $e'),
+                                backgroundColor: Colors.red),
+                          );
+                        }
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(height: AppValues.gapSmall),
+              ],
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppValues.gapExtraSmall,

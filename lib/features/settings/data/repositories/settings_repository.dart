@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:finance_app/features/settings/presentation/providers/settings_provider.dart';
 
-
 class SettingsRepository {
   static const String _settingsBoxName = 'settings_box';
   static const String _themeKey = 'theme_mode';
@@ -15,6 +14,9 @@ class SettingsRepository {
   static const String _budgetCycleTypeKey = 'budget_cycle_type';
   static const String _customCycleStartDayKey = 'custom_cycle_start_day';
   static const String _hasSeenOnboardingKey = 'has_seen_onboarding';
+  static const String _autoBackupEnabledKey = 'auto_backup_enabled';
+  static const String _lastBackupTimeKey = 'last_backup_time';
+  static const String _lastBackupFailedKey = 'last_backup_failed';
 
   Future<Box> _getBox() async {
     if (Hive.isBoxOpen(_settingsBoxName)) {
@@ -97,7 +99,9 @@ class SettingsRepository {
   Future<BudgetCycleType> getBudgetCycleType() async {
     final box = await _getBox();
     final typeString = box.get(_budgetCycleTypeKey, defaultValue: 'calendar');
-    return typeString == 'custom' ? BudgetCycleType.custom : BudgetCycleType.calendar;
+    return typeString == 'custom'
+        ? BudgetCycleType.custom
+        : BudgetCycleType.calendar;
   }
 
   Future<void> saveCustomCycleStartDay(int day) async {
@@ -118,5 +122,37 @@ class SettingsRepository {
   Future<bool> getHasSeenOnboarding() async {
     final box = await _getBox();
     return box.get(_hasSeenOnboardingKey, defaultValue: false);
+  }
+
+  Future<void> saveAutoBackupEnabled(bool enabled) async {
+    final box = await _getBox();
+    await box.put(_autoBackupEnabledKey, enabled);
+  }
+
+  Future<bool> getAutoBackupEnabled() async {
+    final box = await _getBox();
+    return box.get(_autoBackupEnabledKey, defaultValue: true);
+  }
+
+  Future<void> saveLastBackupTime(DateTime time) async {
+    final box = await _getBox();
+    await box.put(_lastBackupTimeKey, time.toIso8601String());
+  }
+
+  Future<DateTime?> getLastBackupTime() async {
+    final box = await _getBox();
+    final timeStr = box.get(_lastBackupTimeKey);
+    if (timeStr == null) return null;
+    return DateTime.tryParse(timeStr);
+  }
+
+  Future<void> saveLastBackupFailed(bool failed) async {
+    final box = await _getBox();
+    await box.put(_lastBackupFailedKey, failed);
+  }
+
+  Future<bool> getLastBackupFailed() async {
+    final box = await _getBox();
+    return box.get(_lastBackupFailedKey, defaultValue: false);
   }
 }

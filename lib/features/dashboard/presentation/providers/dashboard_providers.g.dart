@@ -6,6 +6,21 @@ part of 'dashboard_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$isBackupOutOfSyncHash() => r'82537b1423bab93378dbdbbaf8213b0c5a362983';
+
+/// See also [isBackupOutOfSync].
+@ProviderFor(isBackupOutOfSync)
+final isBackupOutOfSyncProvider = AutoDisposeProvider<bool>.internal(
+  isBackupOutOfSync,
+  name: r'isBackupOutOfSyncProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isBackupOutOfSyncHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef IsBackupOutOfSyncRef = AutoDisposeProviderRef<bool>;
 String _$filteredTransactionsHash() =>
     r'549e4cb33b49d3bde12cc565d2af6c1c7b4bdd2d';
 

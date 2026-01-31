@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:finance_app/core/theme/app_colors.dart';
+import 'package:finance_app/core/services/notification_service.dart';
 import 'package:finance_app/features/budget/presentation/pages/budget_page.dart';
 import 'package:finance_app/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:finance_app/features/settings/presentation/pages/settings_page.dart';
@@ -17,6 +19,8 @@ class MainShell extends ConsumerStatefulWidget {
 }
 
 class _MainShellState extends ConsumerState<MainShell> {
+  StreamSubscription<String?>? _notificationSubscription;
+
   final List<Widget> _pages = const [
     DashboardPage(),
     AllTransactionsPage(),
@@ -39,6 +43,25 @@ class _MainShellState extends ConsumerState<MainShell> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _logTabSelection(ref.read(navigationProvider));
     });
+
+    // Listen to notification taps for navigation
+    _notificationSubscription =
+        NotificationService().onNotificationTapped.listen((payload) {
+      if (payload != null &&
+          (payload == 'backup_success' || payload == 'backup_failed')) {
+        debugPrint(
+            'MainShell: Navigating to Settings due to backup notification');
+        ref
+            .read(navigationProvider.notifier)
+            .setIndex(4); // Settings is index 4
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _notificationSubscription?.cancel();
+    super.dispose();
   }
 
   @override

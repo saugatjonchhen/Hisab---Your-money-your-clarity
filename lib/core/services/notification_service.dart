@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
@@ -14,6 +15,9 @@ class NotificationService {
 
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
+
+  final _onNotificationTapped = StreamController<String?>.broadcast();
+  Stream<String?> get onNotificationTapped => _onNotificationTapped.stream;
 
   Future<void> init() async {
     // Skip notification setup on web - local notifications don't work on web
@@ -67,8 +71,8 @@ class NotificationService {
     await _notificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (NotificationResponse response) {
-        // Handle notification tap if needed
         debugPrint('Notification tapped: ${response.payload}');
+        _onNotificationTapped.add(response.payload);
       },
     );
 

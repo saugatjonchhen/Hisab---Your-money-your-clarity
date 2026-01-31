@@ -125,7 +125,7 @@ final totalExpenseProvider = AutoDisposeFutureProvider<double>.internal(
 );
 
 typedef TotalExpenseRef = AutoDisposeFutureProviderRef<double>;
-String _$transactionsListHash() => r'651b413468a68f1333e36b7f486540139797d90e';
+String _$transactionsListHash() => r'3b42ec4815c7412a4e9d2cd69acbe0b895cb7d11';
 
 /// See also [TransactionsList].
 @ProviderFor(TransactionsList)

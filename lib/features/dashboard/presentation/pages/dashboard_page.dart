@@ -1,5 +1,6 @@
 import 'package:finance_app/core/theme/app_colors.dart';
 import 'package:finance_app/core/theme/app_values.dart';
+import 'package:finance_app/core/services/backup_service.dart';
 import 'package:finance_app/features/dashboard/presentation/providers/dashboard_providers.dart';
 import 'package:finance_app/features/dashboard/presentation/pages/detailed_stats_page.dart';
 import 'package:finance_app/features/settings/presentation/providers/settings_provider.dart';
@@ -225,6 +226,7 @@ class DashboardPage extends StatelessWidget {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        _buildBackupRiskBanner(context, ref),
                         _buildEmeraldHeroCard(
                           context,
                           ref,
@@ -573,6 +575,119 @@ class DashboardPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildBackupRiskBanner(BuildContext context, WidgetRef ref) {
+    final settingsAsync = ref.watch(settingsProvider);
+    final isOutOfSync = ref.watch(isBackupOutOfSyncProvider);
+    if (!isOutOfSync) return const SizedBox.shrink();
+
+    return settingsAsync.maybeWhen(
+      data: (settings) {
+        String title = 'Risk of data loss';
+        String subtitle =
+            'Your data is not backed up. Sync now to prevent data loss.';
+
+        if (!settings.autoBackupEnabled) {
+          title = 'Auto-backup disabled';
+          subtitle =
+              'Turn on auto-backup in settings to protect your data automatically.';
+        } else if (settings.lastBackupFailed) {
+          subtitle = 'The last backup attempt failed. Please sync now.';
+        }
+
+        return Container(
+          margin: const EdgeInsets.only(bottom: AppValues.gapMedium),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: AppColors.error.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(AppValues.borderRadius),
+            border: Border.all(color: AppColors.error.withValues(alpha: 0.2)),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.warning_amber_rounded, color: AppColors.error),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.error,
+                      ),
+                    ),
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.error.withValues(alpha: 0.8),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed: () async {
+                  try {
+                    // Automatically enable auto-backup if it's currently disabled
+                    if (!settings.autoBackupEnabled) {
+                      await ref
+                          .read(settingsProvider.notifier)
+                          .setAutoBackupEnabled(true);
+
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Auto-backup enabled!')),
+                        );
+                      }
+                    }
+
+                    // Show loading
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Starting backup...')),
+                      );
+                    }
+
+                    await BackupService.createPersistentBackup();
+
+                    // Update last backup time (which also clears failure status)
+                    await ref
+                        .read(settingsProvider.notifier)
+                        .updateLastBackupTime(DateTime.now());
+
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Backup successful!')),
+                      );
+                    }
+                  } catch (e) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text('Backup failed: $e'),
+                            backgroundColor: AppColors.error),
+                      );
+                    }
+                  }
+                },
+                child: const Text(
+                  'Sync Now',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.error,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
     );
   }
 

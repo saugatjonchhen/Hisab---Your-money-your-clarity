@@ -16,6 +16,9 @@ class SettingsState {
   final BudgetCycleType budgetCycleType;
   final int customCycleStartDay; // 1-31, day of month to start budget cycle
   final bool hasSeenOnboarding;
+  final bool autoBackupEnabled;
+  final DateTime? lastBackupTime;
+  final bool lastBackupFailed;
 
   SettingsState({
     required this.themeMode,
@@ -27,6 +30,9 @@ class SettingsState {
     this.budgetCycleType = BudgetCycleType.calendar,
     this.customCycleStartDay = 1,
     required this.hasSeenOnboarding,
+    this.autoBackupEnabled = true,
+    this.lastBackupTime,
+    this.lastBackupFailed = false,
   });
 
   SettingsState copyWith({
@@ -39,6 +45,9 @@ class SettingsState {
     BudgetCycleType? budgetCycleType,
     int? customCycleStartDay,
     bool? hasSeenOnboarding,
+    bool? autoBackupEnabled,
+    DateTime? lastBackupTime,
+    bool? lastBackupFailed,
   }) {
     return SettingsState(
       themeMode: themeMode ?? this.themeMode,
@@ -46,10 +55,14 @@ class SettingsState {
       dailyReminderEnabled: dailyReminderEnabled ?? this.dailyReminderEnabled,
       dailyReminderTime: dailyReminderTime ?? this.dailyReminderTime,
       budgetAlertsEnabled: budgetAlertsEnabled ?? this.budgetAlertsEnabled,
-      recurringAlertsEnabled: recurringAlertsEnabled ?? this.recurringAlertsEnabled,
+      recurringAlertsEnabled:
+          recurringAlertsEnabled ?? this.recurringAlertsEnabled,
       budgetCycleType: budgetCycleType ?? this.budgetCycleType,
       customCycleStartDay: customCycleStartDay ?? this.customCycleStartDay,
       hasSeenOnboarding: hasSeenOnboarding ?? this.hasSeenOnboarding,
+      autoBackupEnabled: autoBackupEnabled ?? this.autoBackupEnabled,
+      lastBackupTime: lastBackupTime ?? this.lastBackupTime,
+      lastBackupFailed: lastBackupFailed ?? this.lastBackupFailed,
     );
   }
 
@@ -87,6 +100,9 @@ class Settings extends _$Settings {
     final budgetCycleType = await repository.getBudgetCycleType();
     final customCycleStartDay = await repository.getCustomCycleStartDay();
     final hasSeenOnboarding = await repository.getHasSeenOnboarding();
+    final autoBackupEnabled = await repository.getAutoBackupEnabled();
+    final lastBackupTime = await repository.getLastBackupTime();
+    final lastBackupFailed = await repository.getLastBackupFailed();
 
     return SettingsState(
       themeMode: theme,
@@ -98,6 +114,9 @@ class Settings extends _$Settings {
       budgetCycleType: budgetCycleType,
       customCycleStartDay: customCycleStartDay,
       hasSeenOnboarding: hasSeenOnboarding,
+      autoBackupEnabled: autoBackupEnabled,
+      lastBackupTime: lastBackupTime,
+      lastBackupFailed: lastBackupFailed,
     );
   }
 
@@ -188,6 +207,36 @@ class Settings extends _$Settings {
       await repository.saveHasSeenOnboarding(hasSeen);
       final current = state.value!;
       return current.copyWith(hasSeenOnboarding: hasSeen);
+    });
+  }
+
+  Future<void> setAutoBackupEnabled(bool enabled) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final repository = SettingsRepository();
+      await repository.saveAutoBackupEnabled(enabled);
+      final current = state.value!;
+      return current.copyWith(autoBackupEnabled: enabled);
+    });
+  }
+
+  Future<void> updateLastBackupTime(DateTime time) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final repository = SettingsRepository();
+      await repository.saveLastBackupTime(time);
+      final current = state.value!;
+      return current.copyWith(lastBackupTime: time, lastBackupFailed: false);
+    });
+  }
+
+  Future<void> setLastBackupFailed(bool failed) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final repository = SettingsRepository();
+      await repository.saveLastBackupFailed(failed);
+      final current = state.value!;
+      return current.copyWith(lastBackupFailed: failed);
     });
   }
 }
