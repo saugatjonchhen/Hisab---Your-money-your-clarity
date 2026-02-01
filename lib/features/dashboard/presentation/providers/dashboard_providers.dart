@@ -133,8 +133,17 @@ Future<BreakingDownSpending> spendingBreakdown(SpendingBreakdownRef ref) async {
 
       bool isCommitted = false;
       if (category.id.isNotEmpty) {
-        final type = category.type.toLowerCase();
-        if (type == 'mandatory' || type == 'debt') {
+        // Check if this is a mandatory/debt category based on name keywords
+        final name = category.name.toLowerCase();
+        if (name.contains('emi') ||
+            name.contains('loan') ||
+            name.contains('rent') ||
+            name.contains('house') ||
+            name.contains('utility') ||
+            name.contains('bill') ||
+            name.contains('education') ||
+            name.contains('school') ||
+            name.contains('debt')) {
           isCommitted = true;
         }
       }

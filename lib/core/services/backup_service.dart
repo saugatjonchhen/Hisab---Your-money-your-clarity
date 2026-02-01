@@ -112,7 +112,7 @@ class BackupService {
 
       await Share.shareXFiles(
         [XFile(file.path)],
-        subject: 'Hisab Data Backup - ${DateTime.now().toIso8601String()}',
+        subject: 'Hisava Data Backup - ${DateTime.now().toIso8601String()}',
       );
     } catch (e) {
       if (kDebugMode) {
@@ -219,7 +219,7 @@ class BackupService {
       if (await file.exists()) {
         await Share.shareXFiles(
           [XFile(file.path)],
-          subject: 'Hisab Auto-Backup Export',
+          subject: 'Hisava Auto-Backup Export',
         );
       } else {
         throw Exception('Auto-backup file not found. Perform a sync first.');

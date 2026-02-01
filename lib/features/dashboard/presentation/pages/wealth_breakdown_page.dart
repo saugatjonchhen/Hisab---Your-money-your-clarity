@@ -13,10 +13,8 @@ class WealthBreakdownPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final wealthAsync = ref.watch(totalWealthProvider);
     final liquidAsync = ref.watch(liquidCashProvider);
-    final spendableAsync = ref.watch(filteredBalanceProvider);
-    final committedAsync = ref.watch(remainingCommittedExpensesProvider);
-    final breakdownAsync = ref.watch(spendingBreakdownProvider);
     final incomeAsync = ref.watch(totalIncomeProvider);
+    final expenseAsync = ref.watch(totalExpenseProvider);
 
     final savingsAsync = ref.watch(totalSavingsProvider);
     final investmentAsync = ref.watch(totalInvestmentProvider);
@@ -51,12 +49,11 @@ class WealthBreakdownPage extends ConsumerWidget {
               currencySymbol: currencySymbol,
             ),
             const SizedBox(height: AppValues.gapLarge),
-            _buildSpendableLogicCard(
+            _buildWealthCalculationCard(
               context,
               income: incomeAsync.valueOrNull ?? 0.0,
-              totalReserved: breakdownAsync.valueOrNull?.totalReserved ?? 0.0,
-              otherSpent: breakdownAsync.valueOrNull?.otherSpent ?? 0.0,
-              spendable: spendableAsync.valueOrNull ?? 0.0,
+              expenses: expenseAsync.valueOrNull ?? 0.0,
+              wealth: wealthAsync.valueOrNull ?? 0.0,
               currencySymbol: currencySymbol,
             ),
             const SizedBox(height: AppValues.gapExtraLarge),
@@ -235,12 +232,11 @@ class WealthBreakdownPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildSpendableLogicCard(
+  Widget _buildWealthCalculationCard(
     BuildContext context, {
     required double income,
-    required double totalReserved,
-    required double otherSpent,
-    required double spendable,
+    required double expenses,
+    required double wealth,
     required String currencySymbol,
   }) {
     return Container(
@@ -256,29 +252,25 @@ class WealthBreakdownPage extends ConsumerWidget {
         children: [
           const Row(
             children: [
-              Icon(Icons.info_outline_rounded,
+              Icon(Icons.calculate_outlined,
                   color: AppColors.primary, size: 24),
               SizedBox(width: 12),
               Text(
-                'Spending Logic',
+                'Wealth Calculation',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: 24),
-          _buildLogicRow(context, 'Total Income', income, currencySymbol,
+          _buildLogicRow(
+              context, 'Total Income (All Time)', income, currencySymbol,
               isPositive: true),
           const SizedBox(height: 12),
-          _buildLogicRow(context, 'Reserved for Bills (Planned)', totalReserved,
-              currencySymbol,
-              isPositive: false),
-          const SizedBox(height: 12),
           _buildLogicRow(
-              context, 'Other Expenses (Paid)', otherSpent, currencySymbol,
+              context, 'Total Expenses (All Time)', expenses, currencySymbol,
               isPositive: false),
           const Divider(height: 32),
-          _buildLogicRow(
-              context, 'True Spendable Balance', spendable, currencySymbol,
+          _buildLogicRow(context, 'Net Wealth', wealth, currencySymbol,
               isPositive: true, isBold: true),
         ],
       ),
@@ -320,7 +312,7 @@ class WealthBreakdownPage extends ConsumerWidget {
           SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Your spendable balance aligns with your budget and ensures you don\'t touch the money needed for your plans.',
+              'Your wealth represents all income earned minus expenses paid over time. Savings and investments are part of your wealth, just allocated differently.',
               style: TextStyle(fontSize: 13),
             ),
           ),

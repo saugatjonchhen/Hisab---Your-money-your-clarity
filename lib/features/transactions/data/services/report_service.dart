@@ -29,19 +29,19 @@ class ReportService {
 
         await Share.shareXFiles(
           [XFile(file.path)],
-          subject: 'Hisab Transaction Report - $rangeTitle',
+          subject: 'Hisava Transaction Report - $rangeTitle',
         );
       } else if (format.toUpperCase() == 'PDF') {
         final file = await PdfExporter.generateTransactionsPdf(
           transactions: transactions,
           categories: categories,
-          title: 'Hisab Transaction Report - $rangeTitle',
+          title: 'Hisava Transaction Report - $rangeTitle',
           currencySymbol: currencySymbol,
         );
 
         await Share.shareXFiles(
           [XFile(file.path)],
-          subject: 'Hisab Transaction Report - $rangeTitle',
+          subject: 'Hisava Transaction Report - $rangeTitle',
         );
       }
     } catch (e) {

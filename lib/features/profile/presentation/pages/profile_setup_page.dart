@@ -40,7 +40,8 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
     });
 
     _nameController.addListener(() {
-      if (_selectedImagePath == null || _selectedImagePath!.contains('ui-avatars.com')) {
+      if (_selectedImagePath == null ||
+          _selectedImagePath!.contains('ui-avatars.com')) {
         setState(() {
           // Trigger rebuild to update initials in avatar preview
         });
@@ -101,12 +102,16 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
       final profile = UserProfile(
         fullName: _nameController.text.trim(),
         age: int.parse(_ageController.text.trim()),
-        email: _emailController.text.trim().isEmpty ? null : _emailController.text.trim(),
+        email: _emailController.text.trim().isEmpty
+            ? null
+            : _emailController.text.trim(),
         imagePath: _selectedImagePath,
         isSetupComplete: true,
       );
 
-      await ref.read(userProfileNotifierProvider.notifier).completeSetup(profile);
+      await ref
+          .read(userProfileNotifierProvider.notifier)
+          .completeSetup(profile);
 
       if (mounted) {
         if (isUpdate) {
@@ -164,7 +169,7 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
                   ),
                 const SizedBox(height: AppValues.gapMedium),
                 Text(
-                  isUpdate ? 'Update Profile' : 'Welcome to Hisab',
+                  isUpdate ? 'Update Profile' : 'Welcome to Hisava',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: isDark ? Colors.white : AppColors.secondary,
@@ -172,11 +177,13 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
                 ),
                 const SizedBox(height: AppValues.gapSmall),
                 Text(
-                  isUpdate 
+                  isUpdate
                       ? 'Keep your information up to date for better insights.'
                       : 'Let\'s build your profile to personalize your experience.',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                        color: isDark
+                            ? AppColors.textSecondaryDark
+                            : AppColors.textSecondaryLight,
                       ),
                 ),
                 const SizedBox(height: AppValues.gapExtraLarge),
@@ -188,7 +195,9 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
                         height: 120,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
+                          color: isDark
+                              ? AppColors.surfaceDark
+                              : AppColors.surfaceLight,
                           border: Border.all(
                             color: AppColors.primary.withValues(alpha: 0.5),
                             width: 2,
@@ -205,7 +214,8 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
                           backgroundColor: AppColors.primary,
                           radius: 18,
                           child: IconButton(
-                            icon: const Icon(Icons.camera_alt_rounded, size: 18, color: Colors.white),
+                            icon: const Icon(Icons.camera_alt_rounded,
+                                size: 18, color: Colors.white),
                             onPressed: _pickImage,
                           ),
                         ),
@@ -343,7 +353,8 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: isSelected ? AppColors.primary : Colors.transparent,
+                      color:
+                          isSelected ? AppColors.primary : Colors.transparent,
                       width: 2,
                     ),
                   ),
@@ -353,14 +364,14 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Center(
-                           child: Text(
-                             initials,
-                             style: TextStyle(
-                               fontSize: 18,
-                               fontWeight: FontWeight.bold,
-                               color: AppColors.primary.withValues(alpha: 0.8),
-                             ),
-                           ),
+                          child: Text(
+                            initials,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primary.withValues(alpha: 0.8),
+                            ),
+                          ),
                         );
                       },
                     ),
@@ -395,7 +406,8 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
                     shape: BoxShape.circle,
                     color: AppColors.primary.withValues(alpha: 0.1),
                     border: Border.all(
-                      color: isSelected ? AppColors.primary : Colors.transparent,
+                      color:
+                          isSelected ? AppColors.primary : Colors.transparent,
                       width: 2,
                     ),
                   ),
@@ -415,15 +427,24 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
 
   IconData _getIconFromName(String name) {
     switch (name) {
-      case 'person_rounded': return Icons.person_rounded;
-      case 'face_rounded': return Icons.face_rounded;
-      case 'support_agent_rounded': return Icons.support_agent_rounded;
-      case 'psychology_rounded': return Icons.psychology_rounded;
-      case 'engineering_rounded': return Icons.engineering_rounded;
-      case 'pets_rounded': return Icons.pets_rounded;
-      case 'sports_esports_rounded': return Icons.sports_esports_rounded;
-      case 'flight_rounded': return Icons.flight_rounded;
-      default: return Icons.person_rounded;
+      case 'person_rounded':
+        return Icons.person_rounded;
+      case 'face_rounded':
+        return Icons.face_rounded;
+      case 'support_agent_rounded':
+        return Icons.support_agent_rounded;
+      case 'psychology_rounded':
+        return Icons.psychology_rounded;
+      case 'engineering_rounded':
+        return Icons.engineering_rounded;
+      case 'pets_rounded':
+        return Icons.pets_rounded;
+      case 'sports_esports_rounded':
+        return Icons.sports_esports_rounded;
+      case 'flight_rounded':
+        return Icons.flight_rounded;
+      default:
+        return Icons.person_rounded;
     }
   }
 
@@ -445,7 +466,9 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+            color: isDark
+                ? AppColors.textSecondaryDark
+                : AppColors.textSecondaryLight,
           ),
         ),
         const SizedBox(height: 8),
@@ -489,7 +512,8 @@ class _ProfileSetupPageState extends ConsumerState<ProfileSetupPage> {
 
   Widget _buildMainAvatarContent() {
     if (_selectedImagePath != null) {
-      if (_selectedImagePath!.startsWith('http') || _selectedImagePath!.startsWith('blob:')) {
+      if (_selectedImagePath!.startsWith('http') ||
+          _selectedImagePath!.startsWith('blob:')) {
         return Image.network(
           _selectedImagePath!,
           fit: BoxFit.cover,
