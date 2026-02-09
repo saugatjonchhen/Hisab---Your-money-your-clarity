@@ -8,7 +8,7 @@ import 'package:finance_app/features/profile/presentation/providers/user_profile
 import 'package:finance_app/features/profile/presentation/pages/profile_setup_page.dart';
 import 'package:finance_app/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:finance_app/core/services/notification_service.dart';
-import 'package:finance_app/core/services/backup_service.dart';
+
 import 'package:flutter/foundation.dart'; // For kIsWeb
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -127,7 +127,7 @@ class _SplashPageState extends ConsumerState<SplashPage>
     // Trigger auto-backup check if not on web
     if (!kIsWeb) {
       debugPrint('SplashPage: Triggering auto-backup check');
-      BackupService.checkAndPerformAutoBackup();
+      ref.read(settingsProvider.notifier).checkAndPerformAutoBackup();
     }
   }
 

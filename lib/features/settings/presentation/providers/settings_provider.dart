@@ -1,6 +1,9 @@
 import 'package:finance_app/features/settings/data/repositories/settings_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:finance_app/core/services/backup_service.dart';
+import 'package:finance_app/core/services/notification_service.dart';
 
 part 'settings_provider.g.dart';
 
@@ -238,5 +241,51 @@ class Settings extends _$Settings {
       final current = state.value!;
       return current.copyWith(lastBackupFailed: failed);
     });
+  }
+
+  Future<void> checkAndPerformAutoBackup() async {
+    // Skip on web as it requires user interaction for file saving
+    if (kIsWeb) return;
+
+    final current = state.valueOrNull;
+    if (current == null) return;
+
+    // 1. Check if feature is enabled
+    if (!current.autoBackupEnabled) return;
+
+    // 2. Check if 24 hours have passed since last backup
+    final lastBackup = current.lastBackupTime;
+    final now = DateTime.now();
+
+    if (lastBackup == null || now.difference(lastBackup).inHours >= 24) {
+      // Perform backup
+      debugPrint('SettingsProvider: Starting auto-backup...');
+      try {
+        await BackupService.createPersistentBackup();
+
+        // Update last backup time and reset failure status
+        await updateLastBackupTime(now);
+
+        // Show success notification
+        await NotificationService().showNotification(
+          id: 200,
+          title: 'Backup Complete',
+          body: 'Your data has been backed up successfully.',
+          payload: 'backup_success',
+        );
+        debugPrint('SettingsProvider: Auto-backup complete.');
+      } catch (e) {
+        debugPrint('SettingsProvider: Auto-backup failed: $e');
+        await setLastBackupFailed(true);
+
+        // Show failure notification
+        await NotificationService().showNotification(
+          id: 201,
+          title: 'Backup Failed',
+          body: 'Automatic backup failed. Please check your storage.',
+          payload: 'backup_failed',
+        );
+      }
+    }
   }
 }

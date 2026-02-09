@@ -14,7 +14,6 @@ import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:finance_app/features/settings/data/repositories/settings_repository.dart';
 
 class BackupService {
   static const List<String> _boxNames = [
@@ -229,55 +228,6 @@ class BackupService {
         print("Share Persistent Backup Error: $e");
       }
       rethrow;
-    }
-  }
-
-  /// Checks if an auto-backup is due (every 24 hours) and performs it if so.
-  static Future<void> checkAndPerformAutoBackup() async {
-    // Skip on web as it requires user interaction for file saving
-    if (kIsWeb) return;
-
-    try {
-      final settingsRepo = SettingsRepository();
-
-      // 1. Check if feature is enabled
-      final isEnabled = await settingsRepo.getAutoBackupEnabled();
-      if (!isEnabled) return;
-
-      // 2. Check if 24 hours have passed since last backup
-      final lastBackup = await settingsRepo.getLastBackupTime();
-      final now = DateTime.now();
-
-      if (lastBackup == null || now.difference(lastBackup).inHours >= 24) {
-        // Perform backup
-        debugPrint('BackupService: Starting auto-backup...');
-        await createPersistentBackup();
-
-        // Update last backup time and reset failure status
-        await settingsRepo.saveLastBackupTime(now);
-        await settingsRepo.saveLastBackupFailed(false);
-
-        // Show success notification
-        await NotificationService().showNotification(
-          id: 200,
-          title: 'Backup Complete',
-          body: 'Your data has been backed up successfully.',
-          payload: 'backup_success',
-        );
-        debugPrint('BackupService: Auto-backup complete.');
-      }
-    } catch (e) {
-      debugPrint('BackupService: Auto-backup failed: $e');
-      final settingsRepo = SettingsRepository();
-      await settingsRepo.saveLastBackupFailed(true);
-
-      // Show failure notification
-      await NotificationService().showNotification(
-        id: 201,
-        title: 'Backup Failed',
-        body: 'Automatic backup failed. Please check your storage.',
-        payload: 'backup_failed',
-      );
     }
   }
 
