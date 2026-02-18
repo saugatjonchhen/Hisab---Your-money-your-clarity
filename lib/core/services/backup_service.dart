@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:finance_app/core/services/notification_service.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:finance_app/features/budget/data/models/budget_models.dart';
 import 'package:finance_app/features/profile/data/models/user_profile_model.dart';
 import 'package:finance_app/features/tax_calculator/domain/models/tax_calculator_models.dart';
@@ -121,7 +122,25 @@ class BackupService {
     }
   }
 
-  /// Creates a backup and saves it to a persistent location on the device
+  /// Requests WRITE_EXTERNAL_STORAGE on Android ≤ API 29 (Android 10).
+  /// On Android 11+ scoped storage is used and no permission is needed for
+  /// writing to the app's external directory or the Downloads folder via
+  /// path_provider. Returns true if the public Downloads path may be used.
+  static Future<bool> _requestStoragePermission() async {
+    if (!Platform.isAndroid) return true;
+
+    // Android 11+ (API 30+) does not need WRITE_EXTERNAL_STORAGE for
+    // writing to the public Downloads folder via path_provider / MediaStore.
+    // We only need to request it on older versions.
+    final status = await Permission.storage.status;
+    if (status.isGranted) return true;
+    if (status.isPermanentlyDenied) return false;
+
+    final result = await Permission.storage.request();
+    return result.isGranted;
+  }
+
+  /// Creates a backup and saves it to a persistent location on the device.
   /// This file is overwritten on each successful backup to sync with new data.
   static Future<File> createPersistentBackup() async {
     try {
@@ -168,14 +187,23 @@ class BackupService {
 
       final String jsonString = jsonEncode(_sanitizeForJson(backupData));
 
-      // Strategy to find a user-visible directory (especially on Android)
+      // Strategy to find a user-visible directory (especially on Android).
+      // On Android ≤ 10 (API 29) we need WRITE_EXTERNAL_STORAGE to write to
+      // the public Downloads folder. Request it first; if denied, fall through
+      // to the app-private fallback paths which never need the permission.
       Directory? directory;
 
       if (Platform.isAndroid) {
-        // 1. Try common system Download path directly
-        final publicDownload = Directory('/storage/emulated/0/Download');
-        if (await publicDownload.exists()) {
-          directory = publicDownload;
+        final hasPermission = await _requestStoragePermission();
+        if (hasPermission) {
+          // 1. Try common system Download path directly
+          final publicDownload = Directory('/storage/emulated/0/Download');
+          if (await publicDownload.exists()) {
+            directory = publicDownload;
+          }
+        } else {
+          debugPrint(
+              'BackupService: Storage permission denied — falling back to app-private directory.');
         }
       }
 
@@ -188,14 +216,14 @@ class BackupService {
       // 4. Final fallback to private app docs
       directory ??= await getApplicationDocumentsDirectory();
 
-      final file = File("${directory.path}/hisab_auto_backup.json");
+      final file = File('${directory.path}/hisab_auto_backup.json');
       await file.writeAsString(jsonString);
 
       debugPrint('BackupService: Persistent backup saved to ${file.path}');
       return file;
     } catch (e) {
       if (kDebugMode) {
-        print("Persistent Backup Error: $e");
+        print('Persistent Backup Error: $e');
       }
       rethrow;
     }

@@ -18,6 +18,7 @@ import 'package:finance_app/features/settings/presentation/providers/settings_pr
 import 'package:finance_app/features/settings/presentation/pages/category_manager_page.dart';
 import 'package:finance_app/features/transactions/presentation/pages/recurring_transactions_page.dart';
 import 'package:finance_app/features/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:finance_app/features/splash/presentation/pages/splash_page.dart';
 import 'dart:io' show File;
 import 'package:finance_app/core/theme/app_values.dart';
 import 'package:finance_app/features/settings/presentation/pages/faq_page.dart';
@@ -939,7 +940,10 @@ class SettingsPage extends ConsumerWidget {
         Navigator.pop(context);
 
         // Navigate to Splash to restart flow
-        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const SplashPage()),
+          (route) => false,
+        );
       }
     } catch (e) {
       if (context.mounted) {
